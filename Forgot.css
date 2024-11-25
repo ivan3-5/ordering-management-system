@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background: url(Photos/book-and-coffee-01.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.container {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 20px 35px rgba(0, 0, 1, 0.9);
+    margin: 1rem;
+}
+
+.form {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 1.3rem;
+    margin-bottom: 0.4rem;
+}
+
+.instructions {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: #757575;
+}
+
+input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #757575;
+    padding-left: 1.5rem;
+    font-size: 15px;
+}
+
+.input {
+    padding: 10px;
+    position: relative;
+}
+
+input:focus {
+    background-color: transparent;
+    outline: transparent;
+    border-bottom: 2px solid rgb(85, 53, 15);
+}
+
+input::placeholder {
+    color: transparent;
+}
+
+label {
+    color: rgb(85, 53, 15);
+    position: relative;
+    left: 1.2em;
+    top: -1.8em;
+    transition: 0.3s ease all;
+}
+
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+    top: -3.5em;
+    color: rgb(85, 53, 15);
+    font-size: 15px;
+}
+
+.icon img {
+    width: 100%;
+    height: auto;
+    max-width: 120px;
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.icon img:hover {
+    transform: scale(1.1);
+}
+
+.btn {
+    font-size: 1.1rem;
+    padding: 8px 0;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    background: rgb(85, 53, 15);
+    color: white;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background: rgb(85, 53, 15);
+}
+
+.btn.back {
+    background: rgb(85, 53, 15);
+    margin-top: 0.5rem;
+}
+
+.btn.back:hover {
+    background: rgb(129, 89, 41);
+}
+
+/* mobile */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .form {
+        font-size: 1.3rem;
+    }
+
+    .instructions {
+        font-size: 0.9rem;
+    }
+
+    .input input {
+        font-size: 14px;
+    }
+
+    .icon img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .btn {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .form {
+        font-size: 1.2rem;
+    }
+
+    .instructions {
+        font-size: 0.85rem;
+    }
+
+    .input input {
+        font-size: 13px;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+}
