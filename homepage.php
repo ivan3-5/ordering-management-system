@@ -19,15 +19,15 @@
             <div class="navmenu">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a href="#"><button class="btn-custom-hover">MENU LIST</button></a>
+                        <a href="MenuList.php"><button class="btn-custom-hover">MENU LIST</button></a>
                     </li>
                     <li class="nav-item">
-                        <a href="#"><button class="btn-custom-hover">CUSTOMER SERVICE</button></a>
+                        <a href="CustomerService.php"><button class="btn-custom-hover">CUSTOMER SERVICE</button></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a href="#"><button class="btn-custom-hover">CART</button></a>
+                    <a href="CartTab.php"><button class="btn-custom-hover">CART</button></a>
                     </li>
                         <button class="profile-button">
                             <img src="Photos/gwapo.jpg" alt="papaberchan">

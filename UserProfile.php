@@ -10,7 +10,7 @@ if (!isset($_SESSION['email'])) {
 
 // Retrieve user data from the database using the session email
 $email = $_SESSION['email'];
-$sql = "SELECT FirstName, LastName FROM userform WHERE Email = ?";
+$sql = "SELECT first_name, last_name FROM usersform WHERE email = ?";
 $statement = mysqli_stmt_init($conn);
 
 if (mysqli_stmt_prepare($statement, $sql)) {

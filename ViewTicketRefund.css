@@ -1,0 +1,372 @@
+/* Body styling */
+body {
+  background-color: #c6a988;
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+}
+
+/* Logo styling */
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100px; /* Adjust width as needed */
+  height: auto; /* Maintains aspect ratio */
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hover effect on logo */
+.logo:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* Header styling */
+.header-text {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #9d673a;
+  color: white;
+  padding: 5px 20px;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  width: auto;
+}
+
+/* Profile icon styling */
+.profile-icon {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hover effect on profile icon */
+.profile-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* Cart text styling */
+.cart-text {
+  position: absolute;
+  top: 40px;
+  right: 120px;
+  background-color: #9d673a;
+  color: white;
+  padding: 5px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Prevent blue color and outline for anchor tags */
+a:link,
+a:visited,
+a:active,
+a:hover {
+  color: white !important;
+  text-decoration: none !important;
+  outline: none;
+}
+
+/* Hover effect for CART (0) */
+.cart-text:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* Background container */
+.bg-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-image: url("System Pictures/Background CS.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 50px;
+  margin-top: 110px;
+  text-align: left;
+  font-family: "Kotta One", sans-serif;
+}
+
+.bg-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.bg-container h2 {
+  margin-top: 90px;
+  position: relative;
+  z-index: 2;
+  font-size: 45px;
+}
+
+/* New background container */
+.new-bg-container {
+  background-color: #9d673a;
+  color: white;
+  text-align: left; /* Align the text to the left */
+  padding: 50px 10px;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  border-radius: 8px;
+  position: relative;
+  padding-bottom: 300px;
+}
+/* Ticket container for aligning the ticket number and input fields */
+.ticket-container {
+  display: flex;
+  flex-direction: row; /* Align the ticket number and inputs horizontally */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 20px; /* Space between the elements */
+  align-items: center; /* Align elements vertically */
+  padding-left: 20px;
+}
+
+.ticket-text {
+  font-size: 1.5em;
+  font-family: "Albert Sans", serif;
+  font-weight: normal; /* Remove the bold styling */
+  margin: 0;
+  padding: 0;
+  color: white; /* Make sure the text is white */
+  padding-right: 1050px; /* Add some spacing between the text and input fields */
+  border-bottom: 2px solid white; /* Add a white horizontal line */
+  margin-bottom: 20px; /* Add space between the text and the next elements */
+}
+
+/* Choice buttons container */
+.choice-container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center the elements horizontally */
+  gap: 20px; /* Add space between the text and buttons */
+  margin-top: 30px; /* Add some space above the container */
+}
+/* Text above the Refund button */
+.choice-text {
+  font-size: 1.5em; /* Make the text larger */
+  font-family: "Kotta One", serif;
+  color: #fff; /* White text color */
+  margin: 0; /* Remove any default margin */
+}
+
+/* Styling for the choice buttons */
+.choice-button {
+  background-color: #c6a988; /* Background color of the buttons */
+  color: white; /* White text color */
+  padding: 15px 30px; /* Button padding */
+  text-decoration: none; /* Remove underline from links */
+  font-size: 1.2em; /* Adjust font size */
+  font-family: "Kotta One", serif;
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth color transition on hover */
+  display: inline-block; /* Make the button behave like a block element */
+}
+.choice-button:hover {
+  background-color: #a8a37e; /* Darker color when the button is hovered */
+}
+.new-bg-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("System Pictures/BSIT-2F_Logo_real-removebg-preview.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.new-bg-container > * {
+  position: relative;
+  z-index: 2;
+}
+
+.new-bg-container h2 {
+  font-size: 2em;
+  font-family: "Kotta One", serif;
+  font-weight: bold;
+}
+
+.new-bg-container p {
+  font-size: 1.2em;
+  font-family: "Kotta One", serif;
+}
+/* Ticket info sections */
+.ticket-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.left-info,
+.right-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Styling for the Submit button */
+.submit-ticket-button {
+  background-color: #c6a988;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: "Kotta One", serif;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  margin-left: 30px;
+}
+.submit-ticket-button:hover {
+  background-color: #a8a37e;
+  transform: scale(1.05);
+}
+/* Styling for the input fields next to the labels */
+.input-group {
+  display: flex;
+  align-items: center; /* Align label and input vertically centered */
+  margin-bottom: 10px; /* Add some space between each input group */
+}
+
+/* Styling for the input fields */
+.transparent-input {
+  background-color: transparent;
+  border: none; /* Remove border */
+  color: white; /* White text color */
+  padding: 5px 10px;
+  font-family: "Albert Sans", serif; /* Set font family */
+  width: 50%; /* Adjust width of input fields */
+  font-size: 1.2em; /* Consistent font size */
+}
+
+/* Adjust label styling for alignment */
+.input-group label {
+  font-size: 1.2em; /* Adjust font size */
+  margin-right: 10px; /* Optional: add some space between label and input if needed */
+  color: white; /* Make label text white */
+  font-family: "Albert Sans", serif; /* Set font family */
+}
+/* Refund text styling */
+.refund-text {
+  position: absolute;
+  top: 10px; /* Adjust this value as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2em;
+  font-family: "Kotta One", serif;
+  color: white;
+  background-color: #9d673a; /* Background color for the text */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 2; /* Ensure it appears above other content */
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo {
+    width: 80px;
+  }
+
+  .header-text {
+    font-size: 24px;
+  }
+
+  .profile-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cart-text {
+    font-size: 16px;
+    right: 100px;
+  }
+
+  .bg-container h2 {
+    font-size: 30px;
+  }
+
+  .new-bg-container h2 {
+    font-size: 1.5em;
+  }
+
+  .inner-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .inner-container .ticket-info {
+    flex-direction: column;
+  }
+
+  .submit-ticket-button {
+    bottom: 10px;
+    left: 10px;
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 60px;
+  }
+
+  .header-text {
+    font-size: 20px;
+  }
+
+  .profile-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cart-text {
+    font-size: 14px;
+    right: 80px;
+  }
+
+  .bg-container h2 {
+    font-size: 24px;
+  }
+
+  .new-bg-container h2 {
+    font-size: 1.2em;
+  }
+
+  .submit-ticket-button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+}

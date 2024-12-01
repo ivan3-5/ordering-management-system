@@ -1,0 +1,470 @@
+/* Centering the entire container */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure body takes up the full viewport height */
+  margin: 0; /* Reset body margins */
+  background-color: #c6a988;
+}
+/* Logo Styling */
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* Header Text */
+.header-text {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #9d673a;
+  color: white;
+  padding: 5px 20px;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  font-family: Krona One;
+}
+
+/* New Background Container */
+.new-bg-container {
+  background-color: #9d673a;
+  margin: 0 auto; /* Center horizontally */
+  padding: 40px; /* Increase padding for a larger appearance */
+  border-radius: 10px; /* Slightly rounded corners */
+  max-width: 900px; /* Wider container */
+  width: 100%; /* Take up most of the screen width but leave margins */
+  text-align: center; /* Align content inside */
+  display: flex; /* Use flexbox for vertical centering */
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the top (not center) */
+  align-items: center;
+  height: auto; /* Let the height adjust based on content */
+  margin-top: 100px;
+}
+/* Shop Address Styling */
+.shop-address {
+  font-size: 20px;
+  font-family: "Krona One", sans-serif;
+  color: #030303;
+  margin-top: 10px;
+  padding: 0 20px;
+  text-align: left;
+  margin-left: 0;
+  font-family: Krona One;
+}
+/* Pickup/Delivery Button Styling */
+.choice {
+  background-color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  border: none;
+  margin-bottom: 120px;
+  font-family: Krona One;
+}
+
+.choice:hover {
+  background-color: #c9c3c3;
+}
+/* Horizontal Line Above Pickup ID Text */
+.pickup-line {
+  width: 100%; /* Make the line span the full width of the container */
+  border: 0;
+  border-top: 2px solid black; /* Solid black line */
+  margin: 0 0 10px 0; /* No margin above the line, and a 10px margin below the line */
+}
+/* Pickup ID Styling */
+.pickup-id {
+  margin-top: 1px; /* Adjust the margin for more space between Pickup ID and Order */
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold;
+  color: #030303;
+  width: 100%;
+  position: relative;
+  top: -100px;
+  font-family: Krona One;
+}
+/* Order Details Styling */
+.order-details {
+  margin-top: -50px; /* Adjust margin-top to give proper space between Pickup ID and Orders */
+  text-align: left;
+  font-size: 20px;
+  font-weight: normal;
+  color: #030303;
+  width: 100%;
+  padding-left: 1px;
+  font-family: Krona One;
+}
+
+.order-item {
+  display: flex; /* Use flexbox to align items in a row */
+  justify-content: space-between; /* Spread the order and price across the full width */
+  font-size: 20px; /* Set font size for the order items */
+  margin: 5px 0; /* Add spacing between each order item */
+  font-family: Krona One;
+}
+
+.price {
+  font-size: 20px; /* Set font size for the price */
+  text-align: right; /* Align price to the right */
+  flex-shrink: 0; /* Prevent the price from shrinking */
+}
+/* Date and Total Styling */
+.date-total {
+  display: flex;
+  justify-content: space-between; /* Space between the date and total */
+  margin-top: 20px; /* Adds spacing above */
+  font-size: 20px; /* Font size for the text */
+  padding: 0 20px; /* Add padding for spacing */
+  font-family: Krona One;
+}
+
+/* Move the current date slightly to the left */
+#currentDate {
+  margin-left: -20px; /* Adjust the margin to shift the date to the left */
+}
+
+/* Move the total price slightly to the right */
+.total-price {
+  font-size: 20px; /* Ensure the total price is also in 18px */
+  font-family: Krona One;
+  margin-right: -20px; /* Adjust the margin to shift the total price to the right */
+}
+/* Estimated Time to Pickup Styling */
+.estimated-time {
+  font-size: 20px; /* Font size for the estimated time text */
+  font-weight: normal;
+  color: #030303; /* Text color */
+  margin-top: 10px; /* Add some space above */
+  padding: 0 20px; /* Padding for alignment */
+  text-align: left; /* Align the text to the left */
+  margin-left: -20px;
+  font-family: Krona One;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+}
+/* Profile Icon Styling */
+.profile-icon {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.profile-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+/* Shop Address Styling */
+.shop-address {
+  font-size: 20px; /* Font size for the shop address text */
+  font-family: "Krona One", sans-serif; /* Set the font family to Krona One */
+  font-weight: normal; /* Regular font weight */
+  color: #030303; /* Text color */
+  margin-top: 10px; /* Adds space above */
+  padding: 0 20px; /* Padding for alignment */
+  text-align: left; /* Align text to the left */
+  font-family: Krona One;
+  margin-left: -20px;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+/* Payment Section Styling */
+.payment-section {
+  font-family: "Krona One", sans-serif;
+  font-size: 20px;
+  color: #030303;
+  margin-top: 20px; /* Adds margin to the top for spacing */
+  text-align: left; /* Align text to the left */
+  padding: 0 20px; /* Padding for alignment */
+  margin-left: 0; /* Align it to the left side of the container */
+  width: 100%; /* Ensure it takes the full width of the container */
+  font-family: Krona One;
+  margin-left: -40px;
+}
+
+/* Payment Label Styling */
+.payment-label {
+  margin-right: 5px; /* Adds space between label and dropdown */
+}
+
+/* Payment Select Dropdown Styling */
+.payment-select {
+  font-size: 20px; /* Font size for dropdown */
+  padding: 5px 10px; /* Padding inside the dropdown */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #c6a988; /* Light border */
+  background-color: #c6a988; /* Background color */
+  font-family: "Krona One", sans-serif;
+  width: 130px; /* Default width of the dropdown */
+  font-family: Krona One;
+}
+/* Pickup Now Button Styling */
+.pickup-now-btn {
+  display: inline-block; /* Allows for centering */
+  padding: 15px 30px; /* Add padding for button size */
+  font-size: 20px; /* Font size */
+  background-color: #c6a988; /* Button color */
+  color: rgb(0, 0, 0); /* Text color */
+  text-align: center; /* Ensure text is centered inside the button */
+  text-decoration: none; /* Remove the default link underline */
+  border-radius: 50px; /* Rounded corners */
+  cursor: pointer; /* Change the cursor to a pointer */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  margin-top: 50px; /* Space above the button */
+  font-family: Krona One;
+}
+
+.pickup-now-btn:hover {
+  background-color: #8b5c34; /* Slightly darker shade on hover */
+  transform: scale(1.05); /* Slight scale effect on hover */
+  color: white;
+}
+
+/* Center the Pickup Now button */
+.new-bg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center all items */
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo {
+    width: 80px;
+  }
+
+  .header-text {
+    font-size: 24px;
+  }
+
+  .profile-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .new-bg-container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .choice {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .pickup-id {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-text {
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .profile-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .choice {
+    font-size: 14px;
+  }
+
+  .pickup-id {
+    font-size: 14px;
+  }
+}
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+  .order-details {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    padding-left: 15px; /* Reduce padding on smaller screens */
+  }
+
+  .order-item {
+    font-size: 14px; /* Reduce font size for smaller screens */
+  }
+
+  .price {
+    font-size: 14px; /* Adjust price font size on small screens */
+  }
+
+  .date-total {
+    font-size: 14px; /* Adjust font size for date and total on smaller screens */
+  }
+
+  .total-price {
+    font-size: 14px; /* Adjust total price font size for small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .order-details {
+    font-size: 12px; /* Further reduce font size for very small screens */
+    padding-left: 10px; /* Less padding for smaller screens */
+  }
+
+  .order-item {
+    font-size: 12px; /* Reduce font size for small screens */
+  }
+
+  .price {
+    font-size: 12px; /* Adjust price font size for very small screens */
+  }
+
+  .date-total {
+    font-size: 12px; /* Adjust font size for date and total on very small screens */
+  }
+
+  .total-price {
+    font-size: 12px; /* Adjust total price font size for very small screens */
+  }
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+  .payment-section {
+    font-size: 16px;
+    padding: 0 15px;
+    margin-left: 0;
+  }
+
+  .payment-select {
+    font-size: 16px;
+    width: 180px;
+  }
+}
+
+/* Responsive Design for very small screens */
+@media (max-width: 480px) {
+  .payment-section {
+    font-size: 14px;
+    padding: 0 10px;
+    margin-left: 0;
+  }
+
+  .payment-select {
+    font-size: 14px;
+    width: 150px;
+  }
+}
+
+/* Ensure the button stays in place on smaller screens */
+@media (max-width: 768px) {
+  .pickup-now-btn {
+    font-size: 18px; /* Slightly smaller font size on smaller screens */
+    padding: 12px 25px; /* Adjust padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .pickup-now-btn {
+    font-size: 16px; /* Further decrease font size for very small screens */
+    padding: 10px 20px; /* Adjust padding further */
+  }
+}
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .estimated-time,
+  .shop-address {
+    font-size: 18px; /* Slightly smaller font size for medium screens */
+    padding: 0 15px; /* Slightly reduced padding */
+    margin-top: 8px; /* Slightly reduced margin */
+  }
+}
+
+@media (max-width: 768px) {
+  .estimated-time,
+  .shop-address {
+    font-size: 16px; /* Reduce font size for smaller screens */
+    padding: 0 15px; /* Adjust padding for smaller screens */
+    margin-top: 10px; /* Adjust margin for proper spacing */
+    line-height: 1.4; /* Slightly increase line-height for readability */
+  }
+}
+
+@media (max-width: 480px) {
+  .estimated-time,
+  .shop-address {
+    font-size: 14px; /* Further reduce font size for very small screens */
+    padding: 0 10px; /* Less padding for smaller screens */
+    margin-top: 8px; /* Reduce margin for better spacing */
+    line-height: 1.4; /* Increased line height for readability on small screens */
+  }
+}
+
+/* Very Small Screen (Max Width 375px) */
+@media (max-width: 375px) {
+  .estimated-time,
+  .shop-address {
+    font-size: 13px; /* Adjust font size for very small screens */
+    padding: 0 10px; /* More padding reduction for tiny screens */
+    margin-top: 5px; /* Reduce the top margin */
+    line-height: 1.3; /* More space between lines for readability */
+  }
+}
+/* Mobile responsiveness */
+@media (max-width: 1024px) {
+  .estimated-time,
+  .shop-address {
+    font-size: 18px;
+    padding: 0 15px;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .estimated-time,
+  .shop-address {
+    font-size: 16px;
+    padding: 0 15px;
+    margin-top: 10px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 480px) {
+  .estimated-time,
+  .shop-address {
+    font-size: 14px;
+    padding: 0 10px;
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 375px) {
+  .estimated-time,
+  .shop-address {
+    font-size: 13px;
+    padding: 0 10px;
+    margin-top: 5px;
+    line-height: 1.3;
+  }
+}

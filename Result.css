@@ -1,0 +1,143 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  position: relative; /* Ensure the body can contain the absolute positioned background */
+  background: rgba(
+    0,
+    0,
+    0,
+    0
+  ); /* Optional: Set background to transparent initially */
+}
+
+/* Make the product frame pop-out when hovered */
+.product-frame {
+  background-color: #9e7148;
+  border: 1px solid #9e7148;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.product-frame:hover {
+  transform: scale(1.15) translateY(-20px); /* Enlarge and lift the product */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Make sure it stays on top */
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  max-height: 250px;
+  transition: transform 0.3s ease; /* Smooth scale transition for the image */
+}
+
+.product-frame:hover .product-image {
+  transform: scale(1.05); /* Slightly zoom the image */
+}
+
+.product-frame:not(:hover) {
+  transition: transform 0.3s ease;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #000000;
+  margin: 10px 0;
+  font-family: abel;
+}
+
+.product-title {
+  font-size: 20px;
+  color: #000000;
+  margin: 1px 0;
+  font-family: Krona One;
+}
+
+.product-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+.product-frame:hover {
+  cursor: pointer;
+}
+
+.product-frame {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 500px; /* Adjust according to your needs */
+}
+
+.quick-view-btn {
+  display: inline-block;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.quick-view-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Modal Styles */
+.modal {
+  /* Remove custom 'display' and positioning styles */
+  /* Bootstrap will handle modal visibility and positioning */
+  z-index: 1050 !important; /* Ensure it is above other content */
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modal-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.modal-title {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.modal-description {
+  font-size: 14px;
+  color: #666;
+  margin: 10px 0;
+}
+
+.modal-price {
+  font-size: 18px;
+  color: #28a745;
+  margin: 10px 0;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+}
+
+.close-btn:hover {
+  color: #000;
+}
