@@ -1,10 +1,8 @@
 /* Centering the entire container */
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* Ensure body takes up the full viewport height */
-  margin: 0; /* Reset body margins */
+  /* display: flex; */
+  min-height: 100vh;
+  margin: 0;
   background-color: #c6a988;
 }
 /* Logo Styling */
