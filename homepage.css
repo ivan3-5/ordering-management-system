@@ -98,7 +98,7 @@
     width: 65px;
     height: 65px;
     border-radius: 50%;
-    border: 2px solid black;
+    border: 2px transparent;
     object-fit: cover;
     transition: transform 0.3s ease;
 }

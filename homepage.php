@@ -30,7 +30,7 @@
                     <a href="CartTab.php"><button class="btn-custom-hover">CART</button></a>
                     </li>
                         <button class="profile-button">
-                            <img src="Photos/gwapo.jpg" alt="papaberchan">
+                            <img src="Photos/profile-icon.svg" alt="papaberchan">
                         </button>   
                 </ul>              
             </div>
@@ -47,7 +47,7 @@
             <div class="row text-center text-md-left">
                 <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h5 class="company text-uppercase mb-4 font-weight-bold text-outline" style="color: #E4B279;">Ninong Ry's</h5>
-                    <p>Brewed with love, served with a smile—your perfect coffee experience, one cup at a time.</p>
+                    <p>Brewed with love, served with a smile - your perfect coffee experience, one cup at a time.</p>
                 </div>
 
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
@@ -69,27 +69,27 @@
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-outline" style="color: #E4B279;">Useful Links</h5>
                     <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">PLACEHOLDER</a>
+                        <a href="#" class="text-white" style="text-decoration: none;">About Us</a>
                     </p>
                     <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">PLACEHOLDER</a>
+                        <a href="#" class="text-white" style="text-decoration: none;">Home</a>
                     </p>
                     <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">PLACEHOLDER</a>
+                        <a href="#" class="text-white" style="text-decoration: none;">Menu List</a>
                     </p>
                     <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">PLACEHOLDER</a>
+                        <a href="#" class="text-white" style="text-decoration: none;">Customer Service</a>
                     </p>
                 </div>
 
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-outline" style="color: #E4B279;">Contact</h5>
                     <p>
-                        <i class="fas fa-home mr-3"></i>  Medalla, Purok Carnacion, 3rd Street,
-                         Pula nga gate.
+                        <i class="fas fa-home mr-3"></i> Medalla, Purok Carnacion, 3rd Street,
+                         Panabo City, Davao del Norte
                     </p>
                     <p>
-                        <i class="fas fa-envelope mr-3"></i>  fuentes.sylver@dnsc.edu.ph
+                        <i class="fas fa-envelope mr-3"></i> <a href="#" class="text-white" style="text-decoration: none">ninongry@email.com</a>
                     </p>
                     <p>
                         <i class="fas fa-phone mr-3"></i>  09922618263
@@ -99,10 +99,7 @@
                 <hr class="mb-4">
                 <div class="row align-items-center">
                     <div class="col-md-7 col-lg-8">
-                        <p>Copyright ©2024 All rights reserved by: 
-                            <a class="provider" href="https://www.facebook.com/SylverlopezFuentes" style="text-decoration: none;">
-                                <strong style="color: #E4B279;">The Provider</strong>
-                            </a>
+                        <p>Copyright ©2024 All rights reserved. This website is made with by <a href="#" class="text-white" style="text-decoration: none;"><strong>Team Ninong Ry's</strong></a>
                         </p>
                     </div>                
                 </div>
@@ -111,10 +108,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-
-    </script>
 
 </body>
 </html>

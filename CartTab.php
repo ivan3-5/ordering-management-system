@@ -11,7 +11,7 @@
 </head>
 <body>
 <a href="homepage.php">
-    <img src="System Pictures/BSIT-2F_Logo_real-removebg-preview.png" alt="Logo" class="logo">
+    <img src="Photos/image logo.png" alt="Logo" class="logo">
 </a>
 
 <!-- Customer Service Header -->
@@ -21,7 +21,7 @@
 
 <!-- Profile Icon -->
 <a href="UserProfile.php"> 
-    <img src="System Pictures/ako mani oh huh.jpg" alt="Profile" class="profile-icon">
+    <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
 </a>
 
 <!-- New Background Container -->
