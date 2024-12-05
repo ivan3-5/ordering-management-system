@@ -25,13 +25,9 @@
                         <a href="CustomerService.php"><button class="btn-custom-hover">CUSTOMER SERVICE</button></a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                    <a href="CartTab.php"><button class="btn-custom-hover">CART</button></a>
-                    </li>
-                        <button class="profile-button">
-                            <img src="Photos/gwapo.jpg" alt="papaberchan">
-                        </button>   
+                    <button class="profile-button">
+                       <img src="Photos/gwapo.jpg" alt="papaberchan">
+                    </button>   
                 </ul>              
             </div>
         </div>
