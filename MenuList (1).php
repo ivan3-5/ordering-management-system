@@ -56,6 +56,11 @@
     </div>
   </div>
 
+  <button target="_blank" class="banner"> <!-- Replace URL with the desired link -->
+  <div class="banner-overlay" onclick="openOrderWindow('Mocha Frappe x Chocolate Croissant Banner', 125.85, 'a rich and creamy blend of coffee and chocolate, pairs perfectly with our flaky Chocolate Croissant.', 'System Pictures/Mocha Frappe x Chocolate Croissant  Real.png')">
+  </div>
+</button>
+
   <!-- First Row Pastries -->
   <div class="container mt-5" id="pastries-section"> <!-- Added an ID here -->
     <div class="Pc1-container">
@@ -299,7 +304,6 @@
     <input type="text" placeholder="Type here..." class="text-box">
     <button class="signup-button">Sign Up</button>
 </div>
-
 <!-- Order Cart Hover-->
 <div class="order-window" id="orderWindow">
     <div class="order-content">
@@ -316,6 +320,8 @@
         <button class="add-to-order">Add to Order</button>
     </div>
 </div>
+
+
 
     <script>
           const basePrices = {}; // Store base prices for calculation
@@ -351,8 +357,6 @@
             document.getElementById("totalPrice").textContent = newTotalPrice;
         }
     }
-
-    </script>
     </script>
 </body>
 </html>
