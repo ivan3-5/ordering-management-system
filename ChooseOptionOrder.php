@@ -20,7 +20,7 @@ Choose your option
 
 <!-- Profile icon -->
 <a href="UserProfile.php"> 
-    <img src="System Pictures/ako mani oh huh.jpg" alt="Profile" class="profile-icon">
+    <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
 </a>
 
 <!-- New background container for Pickup/Delivery choices -->
@@ -37,5 +37,32 @@ Choose your option
         </a>
     </div>
 </div>
+
+<script src="js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // getOrderCount();
+  });
+
+  function addTransaction(){
+    const quantity = document.getElementById("quantity").value;     
+    const orderName = document.getElementById("orderName").innerText;
+    const totalPrice = document.getElementById("totalPrice").innerText;
+    const orderDescription = document.getElementById("orderDescription").innerText;
+    const orderImg = document.getElementById("orderImg").src; 
+    console.log("quantity", { quantity, orderName, totalPrice, orderDescription, orderImg});
+
+    $.ajax({
+        type: "POST",
+        url: 'Services/AddOrderService.php',
+        data: { quantity, orderName, totalPrice, orderDescription, orderImg },
+        success: function(response)
+        {
+            console.log(response);
+            location.reload();
+        }
+    });
+  }
+</script>
 </body>
 </html>

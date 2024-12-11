@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +22,7 @@
             <div class="navmenu">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a href="MenuList.php"><button class="btn-custom-hover">MENU LIST</button></a>
+                        <a href="MenuList (1).php"><button class="btn-custom-hover">MENU LIST</button></a>
                     </li>
                     <li class="nav-item">
                         <a href="CustomerService.php"><button class="btn-custom-hover">CUSTOMER SERVICE</button></a>
@@ -29,9 +32,13 @@
                     <li class="nav-item">
                     <a href="CartTab.php"><button class="btn-custom-hover">CART</button></a>
                     </li>
-                        <button class="profile-button">
-                            <img src="Photos/profile-icon.svg" alt="papaberchan">
-                        </button>   
+                    <button class="profile-button">
+                        <?php if (isset($_SESSION['username'])): ?>
+                            <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                        <?php else: ?>
+                            <img src="Photos/profile-icon.svg" alt="profile">
+                        <?php endif; ?>
+                    </button>
                 </ul>              
             </div>
         </div>

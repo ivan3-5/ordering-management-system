@@ -19,7 +19,7 @@
     </div>
     <!-- Profile icon -->
     <a href="UserProfile.php"> 
-        <img src="System Pictures/ako mani oh huh.jpg" alt="Profile" class="profile-icon">
+        <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
     </a>
     <!-- Background image container -->
     <div class="bg-container">
@@ -29,11 +29,11 @@
 
    <!-- Inside .new-bg-container -->
 <div class="new-bg-container">
-    <a href="https://example.com" class="inner-container">
+    <a href="ViewTicketRefund.php" class="inner-container">
         <div class="ticket-info">
             <div class="left-info">
                 <span class="ticket-id">TicketID</span>
-                <span class="subject">Subject</span>
+                <span class="subject">Refund</span>
             </div>
             <div class="right-info">
                 <span class="date">DATE</span>
@@ -41,11 +41,11 @@
             </div>
         </div>
     </a>
-    <a href="https://example.com" class="inner-container">
+    <a href="ViewTicketHelp.php" class="inner-container">
         <div class="ticket-info">
             <div class="left-info">
                 <span class="ticket-id">TicketID</span>
-                <span class="subject">Subject</span>
+                <span class="subject">Help</span>
             </div>
             <div class="right-info">
                 <span class="date">DATE</span>
@@ -53,18 +53,7 @@
             </div>
         </div>
     </a>
-    <a href="https://example.com" class="inner-container">
-        <div class="ticket-info">
-            <div class="left-info">
-                <span class="ticket-id">TicketID</span>
-                <span class="subject">Subject</span>
-            </div>
-            <div class="right-info">
-                <span class="date">DATE</span>
-                <span class="status">Pending</span>
-            </div>
-        </div>
-    </a>
+
 
    
     <!-- Submit a Ticket button -->

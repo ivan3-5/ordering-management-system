@@ -278,7 +278,6 @@ body::after {
   width: 65px; /* Adjust size */
   height: 65px;
   border-radius: 50%; /* Makes it circular */
-  border: 2px solid #000; /* Optional: Add border */
   object-fit: cover;
   transition: transform 0.3s ease;
 }

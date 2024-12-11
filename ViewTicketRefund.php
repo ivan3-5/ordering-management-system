@@ -15,11 +15,11 @@
     </a>
     <!-- Customer Service header -->
     <div class="header-text">
-        Submit a Ticket
+       View a Refund
     </div>
     <!-- Profile icon -->
     <a href="UserProfile.php"> 
-        <img src="System Pictures/ako mani oh huh.jpg" alt="Profile" class="profile-icon">
+        <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
     </a>
     <!-- Background image container -->
     <div class="bg-container">
@@ -52,32 +52,32 @@
     <div class="ticket-container">
         <p class="ticket-text">You have your ticket number: <?php echo $ticketID; ?></p>
         <div class="input-group">
-            <label for="dareOrder">Dare Order:</label>
-            <input type="text" id="dareOrder" name="dareOrder" class="transparent-input" value="">
+            <label for="dareOrder">Date Order:</label>
+           
         </div>
         <div class="input-group">
             <label for="amount">Amount:</label>
-            <input type="text" id="amount" name="amount" class="transparent-input" value="">
+
         </div>
         <div class="input-group">
             <label for="payment">Payment:</label>
-            <input type="text" id="payment" name="payment" class="transparent-input" value="">
+            
         </div>
         <div class="input-group">
             <label for="status">Status:</label>
-            <input type="text" id="status" name="status" class="transparent-input" value="">
+           
         </div>
         <div class="input-group">
             <label for="dateRefunded">Date Refunded:</label>
-            <input type="text" id="dateRefunded" name="dateRefunded" class="transparent-input" value="">
+           
         </div>
         <div class="input-group">
             <label for="reason">Reason:</label>
-            <input type="text" id="reason" name="reason" class="transparent-input" value="">
+            
         </div>
         <div class="input-group">
             <label for="ordered">Ordered:</label>
-            <input type="text" id="ordered" name="ordered" class="transparent-input" value="">
+            
         </div>
     </div>
     

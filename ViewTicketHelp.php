@@ -19,7 +19,7 @@
     </div>
     <!-- Profile icon -->
     <a href="UserProfile.php"> 
-        <img src="System Pictures/ako mani oh huh.jpg" alt="Profile" class="profile-icon">
+        <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
     </a>
 
     <!-- Background image container -->

@@ -19,7 +19,7 @@
     </div>
     <!-- Profile icon -->
     <a href="UserProfile.php"> 
-        <img src="System Pictures/ako mani oh huh.jpg" alt="Profile" class="profile-icon">
+        <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
     </a>
     <!-- Background image container -->
     <div class="bg-container">
@@ -33,7 +33,7 @@
 <?php
         // Function to generate a random alphanumeric ticket number
         function generateTicketID($length = 8) {
-            $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             $ticketID = '';
             for ($i = 0; $i < $length; $i++) {
                 $ticketID .= $characters[rand(0, strlen($characters) - 1)];

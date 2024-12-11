@@ -152,7 +152,7 @@ a:hover {
   margin: 0;
   padding: 0;
   color: white; /* Make sure the text is white */
-  padding-right: 1050px; /* Add some spacing between the text and input fields */
+  padding-right: 1440px; /* Add some spacing between the text and input fields */
   border-bottom: 2px solid white; /* Add a white horizontal line */
   margin-bottom: 20px; /* Add space between the text and the next elements */
 }

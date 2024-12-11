@@ -6,14 +6,17 @@
   <title>Ninong Ry's</title>  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
-  <link rel="stylesheet" href="MenuList.css">
+  <link rel="stylesheet" href="MenuList (1).css">
   <style>
     html {
       scroll-behavior: smooth;
     }
   </style>
 </head>
+
 <body style="background-color: #C6A988;">
+<script src="js/jquery-3.7.1.min.js"></script>
+
 <div class="containerLogo">
   <a href="homepage.php">
     <button class="logo-button">
@@ -25,13 +28,15 @@
 
   <div class="content-container">
     <h1 style="font-family: abel;">Fresh, Local and Thoughtful</h1>
+    
     <div class="order-now-container">
       <a href="UserProfile.php" button class="profile-button">
-        <img src="System Pictures/ako mani oh huh.jpg" alt="Profile Image">
+        <img src="Photos/profile-icon.svg" alt="Profile Image">
       </button>
       </a>
       <a button href="ChooseOptionOrder.php"  class="order-now-button">Order Now</a>
       <a button href="CartTab.php" class="Cart-button">
+        <span id="orderCount" style="position: relative;left: 37px;top: -3px;color: black;"></span>
         <img src="System Pictures/cart_icon-removebg-preview.png" alt="Cart Icon">
       </a>
     </div>
@@ -57,9 +62,9 @@
   </div>
 
   <button target="_blank" class="banner"> <!-- Replace URL with the desired link -->
-  <div class="banner-overlay" onclick="openOrderWindow('Mocha Frappe x Chocolate Croissant Banner', 125.85, 'a rich and creamy blend of coffee and chocolate, pairs perfectly with our flaky Chocolate Croissant.', 'System Pictures/Mocha Frappe x Chocolate Croissant  Real.png')">
+  <div class="banner-overlay" onclick="openOrderWindow('Mocha Frappe x Chocolate Croissant Banner', 125.85, 'a rich and creamy blend of coffee and chocolate, pairs perfectly with our flaky Chocolate Croissant.', 'System Pictures/Mocha Frappe x Chocolate Croissant .png')">
   </div>
-</button>
+  </button>
 
   <!-- First Row Pastries -->
   <div class="container mt-5" id="pastries-section"> <!-- Added an ID here -->
@@ -76,8 +81,6 @@
           <button class="order-btn" onclick="openOrderWindow('Muffin', 50.40, 'Baked fresh daily, an assortment of chocolate and fruit muffins. Individually packaged upon request.', 'System Pictures/muffins.jpg')">Order Now</button>
         </div>
       </div>
-
-     
 
       <div class="col-md-3 mb-4">
         <div class="product-frame">
@@ -155,8 +158,6 @@
       </div>
     </div>
   </div>
-
-  
    
   <!-- First Row Coffee -->
   <div class="container mt-5" id="coffee-section">
@@ -306,57 +307,110 @@
 </div>
 <!-- Order Cart Hover-->
 <div class="order-window" id="orderWindow">
-    <div class="order-content">
-        <button class="close-btn" onclick="closeOrderWindow()">×</button>
-        <img id="orderImg" src="" alt="Product Image" class="order-img">
-        <h2 class="order-name" id="orderName">Product Name</h2>
-        <p class="order-price">Price: ₱<span id="totalPrice">0.00</span></p>
-        <p class="order-description" id="orderDescription">Description</p>
-        <div class="quantity">
-            <button onclick="adjustQuantity(-1)">−</button>
-            <input type="number" id="quantity" value="1" readonly>
-            <button onclick="adjustQuantity(1)">+</button>
-        </div>
-        <button class="add-to-order">Add to Order</button>
+  <div class="order-content">
+      
+    <button class="close-btn" onclick="closeOrderWindow()">×</button>
+    <img id="orderImg" src="" alt="Product Image" class="order-img">
+    <h2 class="order-name" id="orderName">Product Name</h2>
+    <p class="order-price">Price: ₱<span id="totalPrice">0.00</span></p>
+    <p class="order-description" id="orderDescription">Description</p>
+    <div class="quantity">
+    <p button style="position: relative;top: 8px;right: 3px;background-color: white;padding: 2px 7px;height: 24px;" onclick="adjustQuantity(-1)">−</p>
+        <input name="quantity" type="number" id="quantity" value="1">
+        <p button style="position: relative;top: 8px;left: 3px;background-color: white;padding: 2px 7px;height: 24px;"onclick="adjustQuantity(1)">+</p>
     </div>
+
+    <!-- <div class="hidden-inputs" style="opacity:0; position:absolute;width:0;height:0;z-index:-1;">
+      <input name="orderImg" id="orderImg_h">
+      <input name="orderName" id="orderName_h">
+      <input name="totalPrice" id="totalPrice_h" value="0">
+      <input name="orderDescription" id="orderDescription_h">
+    </div> -->
+      
+    <p><input id="orderBtn" type="button" value="Add to Order" onclick="addOrder()"/></p>
+
+  </div>
 </div>
 
 
 
-    <script>
-          const basePrices = {}; // Store base prices for calculation
+<script type="text/javascript">
+  $(document).ready(function() {
+    getOrderCount();
+  });
 
-    function openOrderWindow(productName, productPrice, productDescription, productImage) {
-        // Update modal content
-        document.getElementById("orderName").textContent = productName;
-        document.getElementById("totalPrice").textContent = productPrice.toFixed(2);
-        document.getElementById("orderDescription").textContent = productDescription;
-        document.getElementById("orderImg").src = productImage; // Set image dynamically
-
-        // Save base price for quantity updates
-        basePrices[productName] = productPrice;
-
-        // Show modal 
-        document.getElementById("orderWindow").style.display = "flex";
-    }
-
-    function closeOrderWindow() {
-        document.getElementById("orderWindow").style.display = "none";
-    }
-
-    function adjustQuantity(change) {
-        const quantityInput = document.getElementById("quantity");
-        const currentQuantity = parseInt(quantityInput.value);
-        const newQuantity = currentQuantity + change;
-
-        if (newQuantity > 0) {
-            quantityInput.value = newQuantity;
-
-            const productName = document.getElementById("orderName").textContent;
-            const newTotalPrice = (basePrices[productName] * newQuantity).toFixed(2);
-            document.getElementById("totalPrice").textContent = newTotalPrice;
+  function getOrderCount() {
+    $.ajax({
+        type: "POST",
+        url: 'Services/GetOrderCountService.php',
+        success: function(response)
+        {
+            const count = JSON.parse(response);
+            console.log('getOrderCount: ', count);
+            $('#orderCount').text(count);
         }
+    });
+  }
+
+  function addOrder(){
+    const quantity = document.getElementById("quantity").value;     
+    const orderName = document.getElementById("orderName").innerText;
+    const totalPrice = document.getElementById("totalPrice").innerText;
+    const orderDescription = document.getElementById("orderDescription").innerText;
+    const orderImg = document.getElementById("orderImg").src; 
+    console.log("quantity", { quantity, orderName, totalPrice, orderDescription, orderImg});
+
+    $.ajax({
+        type: "POST",
+        url: 'Services/AddOrderService.php',
+        data: { quantity, orderName, totalPrice, orderDescription, orderImg },
+        success: function(response)
+        {
+            console.log('addOrder: ', response);
+            const data = JSON.parse(response);
+            if (data.status === "success") {
+              location.reload();
+            }
+        }
+    });
+  }
+      
+  const basePrices = {}; // Store base prices for calculation
+
+  function openOrderWindow(productName, productPrice, productDescription, productImage) {
+    console.log(productName);
+      // Update modal content
+      document.getElementById("orderName").textContent = productName;
+      document.getElementById("totalPrice").textContent = productPrice.toFixed(2);
+      document.getElementById("orderDescription").textContent = productDescription;
+      document.getElementById("orderImg").src = productImage; // Set image dynamically
+
+      // Save base price for quantity updates
+      basePrices[productName] = productPrice;
+
+      // Show modal 
+      document.getElementById("orderWindow").style.display = "flex";
+  }
+
+  function closeOrderWindow() {
+      document.getElementById("orderWindow").style.display = "none";
+  }
+
+  function adjustQuantity(change) {
+    console.log("change", change);
+    const quantityInput = document.getElementById("quantity");
+    const currentQuantity = parseInt(quantityInput.value);
+    const newQuantity = currentQuantity + change;
+
+    if (newQuantity > 0) {
+        quantityInput.value = newQuantity;
+
+        const productName = document.getElementById("orderName").textContent;
+        const newTotalPrice = (basePrices[productName] * newQuantity).toFixed(2);
+        document.getElementById("totalPrice").textContent = newTotalPrice;
+        // document.getElementById("totalPrice_h").textContent = newTotalPrice;
     }
-    </script>
+  }
+</script>
 </body>
 </html>

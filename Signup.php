@@ -68,7 +68,7 @@
             <div class="alert alert-success"><?php echo $success; ?></div>
         <?php endif; ?>
 
-        <form action="Signup.php" method="post">
+        <div>
             <div class="input">
                 <input type="text" name="fname" id="fname" placeholder="First Name" required>
                 <label for="fname">First Name</label>
@@ -93,11 +93,48 @@
                 <input type="text" name="address" id="address" placeholder="Address" required>
                 <label for="address">Address</label>
             </div>
-            <input type="submit" class="btn" value="Sign Up" name="submit">
+            <input type="button" class="btn" value="Sign Up" name="submit" onclick="addUser()">
             <div class="login">
                 <p>Already have an account? <a href="Login.php">Login</a></p>
             </div>
-        </form>
+        </div>
     </div>
+
+<script src="js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // getOrderCount();
+    });
+
+    function addUser(){
+        const fname = $("#fname").val();
+        const lname = $("#lname").val();
+        const email = $("#email").val();
+        const password = $("#password").val();
+        const pnumber = $("#pnumber").val();
+        const address = $("#address").val();
+
+        // if (validateEmail(email) )
+
+        $.ajax({
+            type: "POST",
+            url: 'Services/User/AddUserService.php',
+            data: { fname, lname, email, password, pnumber, address },
+            success: function(response)
+            {
+                console.log('addUser: ', response);
+                // location.reload();
+                const data = JSON.parse(response);
+                if (data.status === "success") {
+                    // alert(data.message);
+                    window.location.href = "Login.php";
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    }
+    
+</script>
 </body>
 </html>

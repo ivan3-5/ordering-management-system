@@ -47,7 +47,7 @@ if (isset($_POST['login'])) {
             <img src="Photos/image logo.png" alt="Ry's">
         </div>
         <h1 class="form-title">Login</h1>
-        <form method="post" action="login.php"> 
+        <div> 
             <div class="input-group">
                 <input type="email" name="email" id="email" placeholder="Email" required>
                 <label for="email">Email</label>
@@ -59,11 +59,39 @@ if (isset($_POST['login'])) {
             <p class="recover">
                 <a href="Forgot.php" style="text-decoration: none;">Recover Password</a>
             </p>
-            <input type="submit" class="btn" value="Log in" name="login">
-        </form>
+            <input type="button" class="btn" value="Log in" name="login" onclick="login()">
+        </div>
         <div class="signup">
             <p>Don't have an account?<a href="Signup.php" style="text-decoration: none;"> Sign up</a></p>
         </div>
     </div>
+
+<script src="js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+    function login() {
+        const email = $("#email").val();
+        const password = $("#password").val();
+
+        $.ajax({
+            type: "POST",
+            url: 'Services/User/LoginService.php',
+            data: { email, password },
+            success: function(response)
+            {
+                console.log('login: ', response);
+                // location.reload();
+                const data = JSON.parse(response);
+                console.log('data: ', data);
+                if (data.status === "success") {
+                    // alert("Success login!");
+                    window.location.href = "homepage.php";
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    }
+    
+</script>
 </body>
 </html>

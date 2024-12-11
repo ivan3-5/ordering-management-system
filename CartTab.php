@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="CartTab.css">
 </head>
 <body>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/order-list.service.js"></script>
+
 <a href="homepage.php">
     <img src="Photos/image logo.png" alt="Logo" class="logo">
 </a>
@@ -27,43 +30,37 @@
 <!-- New Background Container -->
 <div class="new-bg-container">
     <div class="order-details">
-        <div class="order-item">
-            <span>Order 1: Brew Coffee</span>
-            <span class="price">$80.00</span>
-        </div>
-        <div class="order-item">
-            <span>Order 2: Muffins 4x</span>
-            <span class="price">$150.00</span>
-        </div>
-        <div class="order-item">
-            <span>Order 3: Brew Coffee</span>
-            <span class="price">$20.00</span>
-        </div>
-        <div class="order-item">
-            <span>Order 4: Muffins 4x</span>
-            <span class="price">$55.00</span>
-        </div>
-        <div class="order-item">
-            <span>Order 5: Brew Coffee</span>
-            <span class="price">$12.00</span>
-        </div>
-        <div class="order-item">
-            <span>Order 6: Muffins 4x</span>
-            <span class="price">$70.00</span>
-        </div>
-        <hr class="pickup-line">
-        
+        <table id="orderList" style="width: 100%;">
+            <tr>
+                <th style="width: 33%;">Product</th>
+                <th style="width: 33%;text-align: right;" class="quantity">Quantity</th>
+                <th style="width: 33%;" class="price">Price</th>
+                <th></th>
+            </tr>
+        </table>
     </div>
         <!-- Date and Total Section -->
+        <hr style="border: 2px solid #000; width: 100%; margin: 20px auto;">
         <div class="date-total-section">
             <div class="date-text" id="dateToday">Date: </div>
-            <div class="total-amount">Total Amount: $387.00</div>
+            <div id="sumPrice" class="total-amount"></div>
         </div>
     <!-- Pickup Now Button -->
-    <a href="ChooseOptionOrder.php" class="pickup-now-btn">Order Now</a>
+    <p class="pickup-now-btn" onclick="orderNow()">Order Now</p>
+    <!-- <a href="ChooseOptionOrder.php" class="pickup-now-btn">Order Now</a> -->
     </div>
 </div>
-<script>
+
+<script type="text/javascript">
+    var orders = [];
+    $(document).ready(function() {
+        loadInitialData();
+        fetchOrders(true, (_order) => {
+            orders =_order;
+        });
+    });
+
+    function loadInitialData() {
         // Get the current date
         const currentDate = new Date();
         
@@ -76,6 +73,66 @@
         
         // Set the formatted date with "Date: " in the 'dateToday' element
         document.getElementById("dateToday").innerHTML = `Date: ${formattedDate}`;
-    </script>
+    }
+
+    function orderNow() {
+        if (orders.length) {
+            window.location.href = "ChooseOptionOrder.php";
+        }
+    }
+
+    // function fetchOrders() {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: 'Services/GetOrderListService.php',
+    //         success: function(response)
+    //         {
+    //             const orders = JSON.parse(response);
+    //             console.log(orders);
+
+    //             if (orders) {
+    //                 orders.map((order, index) => {
+    //                     $("#orderList").find('tbody')
+    //                         .append($('<tr>')
+    //                             .append($('<td style="width: 30%;">').text('Order ' + (index+1) + ': ' + order.OrderName))
+    //                             .append($('<td style="width: 33%;text-align: right;" class="quantity">').text(order.Quantity + 'x'))
+    //                             .append($('<td style="width: 33%;" class="price">').text('₱' + (parseFloat(order.TotalPrice) * order.Quantity).toFixed(2)))
+    //                             .append($('<td>')
+    //                                 .append($('<p>')
+    //                                     .append($('<img style="width: 45px; position: relative;top: 9px;" src="System Pictures/Delete_icon-removebg-preview.png">')))
+    //                                 .click(() => {
+    //                                     deleteOrder(order.Id);
+    //                                 })
+    //                             )
+    //                         );
+    //                 });
+
+    //                 const totalPriceList = orders.map(order => {
+    //                     return (parseFloat(order.TotalPrice) * order.Quantity).toFixed(2);
+    //                 });
+                    
+    //                 const sum = totalPriceList.reduce((partialSum, totalPrice) => partialSum + parseFloat(totalPrice), 0);
+
+    //                 $("#sumPrice").text('Total Amount: ₱' + sum.toFixed(2));
+    //             }
+    //         }
+    //     });
+    // }
+
+    function deleteOrder(orderId) {
+        $.ajax({
+            type: "POST",
+            url: 'Services/DeleteOrderSerivce.php',
+            data: { orderId },
+            success: function(response)
+            {
+                console.log(response);
+                location.reload();
+            }
+        });
+    }
+
+</script>
+
 </body>
 </html>
