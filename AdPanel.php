@@ -88,6 +88,7 @@
                             <th>Customer</th>
                             <th>Status</th>
                             <th>Date</th>
+                            <th>Total Amount</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,12 +97,14 @@
                             <td>John Doe</td>
                             <td>Completed</td>
                             <td>2024-12-05</td>
+                            <td>$100.00</td>
                         </tr>
                         <tr>
                             <td>#002</td>
                             <td>Jane Smith</td>
                             <td>Pending</td>
                             <td>2024-12-04</td>
+                            <td>$150.00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -111,38 +114,11 @@
 
 
             <!-- Customer Service Section -->
-            <div id="customer-service" class="content-section">
-                <h2>Customer Service</h2>
-                <p>Manage customer inquiries, feedback, and support requests here.</p>
-                
-                <!-- Ticket System Form -->
-                <form id="ticket-form">
-                    <div class="form-group">
-                        <label for="customer-name">Customer Name</label>
-                        <input type="text" id="customer-name" name="customer-name" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="ticket-subject">Subject</label>
-                        <input type="text" id="ticket-subject" name="ticket-subject" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="ticket-message">Message</label>
-                        <textarea id="ticket-message" name="ticket-message" required class="form-control" rows="4"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="ticket-status">Status</label>
-                        <select id="ticket-status" name="ticket-status" class="form-control">
-                            <option value="open">Open</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="closed">Closed</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Ticket</button>
-                </form>
-
+            <div id="customer-service" class="content-section">             
                 <!-- View Submitted Tickets -->
                 <div id="submitted-tickets" class="mt-5">
                     <h3>Submitted Tickets</h3>
+                    <button class="TicketStatus">Change Ticket Status</button>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -150,11 +126,17 @@
                                 <th>Customer Name</th>
                                 <th>Subject</th>
                                 <th>Status</th>
-                                <th>Actions</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamic content will go here -->
+                        <tr>
+                            <td>#001</td>
+                            <td>John Doe</td>
+                            <td>Help</td>
+                            <td>Not Opened</td>
+                            <td>12/11/2024</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -181,6 +163,26 @@
                     </select>
                     
                     <button type="submit" id="updateStatusBtn">Update Delivery Status</button>
+                    <table id="DeliveryTable">
+                    <thead>
+                        <tr>
+                            <th>DeliveryID</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Delivered</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#001</td>
+                            <td>12/11/2024</td>
+                            <td>8:00am</td>
+                            <td>Pending</td>
+                            <td>false</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </form>
             </div>
 
@@ -207,13 +209,33 @@
                     <label for="product-price">Price ($):</label>
                     <input type="number" id="product-price" name="product-price" required>
 
-                    <button type="submit">Add Product</button>
+                    <button class="AddProduct">Add Product</button>
                 </form>
 
                     <!-- List of Products -->
                     <div id="product-list">
                     <h3>Product List</h3>
                     <ul id="products"></ul>
+                    <table id="MenulistTable">
+                    <thead>
+                        <tr>
+                            <th>ItemID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#001</td>
+                            <td>Muffins</td>
+                            <td>Pastries</td>
+                            <td>a wonderful bake Muffin.....</td>
+                            <td>$90.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
                 <!-- Add menu editing features, options to add/remove items -->
 
