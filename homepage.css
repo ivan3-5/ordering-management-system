@@ -12,6 +12,22 @@
     height: 109vh;
 }
 
+#user-name:hover + #logout-button {
+    display: block;
+}
+#logout-button {
+    display: none;
+}
+
+#profile-link img {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#profile-link img:hover {
+    transform: scale(1.1);
+}
+
 .navbar {
     background-color: #C6A988;
     height: 100px;

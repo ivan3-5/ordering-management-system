@@ -5,5 +5,6 @@
     // $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
     
     // header("Location: " . $actual_link . "/ordering-management-system/Login.php");
-    echo  "Login.php";
+    header("Location: /Login.php");
+    exit();
 ?>

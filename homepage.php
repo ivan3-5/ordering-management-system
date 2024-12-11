@@ -33,10 +33,15 @@ session_start();
                     <a href="CartTab.php"><button class="btn-custom-hover">CART</button></a>
                     </li>
                     <button class="profile-button">
-                        <?php if (isset($_SESSION['username'])): ?>
-                            <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                        <?php if (isset($_SESSION['email'])): ?>
+                            <span id="user-name" style="cursor: pointer;">
+                                <?php echo '<p class="">' . htmlspecialchars($_SESSION['firstname']) . " " . htmlspecialchars($_SESSION['lastname']) . "</p>"; ?>
+                            </span>
+                            <button id="logout-button" style="display: none;" onclick="logout()">Logout</button>
                         <?php else: ?>
-                            <img src="Photos/profile-icon.svg" alt="profile">
+                            <a href="Login.php" id="profile-link" style="text-decoration: none;">
+                                <p class="text-white">Login</p>
+                            </a>
                         <?php endif; ?>
                     </button>
                 </ul>              
@@ -115,6 +120,19 @@ session_start();
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        document.getElementById('user-name').addEventListener('click', function() {
+            var logoutButton = document.getElementById('logout-button');
+            if (logoutButton.style.display === 'none') {
+                logoutButton.style.display = 'block';
+            } else {
+                logoutButton.style.display = 'none';
+            }
+        });
 
+        function logout() {
+            window.location.href = 'Services/User/LogoutService.php';
+        }
+    </script>
 </body>
 </html>
