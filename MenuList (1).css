@@ -268,24 +268,13 @@ body::after {
 }
 
 .profile-button {
-  background-color: transparent;
+  /* background-color: transparent;
   border: none;
-  padding: 0;
+  padding: 0; */
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
-
-.profile-button img {
-  width: 65px; /* Adjust size */
-  height: 65px;
-  border-radius: 50%; /* Makes it circular */
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.profile-button img:hover {
-  transform: scale(1.1); /* Enlarge slightly on hover */
-}
-
 .Cart-button {
   background-color: #c6a988;
   padding: 5px 10px;

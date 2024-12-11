@@ -1,682 +1,28 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['id']) || $_SESSION['UserRole'] !== 'admin') {
+    header('Location: homepage.php');
+    exit();
+}
+
+require_once 'Services/OrderService.php';
+$orderService = new OrderService();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
+    $orderService->completeOrder($_POST['orderId']);
+    header('Location: Admin.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Navbar Styling */
-    .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 80px;
-        padding: 0 20px;
-        background-color: #C6A988; /* Dark background */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1000; /* Ensure the navbar stays on top */
-    }
-
-    .logo img {
-        height: 50px; /* Adjust the logo size */
-    }
-
-    /* Admin Box Styling */
-    .admin-sign {
-        background-color: #9D673A;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-/* Sidebar Styling */
-.sidebar {
-    padding: 5px;
-    position: fixed;
-    top: 80px; /* Offset from the header */
-    left: 0;
-    width: 250px; /* Width of the sidebar */
-    height: 100%; /* Full height */
-    background-color: #C6A988; /* Dark background */
-    color: white;
-    padding-top: 20px;
-    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Add gap between buttons */
-    z-index: 999; /* Ensure sidebar stays under the navbar */
-}
-
-/* Sidebar Button Styling */
-.nav-button {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    border: 1px black solid;
-    background-color: #C6A988;
-    color: white;
-    padding: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;  /* Center the text */
-    transition: background-color 0.3s;
-    border-radius: 5px;
-    display: flex; /* Use flexbox for better centering */
-    justify-content: center; /* Horizontally center */
-    align-items: center; /* Vertically center */
-}
-
-.nav-button:hover {
-    background-color: #9D673A;
-}
-
-/* Sidebar Logout Button Styling */
-.logout {
-    border: 1px black solid;
-    background-color: #C6A988;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: white;
-    padding: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;  /* Center the text */
-    transition: background-color 0.3s;
-    border-radius: 5px;
-    display: flex; /* Use flexbox for better centering */
-    justify-content: center; /* Horizontally center */
-    align-items: center; /* Vertically center */
-}
-
-.logout:hover {
-    background-color: #c9302c;
-}
-
-/* Adjust content area to prevent overlap */
-.container {
-    margin-left: 250px; /* Adjust space for the sidebar */
-    margin-top: 80px; /* Space for the header */
-    padding: 20px;
-}
-
-
-        /* Main Content Area */
-        .container {
-            margin-left: 250px; /* Space for the sidebar */
-            margin-top: 60px; /* Space for the header */
-            padding: 20px;
-        }
-
-        /* Dashboard */
-.dashboard {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 20px;
-}
-
-/* Graph Section */
-.graph-section {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.graph-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-/* Orders Section */
-#orders {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-#orders h2 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Complete Order Button */
-#completeOrderBtn {
-    background-color: #C6A988;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease;
-}
-
-#completeOrderBtn:hover {
-    background-color: #9D673A;
-}
-
-/* Table Styling */
-#orderHistoryTable {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-#orderHistoryTable th, #orderHistoryTable td {
-    padding: 12px 15px;
-    text-align: left;
-}
-
-#orderHistoryTable th {
-    background-color: #C6A988;
-    color: white;
-    font-size: 16px;
-}
-
-#orderHistoryTable td {
-    font-size: 14px;
-}
-
-#orderHistoryTable tr:nth-child(even) {
-    background-color: #f1f1f1;
-}
-
-#orderHistoryTable tr:hover {
-    background-color: #f1f1f1;
-}
-
-#orderHistoryTable tbody tr:last-child {
-    border-bottom: 2px solid #C6A988;
-}
-
-/* Initially hide all content sections */
-.content-section {
-    display: none;
-}
-
-/* Show the dashboard section by default */
-#dashboard {
-    display: block;
-}
-
-/* Basic styling for the form and product list */
-#menu-list {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-form label {
-    font-weight: bold;
-}
-
-form input, form select {
-    padding: 8px;
-    font-size: 14px;
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-#product-list {
-    margin-top: 30px;
-}
-
-#product-list ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#product-list li {
-    margin: 10px 0;
-}
-
-h2 {
-        color: #333;
-    }
-
-    .ticket-form {
-        margin-top: 20px;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    .form-group label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .form-control {
-        width: 100%;
-        padding: 8px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    .form-control:focus {
-        border-color: #007bff;
-        outline: none;
-    }
-
-    .btn {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    .btn:hover {
-        background-color: #0056b3;
-    }
-
-    .mt-5 {
-        margin-top: 40px;
-    }
-
-    .table {
-        width: 100%;
-        margin-top: 20px;
-        border-collapse: collapse;
-    }
-
-    .table th, .table td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .table th {
-        background-color: #f8f8f8;
-        color: #333;
-    }
-
-    .table-striped tbody tr:nth-child(odd) {
-        background-color: #f9f9f9;
-    }
-
-    .table-striped tbody tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    .table .btn {
-        background-color: #28a745;
-        color: white;
-    }
-
-    .table .btn:hover {
-        background-color: #218838;
-    }
-
-
-    /* Customer Service Section */
-#customer-service {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-top: 20px;
-}
-
-/* Heading */
-#customer-service h2 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Paragraph */
-#customer-service p {
-    font-size: 16px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-/* Ticket Form */
-#ticket-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Form Group Styling */
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.form-control:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-/* Submit Button Styling */
-.btn {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-/* Submitted Tickets Section */
-#submitted-tickets {
-    margin-top: 30px;
-}
-
-#submitted-tickets h3 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-/* Table Styling */
-#submitted-tickets .table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#submitted-tickets th, #submitted-tickets td {
-    padding: 12px 15px;
-    text-align: left;
-}
-
-#submitted-tickets th {
-    background-color: #C6A988;
-    color: white;
-    font-size: 16px;
-}
-
-#submitted-tickets td {
-    font-size: 14px;
-}
-
-#submitted-tickets tr:nth-child(even) {
-    background-color: #f1f1f1;
-}
-
-#submitted-tickets tr:hover {
-    background-color: #f1f1f1;
-}
-
-#submitted-tickets tbody tr:last-child {
-    border-bottom: 2px solid #C6A988;
-}
-
-/* Customer Service Form and Ticket Table Layout */
-#customer-service .form-group, #submitted-tickets {
-    margin-bottom: 20px;
-}
-
-
-
-/* Delivery Section */
-#delivery {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-#delivery h2 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Delivery Status Paragraph */
-#delivery p {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-/* Add Delivery Form or Status */
-.delivery-status {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Slightly increased gap for better spacing */
-}
-
-/* Inputs and Selects Styling */
-.delivery-status input,
-.delivery-status select {
-    padding: 12px; /* Increased padding for better clickability */
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease; /* Smooth border color transition */
-}
-
-/* Hover effect for input and select */
-.delivery-status input:hover,
-.delivery-status select:hover {
-    border-color: #9D673A; /* Subtle change in border color on hover */
-}
-
-/* Focus effect for input and select */
-.delivery-status input:focus,
-.delivery-status select:focus {
-    border-color: #C6A988; /* Highlight border color when focused */
-    outline: none; /* Remove default focus outline */
-}
-
-/* Submit Button Styling */
-.delivery-status button {
-    background-color: #C6A988;
-    color: white;
-    border: none;
-    padding: 14px 22px; /* Increased padding for better button size */
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    width: 100%;
-}
-
-/* Hover effect for button */
-.delivery-status button:hover {
-    background-color: #9D673A;
-}
-
-/* Active state for button */
-.delivery-status button:active {
-    background-color: #7a4f24; /* Darker shade when button is clicked */
-}
-
-/* Basic Styles for Dashboard */
-.dashboard {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-.dashboard h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.graph-section {
-    margin-bottom: 30px;
-}
-
-.graph-section h3 {
-    font-size: 18px;
-    color: #555;
-}
-
-/* Basic Styles for Dashboard */
-.dashboard {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-.dashboard h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Basic Styles for Dashboard */
-.dashboard {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-.dashboard h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Statistics Section */
-.statistics {
-    display: flex;
-    justify-content: space-between;  /* Space out the boxes */
-    gap: 20px;  /* Gap between each box */
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for overall statistics box */
-    margin-bottom: 20px; /* Space between the stats and the graph */
-}
-
-.statistics .stat-box {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    flex: 1;  /* Make the boxes grow to fill available space */
-    padding: 20px;
-    text-align: center;  /* Center the text inside */
-}
-
-.statistics .stat-box h4 {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-.statistics .stat-box p {
-    font-size: 24px;
-    font-weight: bold;
-    color: #007bff;
-}
-
-/* Graph Section */
-.graph-section {
-    margin-top: 20px;
-}
-
-.graph-section h3 {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-/* Canvas for the Graph */
-#ordersGraph {
-    width: 100%;  /* Makes the canvas take up 100% of the width of its container */
-    height: 400px;  /* Set a fixed height for the graph */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-
-@media (max-width: 768px) {
-    #ordersGraph {
-        height: 300px;  
-    }
-}
-
-    </style>
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="css/Admin.css">
 </head>
 <body>
     <header>
@@ -697,7 +43,7 @@ h2 {
             <button class="nav-button" data-content="customer-service">CUSTOMER SERVICE</button>
             <button class="nav-button" data-content="delivery">DELIVERY</button>
             <button class="nav-button" data-content="menu-list">MENU LIST</button>
-            <button class="logout">LOGOUT</button>
+            <button class="logout" id="logout-button" onclick="logout()">LOGOUT</button>
         </aside>
         
 
@@ -752,35 +98,28 @@ h2 {
             <!-- Orders Section -->
             <div id="orders" class="content-section">
                 <h2>Orders</h2>
-                <button id="completeOrderBtn">Complete Order</button> <!-- Button to simulate completing an order -->
+                <button id="completeOrderBtn">Complete Order</button>
                 <table id="orderHistoryTable">
                     <thead>
                         <tr>
-                            <th>Order ID</th>
-                            <th>Customer</th>
+                            <th>ID</th>
+                            <th>Order Name</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Order Description</th>
                             <th>Status</th>
-                            <th>Date</th>
+                            <th>Order ID</th>
+                            <th>User ID</th>
+                            <th>Date Created</th>
+                            <th>Date Updated</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>#001</td>
-                            <td>John Doe</td>
-                            <td>Completed</td>
-                            <td>2024-12-05</td>
-                        </tr>
-                        <tr>
-                            <td>#002</td>
-                            <td>Jane Smith</td>
-                            <td>Pending</td>
-                            <td>2024-12-04</td>
-                        </tr>
+                        <?php $orderService->getOrders(); ?>
                     </tbody>
                 </table>
             </div>
-
-
-
 
             <!-- Customer Service Section -->
             <div id="customer-service" class="content-section">
@@ -896,6 +235,7 @@ h2 {
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
 // DSAHBOARD
@@ -984,7 +324,6 @@ const quarterlyOrdersGraph = new Chart(quarterlyCtx, {
             const newDate = new Date().toISOString().split('T')[0];  // Current date
 
             // Create a new table row
-            const newRow = document.createElement('tr');
 
             // Add new order data to row
             newRow.innerHTML = `
@@ -1100,7 +439,105 @@ document.getElementById('completeOrderBtn').addEventListener('click', function()
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const completeOrderBtn = document.getElementById('completeOrderBtn');
+    const rows = document.querySelectorAll('#orderHistoryTable tbody tr');
+
+    // Disable buttons for completed orders on page load
+    rows.forEach(row => {
+        const statusCell = row.querySelector('td:nth-child(6)'); // Assuming the status is in the 6th column
+        const actionCell = row.querySelector('td:nth-last-child(1)'); // Assuming the action is in the last column
+
+        if (statusCell.textContent.trim() === 'Completed') {
+            const button = actionCell.querySelector('button');
+            if (button) {
+                button.classList.add('disabled-button');
+                button.disabled = true;
+            }
+        }
+    });
+
+    // Add event listener to the complete order button
+    completeOrderBtn.addEventListener('click', function() {
+        const orderId = prompt("Enter the Order ID to complete:");
+        if (orderId) {
+            rows.forEach(row => {
+                const orderIdCell = row.querySelector('td:first-child');
+                if (orderIdCell.textContent === orderId) {
+                    const statusCell = row.querySelector('td:nth-child(6)');
+                    statusCell.textContent = 'Completed';
+
+                    const button = row.querySelector('td:nth-last-child(1) button');
+                    if (button) {
+                        button.classList.add('disabled-button');
+                        button.disabled = true;
+                    }
+
+                    alert('Order ' + orderId + ' has been completed!');
+                }
+            });
+        }
+    });
+});
+
     </script>
+
+    <script type="text/javascript">
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     document.getElementById('user-name').addEventListener('click', function() {
+        //         var logoutButton = document.getElementById('logout-button');
+        //         if (logoutButton.style.display === 'none') {
+        //             logoutButton.style.display = 'block';
+        //         } else {
+        //             logoutButton.style.display = 'none';
+        //         }
+        //     });
+        // });
+
+        function logout() {
+            if (confirm('Are you sure you want to log out?')) {
+                window.location.href = 'Services/User/LogoutService.php';
+            }
+        }
+    </script>
+    <script>
+        document.querySelectorAll('.complete-order-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const orderId = this.getAttribute('data-id');
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'Admin.php';
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'orderId';
+                input.value = orderId;
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            });
+        });
+
+        document.getElementById('orderHistoryTable').addEventListener('click', function(event) {
+            if (event.target.classList.contains('complete-order-btn')) {
+                const orderId = event.target.getAttribute('data-id');
+                $.ajax({
+                    type: "POST",
+                    url: 'Services/CompleteOrderService.php',
+                    data: { orderId: orderId },
+                    success: function(response) {
+                        const data = JSON.parse(response);
+                        if (data.status === "success") {
+                            alert('Order ' + orderId + ' has been completed!');
+                            location.reload(); // Reload the page to reflect changes
+                        } else {
+                            alert('Failed to complete the order.');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="js/jquery-3.7.1.min.js"></script>
 
 </body>
 </html>

@@ -32,18 +32,23 @@ session_start();
                     <li class="nav-item">
                     <a href="CartTab.php"><button class="btn-custom-hover">CART</button></a>
                     </li>
-                    <button class="profile-button">
+                    <button class="btn-custom-hover">
                         <?php if (isset($_SESSION['email'])): ?>
-                            <span id="user-name" style="cursor: pointer;">
-                                <?php echo '<p class="">' . htmlspecialchars($_SESSION['firstname']) . " " . htmlspecialchars($_SESSION['lastname']) . "</p>"; ?>
-                            </span>
-                            <button id="logout-button" style="display: none;" onclick="logout()">Logout</button>
+                            <li class="nav-item" id="click-user">
+                                <span id="user-name" style="cursor: pointer;">
+                                    <?php echo htmlspecialchars($_SESSION['firstname']) . " " . htmlspecialchars($_SESSION['lastname']); ?>
+                                </span>
+                                <button id="logout-button" class="btn-custom-hover" style="display: none;" onclick="logout()">LOGOUT</button>
+                            </li>
                         <?php else: ?>
-                            <a href="Login.php" id="profile-link" style="text-decoration: none;">
-                                <p class="text-white">Login</p>
-                            </a>
+                            <li class="nav-item"></li>
+                                <a href="Login.php" id="profile-link" class="text-white" style="text-decoration: none;">
+                                    LOGIN
+                                </a>
+                            </li>
                         <?php endif; ?>
                     </button>
+                    
                 </ul>              
             </div>
         </div>
@@ -121,7 +126,7 @@ session_start();
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
-        document.getElementById('user-name').addEventListener('click', function() {
+        document.getElementById('click-user').addEventListener('click', function() {
             var logoutButton = document.getElementById('logout-button');
             if (logoutButton.style.display === 'none') {
                 logoutButton.style.display = 'block';
@@ -130,9 +135,11 @@ session_start();
             }
         });
 
-        function logout() {
-            window.location.href = 'Services/User/LogoutService.php';
-        }
+        document.getElementById('logout-button').addEventListener('click', function() {
+            if (confirm('Are you sure you want to log out?')) {
+                window.location.href = 'Services/User/LogoutService.php';
+            }
+        });
     </script>
 </body>
 </html>

@@ -83,8 +83,17 @@ if (isset($_POST['login'])) {
                 const data = JSON.parse(response);
                 console.log('data: ', data);
                 if (data.status === "success") {
-                    // alert("Success login!");
-                    window.location.href = "homepage.php";
+                    fetch('Services/CheckUserRole.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.role === 'admin') {
+                            window.location.href = "Admin.php";
+                        } else if (data.role === 'user') {
+                            window.location.href = "homepage.php";
+                        } else {
+                            window.location.href = "homepage.php";
+                        }
+                    });
                 } else {
                     alert(data.message);
                 }
