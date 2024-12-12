@@ -196,11 +196,21 @@ a:hover {
   width: 100%;
 }
 
-.left-info,
+/* Left info styling */
+.left-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Right info styling */
 .right-info {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 /* Submit ticket button */
@@ -225,6 +235,45 @@ a:hover {
 .submit-ticket-button:hover {
   background-color: #a8a37e;
   transform: scale(1.05);
+}
+
+/* Ticket item styling */
+.ticket-item {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Ticket ID styling */
+.ticket-id {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* Subject styling */
+.subject {
+  margin-top: 5px;
+  font-size: 1em;
+  color: #666;
+}
+
+/* Date styling */
+.date {
+  font-size: 0.9em;
+  color: #999;
+}
+
+/* Status styling */
+.status {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #007bff;
 }
 
 /* Responsive Design */

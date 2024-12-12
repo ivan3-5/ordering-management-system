@@ -72,22 +72,108 @@ const quarterlyOrdersGraph = new Chart(quarterlyCtx, {
     }
 });
 
-const fetchDashboardData = () => {
-    // data
-    const data = {
-        totalOrders: 120,  
-        totalEarnings: 5400,  
-        totalTickets: 15,   
-        totalRefunds: 3    
-    };
+// Function to fetch and update dashboard data
+function fetchDashboardData() {
+    $.ajax({
+        type: "GET",
+        url: 'Services/GetDashboardDataService.php',
+        success: function(response) {
+            const data = JSON.parse(response);
+            if (data.status === "success") {
+                document.getElementById('totalOrders').textContent = data.totalOrders;
+                document.getElementById('totalEarnings').textContent = `$${data.totalEarnings}`;
+                document.getElementById('totalTickets').textContent = data.totalTickets;
+                document.getElementById('totalRefunds').textContent = data.totalRefunds;
 
-    document.getElementById('totalOrders').textContent = data.totalOrders;
-    document.getElementById('totalEarnings').textContent = data.totalEarnings;
-    document.getElementById('totalTickets').textContent = data.totalTickets;
-    document.getElementById('totalRefunds').textContent = data.totalRefunds;
-};
+                updateYearlyOrdersGraph(data.yearlyOrders);
+                updateMonthlyOrdersGraph(data.monthlyOrders);
+                updateQuarterlyOrdersGraph(data.quarterlyOrders);
+            } else {
+                alert('Failed to fetch dashboard data.');
+            }
+        }
+    });
+}
 
-// function to update statistics when the page loads
+// Function to update yearly orders graph
+function updateYearlyOrdersGraph(data) {
+    const yearlyCtx = document.getElementById('yearlyOrdersGraph').getContext('2d');
+    new Chart(yearlyCtx, {
+        type: 'line',
+        data: {
+            labels: data.labels,
+            datasets: [{
+                label: 'Orders This Year',
+                data: data.values,
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Function to update monthly orders graph
+function updateMonthlyOrdersGraph(data) {
+    const monthlyCtx = document.getElementById('monthlyOrdersGraph').getContext('2d');
+    new Chart(monthlyCtx, {
+        type: 'line',
+        data: {
+            labels: data.labels,
+            datasets: [{
+                label: 'Orders This Month',
+                data: data.values,
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Function to update quarterly orders graph
+function updateQuarterlyOrdersGraph(data) {
+    const quarterlyCtx = document.getElementById('quarterlyOrdersGraph').getContext('2d');
+    new Chart(quarterlyCtx, {
+        type: 'line',
+        data: {
+            labels: data.labels,
+            datasets: [{
+                label: 'Orders This Quarter',
+                data: data.values,
+                borderColor: 'rgb(153, 102, 255)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Fetch dashboard data on page load
 window.onload = function() {
     fetchDashboardData();
     loadCategories();

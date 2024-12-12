@@ -56,19 +56,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                 <div class="statistics">
                     <div class="stat-box">
                         <h4>Total Orders This Month</h4>
-                        <p id="totalOrders">100</p>
+                        <p id="totalOrders">0</p>
                     </div>
                     <div class="stat-box">
                         <h4>Total Earnings This Month</h4>
-                        <p id="totalEarnings">$5000</p>
+                        <p id="totalEarnings">$0</p>
                     </div>
                     <div class="stat-box">
                         <h4>Total Tickets This Month</h4>
-                        <p id="totalTickets">150</p>
+                        <p id="totalTickets">0</p>
                     </div>
                     <div class="stat-box">
                         <h4>Total Refunds This Month</h4>
-                        <p id="totalRefunds">20</p>
+                        <p id="totalRefunds">0</p>
                     </div>
                 </div>
                 <!-- Graph Section -->
@@ -183,27 +183,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                     <button type="submit">Add Category</button>
                 </form>
                 <br>
-                <form id="add-product-form">
-                    <label for="product-name">Item Name:</label>
-                    <input type="text" id="product-name" name="product-name" required>
-                    <label for="product-category">Category:</label>
-                    <select id="product-category" name="category" required>
+                <hr>
+                <br>
+                <form id="add-item-form">
+                    <label for="item-name">Item Name:</label>
+                    <input type="text" id="item-name" name="item-name" required>
+                    <label for="item-category">Category:</label>
+                    <select id="item-category" name="category" required>
                         <option value="" disabled selected>Select a Category</option>
                         <!-- Categories will be dynamically added here -->
                     </select>
-                    <label for="product-image">Image:</label>
-                    <input type="file" id="product-image" name="product-image" required>
-                    <label for="product-description">Description:</label>
-                    <textarea id="product-description" name="product-description" required></textarea>
-                    <label for="product-price">Price ($):</label>
-                    <input type="number" id="product-price" name="product-price" required>
-                    <button type="submit">Add Product</button>
+                    <label for="item-image">Image:</label>
+                    <input type="file" id="item-image" name="item-image" required>
+                    <label for="item-description">Description:</label>
+                    <textarea id="item-description" name="item-description" required></textarea>
+                    <label for="item-price">Price ($):</label>
+                    <input type="number" id="item-price" name="item-price" required>
+                    <button type="submit">Add Item</button>
                 </form>
-                <div id="product-list">
-                    <h3>Product List</h3>
-                    <ul id="products"></ul>
-                </div>
-            </div>
+                <br>
+                <hr>
+                <br>
+                <h3>Category List</h3>
+                <table id="categoryListTable" class="responsive-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Category Name</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Categories will be dynamically added here -->
+                    </tbody>
+                </table>
+                <br>
+                <hr>
+                <br>
+                <h3>Item List</h3>
+                <table id="itemListTable" class="responsive-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Item Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Category ID</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Items will be dynamically added here -->
+                    </tbody>
+                </table>
         </div>
     </div>
 
@@ -212,6 +245,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
     <script src="js/admin-dashboard.js"></script>
     <script src="js/admin-menu-list.js"></script>
     <script src="js/admin-orders.js"></script>
+    <script src="js/admin-customer-service.js"></script>
+    <script src="js/admin-delivery.js"></script>
+    <script src="js/admin-tabs.js"></script>
     <script type="text/javascript">
         function logout() {
             if (confirm('Are you sure you want to log out?')) {

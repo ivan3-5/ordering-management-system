@@ -60,116 +60,101 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/order-list.service.js"></script>
+    <script type="text/javascript">
+        let purchasedList = [];
+        let purchasedOrderList = [];
 
-
-<script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/order-list.service.js"></script></script>
-<script type="text/javascript">
-    let purchasedList = [];
-    let purchasedOrderList = [];
-
-    $(document).ready(function() {
-        getUser();
-        getPurchases();
-    });
-
-    function getUser() {
-        $.ajax({
-            type: "GET",
-            url: 'Services/User/GetLoggedInService.php',
-            success: function(response)
-            {
-                console.log('login: ', response);
-                const data = JSON.parse(response);
-                if (data.status === "success") {
-                    $('#fullname').text(data.FirstName + ' ' + data.LastName);
-                } else {
-                    console.log("Unauthorized!");
-                }
-            }
+        $(document).ready(function() {
+            getUser();
+            getPurchases();
         });
-    }
 
-    function getPurchases() {
-        $.ajax({
-            type: "GET",
-            url: 'Services/GetPurchaseListService.php',
-            success: function(response)
-            {
-                // console.log('getPurchases: ', response);
-                const data = JSON.parse(response);
-                if (data && data.length) {
-                    purchasedList = data;
+        function getUser() {
+            $.ajax({
+                type: "GET",
+                url: 'Services/User/GetLoggedInService.php',
+                success: function(response) {
+                    console.log('login: ', response);
+                    const data = JSON.parse(response);
+                    if (data.status === "success") {
+                        $('#fullname').text(data.FirstName + ' ' + data.LastName);
+                    } else {
+                        console.log("Unauthorized!");
+                    }
                 }
-                // if (data.status === "success") {
-                //     $('#fullname').text(data.FirstName + ' ' + data.LastName);
-                // } else {
-                //     console.log("Unauthorized!");
-                // }
-                const orderIds = data.map(order => `'${order.OrderId}'`).join(',');
-                getPurchasedOrders(orderIds);
-            }
-        });
-    }
+            });
+        }
 
-    function getPurchasedOrders(orderIds) {
-        $.ajax({
-            type: "POST",
-            url: 'Services/GetPurchasedOrderListService.php',
-            data: { orderIds },
-            success: function(response)
-            {
-                // console.log('getPurchasedOrders: ', response);
-                const data = JSON.parse(response);
+        function getPurchases() {
+            $.ajax({
+                type: "GET",
+                url: 'Services/GetPurchaseListService.php',
+                success: function(response) {
+                    // console.log('getPurchases: ', response);
+                    const data = JSON.parse(response);
+                    if (data && data.length) {
+                        purchasedList = data;
+                    }
+                    const orderIds = data.map(order => `'${order.OrderId}'`).join(',');
+                    getPurchasedOrders(orderIds);
+                }
+            });
+        }
 
-                if (data && data.length) {
-                    purchasedList.forEach((transaction, index) => {
-                        const orderList = data.filter(order => order.OrderId === transaction.OrderId);
-                        const sum = getTotalPrice(orderList);
-                        const orders = [{ itemNumber: index+1  }, ...orderList, { transaction, sumPrice: sum }];
-                        purchasedOrderList.push(...orders);
+        function getPurchasedOrders(orderIds) {
+            $.ajax({
+                type: "POST",
+                url: 'Services/GetPurchasedOrderListService.php',
+                data: { orderIds },
+                success: function(response) {
+                    // console.log('getPurchasedOrders: ', response);
+                    const data = JSON.parse(response);
+
+                    if (data && data.length) {
+                        purchasedList.forEach((transaction, index) => {
+                            const orderList = data.filter(order => order.OrderId === transaction.OrderId);
+                            const sum = getTotalPrice(orderList);
+                            const orders = [{ itemNumber: index+1  }, ...orderList, { transaction, sumPrice: sum }];
+                            purchasedOrderList.push(...orders);
+                        });
+                    }
+                    console.log('purchasedOrderList: ', purchasedOrderList);
+                    purchasedOrderList.forEach(order => {
+                        const tr = $('<tr>');
+                        tr.css('padding', '8px');
+                        
+                        if (order.itemNumber) {
+                            tr.append(`<td colspan="2">Purchase: ${order.itemNumber}</td>`);
+                            tr.append(`<td style="padding-bottom: 8px; text-align: right;"><button class="btn btn-primary">Refund</button></td>`);
+                            tr.css('background-color', '#855731');
+                        } else if (!order.transaction) {
+                            tr.append(`<td><span style="margin-left: 10px;">${order.OrderName}</span></td>`);
+                            tr.append(`<td>${order.Quantity}</td>`);
+                            tr.append(`<td style="padding-bottom: 8px; text-align: right;">${order.TotalPrice}</td>`);
+                        } else {
+                            tr.append(`<td style="padding-bottom: 8px;">${order.transaction.TransactionType} ID: ${order.transaction.OrderId}</td>`);
+                            tr.append(`<td >${order.transaction.DateCreated}</td>`);
+                            tr.append(`<td style=" text-align: right;">Total Price: ${order.sumPrice}</td>`);
+                        }
+
+                        $('#purchaseList').append(tr);
                     });
                 }
-                console.log('purchasedOrderList: ', purchasedOrderList);
-                purchasedOrderList.forEach(order => {
-                    const tr = $('<tr>');
-                    tr.css('padding', '8px');
-                    
-                    if (order.itemNumber) {
-                        tr.append(`<td colspan="2">Purchase: ${order.itemNumber}</td>`);
-                        tr.append(`<td style="padding-bottom: 8px; text-align: right;"><button class="btn btn-primary">Refund</button></td>`);
-                        tr.css('background-color', '#855731');
-                    } else if (!order.transaction) {
-                        tr.append(`<td><span style="margin-left: 10px;">${order.OrderName}</span></td>`);
-                        tr.append(`<td>${order.Quantity}</td>`);
-                        tr.append(`<td style="padding-bottom: 8px; text-align: right;">${order.TotalPrice}</td>`);
-                    } else {
-                        tr.append(`<td style="padding-bottom: 8px;">${order.transaction.TransactionType} ID: ${order.transaction.OrderId}</td>`);
-                        tr.append(`<td >${order.transaction.DateCreated}</td>`);
-                        tr.append(`<td style=" text-align: right;">Total Price: ${order.sumPrice}</td>`);
-                    }
+            });
+        }
 
-                    $('#purchaseList').append(tr);
-                });
-
-                
-            }
-        });
-    }
-
-    function logout() {
-        $.ajax({
-            type: "GET",
-            url: 'Services/User/LogoutService.php',
-            success: function(response)
-            {
-                console.log('logout: ', response);
-                // const data = JSON.parse(response);
-                window.location.href = response;
-            }
-        });
-    }
-    
-</script>
+        function logout() {
+            $.ajax({
+                type: "GET",
+                url: 'Services/User/LogoutService.php',
+                success: function(response) {
+                    console.log('logout: ', response);
+                    window.location.href = response;
+                }
+            });
+        }
+    </script>
 </body>
 </html>
