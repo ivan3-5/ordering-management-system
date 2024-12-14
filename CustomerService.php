@@ -23,13 +23,13 @@
     </a>
     <!-- Background image container -->
     <div class="bg-container">
-        <!-- Content inside the container -->
+        <!-- Content  -->
         <h2>When you help others feel important, <br>you help yourself feel important too</h2>
     </div>
 
-    <!-- Inside .new-bg-container -->
+    <!-- sulod sa .new-bg-container -->
     <div class="new-bg-container">
-        <!-- Tickets will be dynamically added here -->
+        <!-- Ticket will be added here -->
         <a href="SubmitATicket.php" class="submit-ticket-button">Submit a Ticket</a>
     </div>
     
