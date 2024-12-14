@@ -73,13 +73,29 @@
 
         <div>
             <div class="input">
-                <input type="text" name="fname" id="fname" placeholder="First Name" required>
-                <label for="fname">First Name</label>
+                <input type="text" name="fname" id="fname" maxlength="15" placeholder="First Name" required>
+                <label for="fname">First Name (Letters Only)</label>
             </div>
+
+        <!-- No numbers or special characters for names -->
+            <script>
+                document.getElementById("fname").addEventListener("input", function (e) {
+                    this.value = this.value.replace(/[^A-Za-z]/g, "");
+                });
+            </script>
+
             <div class="input">
-                <input type="text" name="lname" id="lname" placeholder="Last Name" required>
-                <label for="lname">Last Name</label>
+                <input type="text" name="lname" id="lname" maxlength="15" placeholder="Last Name" required>
+                <label for="lname">Last Name (Letters Only)</label>
             </div>
+
+            <!-- No numbers or special characters for names -->
+            <script>
+                document.getElementById("lname").addEventListener("input", function (e) {
+                    this.value = this.value.replace(/[^A-Za-z]/g, "");
+                });
+            </script>
+
             <div class="input">
                 <input type="email" name="email" id="email" placeholder="Email" required>
                 <label for="email">Email</label>

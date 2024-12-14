@@ -12,49 +12,43 @@
         <!-- Sidebar -->
         <div class="sidebar bg-brown d-flex flex-column align-items-center py-4">
             <div class="nav-icon mb-4">
-                <a href="homepage.php"><i class="fas fa-home fa-2x"></i></a>
+                <a href="Homepage.php">
+                    <i class="fas fa-home fa-2x"></i>
+                </a>
             </div>
+
             <div class="nav-icon mb-4">
-                <i class="fas fa-file-alt fa-2x"></i>
+                <a href="OrderHistory.php">
+                    <i class="fa-solid fa-clock-rotate-left fa-2x"></i>
+                </a>
             </div>
+
             <div class="nav-icon mb-4">
-                <i class="fas fa-motorcycle fa-2x"></i>
+                <a href="CustomerService.php">
+                    <i class="fas fa-comment fa-2x"></i>
+                </a>
             </div>
-            <div class="nav-icon mb-4">
-                <i class="fas fa-comment fa-2x"></i>
-            </div>
-            <div class="nav-icon mb-4">
-                <i class="fas fa-map-marker-alt fa-2x"></i>
-            </div>
+
             <div class="nav-icon mb-4">
                 <i class="fas fa-sign-out-alt fa-2x" onclick="logout()"></i>
             </div>
         </div>
 
         <!-- Content -->
-        <div class="content flex-grow-1 bg-light-brown p-5">
-            <h2 class="text-white">PROFILE</h2>
-            <div class="d-flex mt-4">
-                <!-- Profile -->
-                <div class="profile-section bg-brown text-center p-4 rounded">
-                    <img src="Photos/profile-icon.svg" alt="Profile Image" class="profile-img rounded-circle mb-3">
-                    <h5 id="fullname" class="text-white"></h5>
-                </div>
-                
-                <!-- Purchases -->
-                <div class="purchases-section flex-grow-1 bg-brown ml-3 p-4 rounded">
-                    <h5 class="text-white">Purchases</h5>
-                    <hr class="bg-white">
+        <div class="content flex-grow-1 bg-light-brown d-flex justify-content-center align-items-center p-5">
+            <!-- Profile -->
+            <div class="profile-section bg-brown text-center p-4 rounded">
+                <img src="Photos/profile-icon.svg" alt="Profile Image" class="profile-img rounded-circle mb-3">
+                <h5 id="fullname" class="text-white"></h5>
+                <br>
 
-                    <table id="purchaseList" style="width: 100%;">
-                        <tr>
-                            <th style="width: 33%;">Product</th>
-                            <th style="width: 33%;" class="quantity">Quantity</th>
-                            <th style="width: 33%; text-align: right;" class="price">Price</th>
-                            <!-- <th></th> -->
-                        </tr>
-                    </table>
-                </div>
+                <!-- ACCOUNT INFO -->
+                <p class="info">Phone Number: </p>
+                <p class="info">Address: </p>
+                <p class="info">Date Created: </p>
+                <br>
+                <button class="edit btn btn-primary mt-4">Edit Profile</button>
+                
             </div>
         </div>
     </div>
@@ -92,7 +86,6 @@
                 type: "GET",
                 url: 'Services/GetPurchaseListService.php',
                 success: function(response) {
-                    // console.log('getPurchases: ', response);
                     const data = JSON.parse(response);
                     if (data && data.length) {
                         purchasedList = data;
@@ -109,14 +102,13 @@
                 url: 'Services/GetPurchasedOrderListService.php',
                 data: { orderIds },
                 success: function(response) {
-                    // console.log('getPurchasedOrders: ', response);
                     const data = JSON.parse(response);
 
                     if (data && data.length) {
                         purchasedList.forEach((transaction, index) => {
                             const orderList = data.filter(order => order.OrderId === transaction.OrderId);
                             const sum = getTotalPrice(orderList);
-                            const orders = [{ itemNumber: index+1  }, ...orderList, { transaction, sumPrice: sum }];
+                            const orders = [{ itemNumber: index+1 }, ...orderList, { transaction, sumPrice: sum }];
                             purchasedOrderList.push(...orders);
                         });
                     }

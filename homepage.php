@@ -146,35 +146,19 @@ if (isset($_SESSION['id'])) {
                     <p>Brewed with love, served with a smile - your perfect coffee experience, one cup at a time.</p>
                 </div>
 
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                        <h5 class="text-uppercase mb-4 font-weight-bold text-outline" style="color: #E4B279;">Products</h5>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">PLACEHOLDER</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">PLACEHOLDER</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">PLACEHOLDER</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">PLACEHOLDER</a>
-                    </p>
-                </div>
-
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-outline" style="color: #E4B279;">Useful Links</h5>
                     <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">About Us</a>
+                        <a href="AboutUs.php" class="text-white" style="text-decoration: none;">About Us</a>
                     </p>
                     <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">Home</a>
+                        <a href="UserProfile.php" class="text-white" style="text-decoration: none;">User Profile</a>
                     </p>
                     <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">Menu List</a>
+                        <a href="MenuList (1).php" class="text-white" style="text-decoration: none;">Menu List</a>
                     </p>
                     <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">Customer Service</a>
+                        <a href="CustomerService.php" class="text-white" style="text-decoration: none;">Customer Service</a>
                     </p>
                 </div>
 

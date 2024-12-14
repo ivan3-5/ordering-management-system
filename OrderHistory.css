@@ -1,0 +1,101 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    height: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    overflow: hidden;
+    font-family: "Kotta One", sans-serif;
+}
+
+.d-flex {
+    height: 100%;
+}
+
+/* Colors */
+.bg-brown {
+    background-color: #9D673A;
+}
+
+.bg-light-brown {
+    background-color: #C6A988;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.nav-icon {
+    color: #FFF;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.nav-icon:hover {
+    color: #E4B279;
+}
+
+.nav-icon a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Content */
+.content {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+    height: 100vh;
+    padding: 0;
+}
+
+/* Order History */
+.order-history-section {
+    width: 80%;
+    max-height: 90%;
+    font-size: 20px;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: center;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+.table-striped tbody tr:hover {
+    background-color: #e2e6ea;
+}
+
+.btn {
+    margin: 5px;
+}
+
+@media (max-width: 768px) {
+    .order-history-section {
+        width: 90%;
+    }
+
+    .sidebar {
+        width: 60px;
+    }
+}
