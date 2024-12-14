@@ -38,7 +38,7 @@ if (!isset($_SESSION['id']) || $_SESSION['UserRole'] !== 'user') {
     <h1 style="font-family: abel;">Fresh, Local and Thoughtful</h1>
     
     <div class="order-now-container">
-      <a href="UserProfile.php" button class="profile-button">
+      <a button href="UserProfile.php" class="profile-button">
         <p><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname'] ?></p>
       </a>
       <a button href="ChooseOptionOrder.php"  class="order-now-button">Order Now</a>

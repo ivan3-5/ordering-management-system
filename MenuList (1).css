@@ -268,13 +268,26 @@ body::after {
 }
 
 .profile-button {
-  /* background-color: transparent;
-  border: none;
-  padding: 0; */
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
+  cursor: pointer; /* Pointer cursor for interactivity */
+  text-decoration: none; /* Remove underline */
+  color: black; /* Text color */
+  border: 1px solid black; /* Adds a black border */
+  padding: 8px 10px; /* Adds spacing inside the border */
+  border-radius: 5px; /* Optional: adds rounded corners */
+  transition: all 0.3s ease; /* Smooth transitions for hover effects */
+  display: inline-block; /* Ensures the button acts like a block for text centering */
 }
+
+.profile-button p {
+  margin: 0; /* Remove default margin */
+  padding-top: 2px; /* Moves the text slightly to the bottom */
+}
+
+.profile-button:hover {
+  background-color: #c6a988; /* Optional: light background on hover */
+  color: black; /* Maintain text color */
+}
+
 .Cart-button {
   background-color: #c6a988;
   padding: 5px 10px;
