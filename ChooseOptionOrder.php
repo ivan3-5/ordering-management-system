@@ -17,13 +17,9 @@
 <div class="header-text">
 Choose your option
 </div>
-
-<!-- Profile icon -->
 <a href="UserProfile.php"> 
     <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
 </a>
-
-<!-- New background container for Pickup/Delivery choices -->
 <div class="new-bg-container">
     <div class="row">
         <!-- Pickup choice as a button -->

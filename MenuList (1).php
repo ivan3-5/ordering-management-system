@@ -77,6 +77,62 @@ if (!isset($_SESSION['id']) || $_SESSION['UserRole'] !== 'user') {
   <!-- Get All Items in MySQL Database-->
   <?php require_once 'function/GetAllItemsInDB.php'; ?>
 
+  <div class="row mt-4">
+  <div class="col-md-4">
+    <div class="additional-content text-center">
+      <a href="homepage.php"> <!-- Replace 'page2.html' with your desired link -->
+        <button class="logo-button">
+          <img src="System Pictures/BSIT-2F_Logo_real-removebg-preview.png" alt="Additional Logo" class="logo-image">
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+  
+    <div class="container">
+      <div class="row mt-4 justify-content-end">
+      <div class="col-md-4 d-flex justify-content-end">
+        <div class="additional-content text-center">
+          <button class="icon-button">
+            <img src="System Pictures/facebook logo.png" alt="Icon 1" class="logo-image">
+          </button>
+        </div>
+        <div class="additional-content text-center">
+          <button class="icon-button">
+            <img src="System Pictures/Instagram logo.png" alt="Icon 2" class="logo-image">
+          </button>
+        </div>
+        <div class="additional-content text-center">
+          <button class="icon-button">
+            <img src="System Pictures/Contact number logo.png" alt="Icon 3" class="logo-image">
+          </button>
+        </div>
+      </div>
+    </div>
+
+      <div class="row mt-4">
+      <div class="col-12">
+        <div class="horizontal-line"></div>
+      </div>
+    </div>
+    <div class="icon-container">
+      <div class="icon-item">
+        <img src="System Pictures/COD-removebg-preview.png" alt="Icon 1" class="icon-image">
+      </div>
+      <div class="icon-item">
+        <img src="System Pictures/gcash-removebg-preview.png" alt="Icon 2" class="icon-image">
+      </div>
+    </div>
+    <div class="Pc2-container">
+        <h1 style="font-family: abel;">Reach Us</h1>
+    </div>
+
+    <div class="input-container">
+        <input type="text" placeholder="Type here..." class="text-box">
+        <button class="signup-button">Sign Up</button>
+    </div>
+  </div>
+
   <!-- Order Cart Hover-->
   <div class="order-window" id="orderWindow">
     <div class="order-content">
@@ -103,6 +159,7 @@ if (!isset($_SESSION['id']) || $_SESSION['UserRole'] !== 'user') {
 
     </div>
   </div>
+  
 
 <script type="text/javascript">
   $(document).ready(function() {

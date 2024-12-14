@@ -2,9 +2,15 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 if (isset($_SESSION['id'])) {
     $firstname = $_SESSION['firstname'];
     $lastname = $_SESSION['lastname'];
+    $userRole = $_SESSION['UserRole'];
+    if ($userRole === 'admin') {
+        header('Location: Admin.php');
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
