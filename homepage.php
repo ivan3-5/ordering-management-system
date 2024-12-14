@@ -1,5 +1,11 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION['id'])) {
+    $firstname = $_SESSION['firstname'];
+    $lastname = $_SESSION['lastname'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

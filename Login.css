@@ -38,6 +38,26 @@ form {
     margin-bottom: 0.4rem;
 }
 
+#alert-container {
+    margin-bottom: 15px;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 3vh;
+    border-radius: 5px;
+    color: #fff;
+    text-align: left;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+}
+
+.alert-success {
+    background-color: #28a745;
+}
+
 input {
     width: 100%;
     background-color: transparent;
@@ -50,6 +70,19 @@ input {
 .input-group {
     padding: 10px;
     position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 25%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #999;
+}
+
+.toggle-password:hover {
+    color: #333;
 }
 
 input:focus {
@@ -123,7 +156,7 @@ input:not(:placeholder-shown) ~ label {
     width: 100%;
     height: auto;
     max-width: 120px;
-    transition: transform 0.3s ease;
+    transition: opacity 0.3s ease;
     border-radius: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -131,7 +164,8 @@ input:not(:placeholder-shown) ~ label {
 }
 
 .icon img:hover {
-    transform: scale(1.1);
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 /* mobile */

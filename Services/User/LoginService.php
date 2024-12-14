@@ -1,34 +1,34 @@
 <?php
-    include '../NoAuthDbConnection.php';
+include '../NoAuthDbConnection.php';
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+$email = $_POST['email'];
+$password = $_POST['password'];
 
-    $sql = "SELECT Id, Password, Email, FirstName, LastName, PhoneNumber, Address, UserRole FROM users WHERE Email = ?";
-    $statement = mysqli_stmt_init($conn);
-    if (mysqli_stmt_prepare($statement, $sql)) {
-        mysqli_stmt_bind_param($statement, "s", $email);
-        mysqli_stmt_execute($statement);
-        mysqli_stmt_bind_result($statement, $id, $hash, $email, $firstname, $lastname, $phone_number, $address, $user_role);
-        mysqli_stmt_fetch($statement);
+$sql = "SELECT Id, Password, Email, FirstName, LastName, PhoneNumber, Address, UserRole FROM users WHERE Email = ?";
+$statement = $conn->prepare($sql);
+$statement->bind_param("s", $email);
+$statement->execute();
+$result = $statement->get_result();
 
-        if ($hash && password_verify($password, $hash, )) {
-            session_start();
-            $_SESSION['id'] = $id;
-            $_SESSION['email'] = $email;
-            $_SESSION['firstname'] = $firstname;
-            $_SESSION['lastname'] = $lastname;
-            $_SESSION['PhoneNumber'] = $phone_number;
-            $_SESSION['Address'] = $address;
-            $_SESSION['UserRole'] = $user_role;
-            
-            echo json_encode(array("status" => "success", "message" => "Login successful!"));
-            // header("Location: UserProfile.php");
-            // exit();
-        } else {
-            echo json_encode(array("status" => "error", "message" => "Invalid email or password."));
-        }
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $hash = $row['Password'];
+
+    if (password_verify($password, $hash)) {
+        session_start();
+        $_SESSION['id'] = $row['Id'];
+        $_SESSION['email'] = $row['Email'];
+        $_SESSION['firstname'] = $row['FirstName'];
+        $_SESSION['lastname'] = $row['LastName'];
+        $_SESSION['PhoneNumber'] = $row['PhoneNumber'];
+        $_SESSION['Address'] = $row['Address'];
+        $_SESSION['UserRole'] = $row['UserRole'];
+
+        echo json_encode(array("status" => "success", "message" => "Login successful!"));
     } else {
-        echo json_encode(array("status" => "error", "message" => "Database error."));
+        echo json_encode(array("status" => "error", "message" => "Invalid password."));
     }
+} else {
+    echo json_encode(array("status" => "error", "message" => "Email not found."));
+}
 ?>

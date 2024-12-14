@@ -6,11 +6,12 @@
     <title>Sign Up</title>
     <link rel="icon" href="Photos/image logo.png" type="image/x-icon">
     <link rel="stylesheet" href="Signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
     <?php
-    $success = ""; // Initialize success message variable
+    $success = "";
 
     if (isset($_POST['submit'])) {
         $firstname = trim($_POST["fname"]);
@@ -59,7 +60,9 @@
 
     <div class="container" id="signup">
         <div class="icon">
-            <img src="Photos/image logo.png" alt="Ry's">
+            <a href="homepage.php">
+                <img src="Photos/image logo.png" alt="Ry's" title="Ry's">
+            </a>
         </div>
         <h1 class="form">Register</h1>
 
@@ -84,6 +87,9 @@
             <div class="input">
                 <input type="password" name="password" id="password" placeholder="Password" required>
                 <label for="password">Password</label>
+                <span class="toggle-password">
+                    <i class="fas fa-eye" id="togglePassword"></i>
+                </span>
             </div>
             <div class="input">
                 <input type="text" name="pnumber" id="pnumber" placeholder="Phone Number" required>
@@ -101,6 +107,7 @@
     </div>
 
 <script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/signup.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         // getOrderCount();
