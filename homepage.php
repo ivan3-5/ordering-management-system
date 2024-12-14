@@ -44,7 +44,7 @@ if (isset($_SESSION['id'])) {
                     <li class="nav-item">
                     <a href="CartTab.php"><button class="btn-custom-hover">CART</button></a>
                     </li>
-                    <button class="btn-custom-hover">
+                    <a class="btn-custom-hover">
                         <?php if (isset($_SESSION['email'])): ?>
                             <li class="nav-item" id="click-user">
                                 <span id="user-name" style="cursor: pointer;">
@@ -53,13 +53,11 @@ if (isset($_SESSION['id'])) {
                                 <button id="logout-button" class="btn-custom-hover" style="display: none;" onclick="logout()">LOGOUT</button>
                             </li>
                         <?php else: ?>
-                            <li class="nav-item"></li>
-                                <a href="Login.php" id="profile-link" class="text-white" style="text-decoration: none;">
-                                    LOGIN
-                                </a>
+                            <li class="nav-item">
+                                <a href="Login.php"><button  id="Login-Design">LOG IN</button></a >
                             </li>
                         <?php endif; ?>
-                    </button>
+                        </a>
                     
                 </ul>              
             </div>

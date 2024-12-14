@@ -11,8 +11,8 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 100px; /* Adjust width as needed */
-  height: auto; /* Maintains aspect ratio */
+  width: 100px;
+  height: auto;
   cursor: pointer;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -41,39 +41,39 @@ body {
 
 /* New background container styling */
 .new-bg-container {
-  background-color: #9d673a; /* Background color of the container */
-  margin-left: 10px; /* Add margin to the left */
-  margin-right: 10px; /* Add margin to the right */
-  padding: 20px; /* Optional: adds padding inside the container */
-  border-radius: 5px; /* Optional: rounded corners */
+  background-color: #9d673a;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 20px;
+  border-radius: 5px;
   margin-top: 250px;
 }
 
 /* Styling for the choices (Pickup/Delivery) as buttons */
 .choice {
-  background-color: rgb(255, 255, 255); /* Background color of each choice */
+  background-color: rgb(255, 255, 255);
   text-align: center;
-  padding: 8px 0; /* Reduced padding for smaller background */
-  font-size: 20px; /* Smaller font size */
+  padding: 8px 0;
+  font-size: 20px;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth hover effect */
-  margin: 0 auto; /* Center the choice buttons */
-  width: 45%; /* Reduced width to make the buttons smaller */
-  aspect-ratio: 10; /* Ensures square shape */
+  transition: background-color 0.3s ease;
+  margin: 0 auto;
+  width: 45%;
+  aspect-ratio: 10;
   display: flex;
   align-items: center;
-  justify-content: center; /* Centers text */
+  justify-content: center;
   margin-left: 100px;
   margin-right: 100px;
-  border: none; /* Removes default button border */
+  border: none;
   color: black;
 }
 
 /* Hover effect for each choice */
 .choice:hover {
-  background-color: #c9c3c3; /* Light gray when hovered */
+  background-color: #c9c3c3;
   color: black;
 }
 /* Pickup ID styling */
@@ -122,6 +122,6 @@ body {
   .choice {
     font-size: 12px;
     padding: 5px 0;
-    width: 80%; /* Make the choice buttons wider on smaller screens */
+    width: 80%;
   }
 }
