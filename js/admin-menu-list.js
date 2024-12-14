@@ -70,10 +70,12 @@ function loadMenuLists() {
             const itemListTable = document.getElementById('itemListTable').getElementsByTagName('tbody')[0];
             itemListTable.innerHTML = '';
             items.forEach(item => {
+                const imageSrc = `data:image/jpeg;base64,${item.item_image}`;
                 const row = itemListTable.insertRow();
                 row.innerHTML = `
                     <td data-label="ID">${item.ItemID}</td>
-                    <td data-label="Item Name"><img src="data:image/jpeg;base64,${item.item_image}" alt="${item.item_name}" style="width: 50px; height: 50px; margin-right: 10px;">${item.item_name}</td>
+                    <td data-label="Item Name">${item.item_name}</td>
+                    <td data-label="Image"><img src="${imageSrc}" alt="${item.item_name}" style="width: 50px; height: 50px;"></td>
                     <td data-label="Description">${item.description}</td>
                     <td data-label="Price">₱${item.price}</td>
                     <td data-label="Category Name">${categoryMap[item.CategoryID]}</td>
@@ -86,10 +88,123 @@ function loadMenuLists() {
             });
         },
         error: function(xhr, status, error) {
-            console.error('Error:', error); // Debugging step
+            console.error('Error:', error);
         }
     });
 }
+
+// Function to show the update category modal
+function showUpdateCategoryModal(categoryId, categoryName, categoryDescription) {
+    const modal = document.getElementById('updateCategoryModal');
+    const closeBtn = modal.querySelector('.close');
+
+    document.getElementById('update-category-id').value = categoryId;
+    document.getElementById('update-category-name').value = categoryName;
+    document.getElementById('update-category-description').value = categoryDescription;
+
+    modal.style.display = 'block';
+
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+}
+
+// Function to update category
+document.getElementById('update-category-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const categoryId = document.getElementById('update-category-id').value;
+    const newCategoryName = document.getElementById('update-category-name').value;
+    const newCategoryDescription = document.getElementById('update-category-description').value;
+
+    $.ajax({
+        type: "POST",
+        url: 'Services/UpdateCategoryService.php',
+        data: { categoryId, newCategoryName, newCategoryDescription },
+        success: function(response) {
+            const data = JSON.parse(response);
+            if (data.status === "success") {
+                alert('Category updated successfully!');
+                loadMenuLists();
+                document.getElementById('updateCategoryModal').style.display = 'none';
+            } else {
+                alert('Failed to update category.');
+            }
+        }
+    });
+});
+
+// Function to soft delete category
+function softDeleteCategory(categoryId) {
+    if (confirm('Are you sure you want to archive this category?')) {
+        $.ajax({
+            type: "POST",
+            url: 'Services/DeleteService.php',
+            data: { action: 'softDelete', type: 'category', id: categoryId },
+            success: function(response) {
+                const data = JSON.parse(response);
+                if (data.status === "success") {
+                    alert('Category archived successfully!');
+                    loadMenuLists();
+                } else {
+                    alert('Failed to archive category.');
+                }
+            }
+        });
+    }
+}
+
+// Function to hard delete category
+function hardDeleteCategory(categoryId) {
+    if (confirm('Are you sure you want to delete this category permanently?')) {
+        $.ajax({
+            type: "POST",
+            url: 'Services/DeleteService.php',
+            data: { action: 'hardDelete', type: 'category', id: categoryId },
+            success: function(response) {
+                const data = JSON.parse(response);
+                if (data.status === "success") {
+                    alert('Category deleted successfully!');
+                    loadMenuLists();
+                } else {
+                    alert('Failed to delete category.');
+                }
+            }
+        });
+    }
+}
+
+// Function to show image preview
+function showImagePreview(input, previewElementId) {
+    const previewElement = document.getElementById(previewElementId);
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewElement.src = e.target.result;
+            previewElement.style.display = 'block';
+        }
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        previewElement.src = '#';
+        previewElement.style.display = 'none';
+    }
+}
+
+// Add event listener for image preview in add item form
+document.getElementById('item-image').addEventListener('change', function() {
+    showImagePreview(this, 'add-item-image-preview');
+});
+
+// Add event listener for image preview in update item form
+document.getElementById('update-item-image').addEventListener('change', function() {
+    showImagePreview(this, 'update-item-image-preview');
+});
 
 // Function to show the update item modal
 function showUpdateItemModal(itemId, itemName, itemDescription, itemPrice, itemCategory, itemImage) {
@@ -105,27 +220,9 @@ function showUpdateItemModal(itemId, itemName, itemDescription, itemPrice, itemC
     categoryDropdown.innerHTML = document.getElementById('item-category').innerHTML;
     categoryDropdown.value = itemCategory;
 
-    modal.style.display = 'block';
-
-    closeBtn.onclick = function() {
-        modal.style.display = 'none';
-    };
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    };
-}
-
-// Function to show the update category modal
-function showUpdateCategoryModal(categoryId, categoryName, categoryDescription) {
-    const modal = document.getElementById('updateCategoryModal');
-    const closeBtn = modal.querySelector('.close');
-
-    document.getElementById('update-category-id').value = categoryId;
-    document.getElementById('update-category-name').value = categoryName;
-    document.getElementById('update-category-description').value = categoryDescription;
+    const previewElement = document.getElementById('update-item-image-preview');
+    previewElement.src = `data:image/jpeg;base64,${itemImage}`;
+    previewElement.style.display = 'block';
 
     modal.style.display = 'block';
 
@@ -180,30 +277,45 @@ document.getElementById('update-item-form').addEventListener('submit', function(
     });
 });
 
-// Function to update category
-document.getElementById('update-category-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const categoryId = document.getElementById('update-category-id').value;
-    const newCategoryName = document.getElementById('update-category-name').value;
-    const newCategoryDescription = document.getElementById('update-category-description').value;
-
-    $.ajax({
-        type: "POST",
-        url: 'Services/UpdateCategoryService.php',
-        data: { categoryId, newCategoryName, newCategoryDescription },
-        success: function(response) {
-            const data = JSON.parse(response);
-            if (data.status === "success") {
-                alert('Category updated successfully!');
-                loadMenuLists();
-                document.getElementById('updateCategoryModal').style.display = 'none';
-            } else {
-                alert('Failed to update category.');
+// Function to soft delete item
+function softDeleteItem(itemId) {
+    if (confirm('Are you sure you want to archive this item?')) {
+        $.ajax({
+            type: "POST",
+            url: 'Services/DeleteService.php',
+            data: { action: 'softDelete', type: 'item', id: itemId },
+            success: function(response) {
+                const data = JSON.parse(response);
+                if (data.status === "success") {
+                    alert('Item archived successfully!');
+                    loadMenuLists();
+                } else {
+                    alert('Failed to archive item.');
+                }
             }
-        }
-    });
-});
+        });
+    }
+}
+
+// Function to hard delete item
+function hardDeleteItem(itemId) {
+    if (confirm('Are you sure you want to delete this item permanently?')) {
+        $.ajax({
+            type: "POST",
+            url: 'Services/DeleteService.php',
+            data: { action: 'hardDelete', type: 'item', id: itemId },
+            success: function(response) {
+                const data = JSON.parse(response);
+                if (data.status === "success") {
+                    alert('Item deleted successfully!');
+                    loadMenuLists();
+                } else {
+                    alert('Failed to delete item.');
+                }
+            }
+        });
+    }
+}
 
 // Add event listener to handle category form submission
 document.getElementById('add-category-form').addEventListener('submit', function(event) {

@@ -12,8 +12,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssdss", $newItemName, $newItemDescription, $newItemPrice, $newItemCategory, $itemId);
 
 if ($stmt->execute()) {
-    // Check if a new image was uploaded
-    if (isset($_FILES['newItemImage']) && $_FILES['newItemImage']['error'] === UPLOAD_ERR_OK) {
+    if (isset($_FILES['newItemImage']) && $_FILES['newItemImage']['error'] == UPLOAD_ERR_OK) {
         $newItemImage = file_get_contents($_FILES['newItemImage']['tmp_name']);
         $sql = "UPDATE menu SET item_image = ? WHERE ItemID = ?";
         $stmt = $conn->prepare($sql);

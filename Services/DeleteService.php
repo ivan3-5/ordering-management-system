@@ -33,14 +33,13 @@ function softDeleteCategory($categoryId) {
     if ($row['itemCount'] > 0) {
         echo json_encode(array("status" => "error", "message" => "Cannot delete category with items."));
     } else {
-        $sql = "UPDATE category SET deleted = TRUE WHERE CategoryID = ?";
+        $sql = "UPDATE categories SET deleted = TRUE WHERE CategoryID = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $categoryId);
-
         if ($stmt->execute()) {
             echo json_encode(array("status" => "success"));
         } else {
-            echo json_encode(array("status" => "error"));
+            echo json_encode(array("status" => "error", "message" => $stmt->error));
         }
     }
 }
@@ -49,7 +48,7 @@ function hardDeleteCategory($categoryId) {
     global $conn;
 
     // Check if there are any items connected to the category
-    $sql = "SELECT COUNT(*) as itemCount FROM menu WHERE CategoryID = ?";
+    $sql = "SELECT COUNT(*) as itemCount FROM menu WHERE CategoryID = ? AND deleted = FALSE";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $categoryId);
     $stmt->execute();
@@ -59,14 +58,13 @@ function hardDeleteCategory($categoryId) {
     if ($row['itemCount'] > 0) {
         echo json_encode(array("status" => "error", "message" => "Cannot delete category with items."));
     } else {
-        $sql = "DELETE FROM category WHERE CategoryID = ?";
+        $sql = "DELETE FROM categories WHERE CategoryID = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $categoryId);
-
         if ($stmt->execute()) {
             echo json_encode(array("status" => "success"));
         } else {
-            echo json_encode(array("status" => "error"));
+            echo json_encode(array("status" => "error", "message" => $stmt->error));
         }
     }
 }
@@ -77,11 +75,10 @@ function softDeleteItem($itemId) {
     $sql = "UPDATE menu SET deleted = TRUE WHERE ItemID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $itemId);
-
     if ($stmt->execute()) {
         echo json_encode(array("status" => "success"));
     } else {
-        echo json_encode(array("status" => "error"));
+        echo json_encode(array("status" => "error", "message" => $stmt->error));
     }
 }
 
@@ -91,11 +88,10 @@ function hardDeleteItem($itemId) {
     $sql = "DELETE FROM menu WHERE ItemID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $itemId);
-
     if ($stmt->execute()) {
         echo json_encode(array("status" => "success"));
     } else {
-        echo json_encode(array("status" => "error"));
+        echo json_encode(array("status" => "error", "message" => $stmt->error));
     }
 }
 ?>

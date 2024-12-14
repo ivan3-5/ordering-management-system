@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                     </div>
                     <div class="stat-box">
                         <h4>Total Earnings This Month</h4>
-                        <p id="totalEarnings">$0</p>
+                        <p id="totalEarnings">₱0</p>
                     </div>
                     <div class="stat-box">
                         <h4>Total Tickets This Month</h4>
@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                     <label for="category-name">Category Name:</label>
                     <input type="text" id="category-name" name="category-name" required>
                     <label for="category-description">Description:</label>
-                    <textarea id="category-description" name="category-description" required></textarea>
+                    <input type="text" id="category-description" name="category-description" required>
                     <button type="submit">Add Category</button>
                 </form>
                 <br>
@@ -195,9 +195,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                     </select>
                     <label for="item-image">Image:</label>
                     <input type="file" id="item-image" name="item-image" required>
+                    <img id="add-item-image-preview" src="#" alt="Image Preview" style="display: none; width: 100px; height: 100px;">
                     <label for="item-description">Description:</label>
-                    <textarea id="item-description" name="item-description" required></textarea>
-                    <label for="item-price">Price ($):</label>
+                    <input type="text" id="item-description" name="item-description" required>
+                    <label for="item-price">Price (₱):</label>
                     <input type="number" id="item-price" name="item-price" required>
                     <button type="submit">Add Item</button>
                 </form>
@@ -227,6 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                         <tr>
                             <th>ID</th>
                             <th>Item Name</th>
+                            <th>Image</th>
                             <th>Description</th>
                             <th>Price</th>
                             <th>Category</th>
@@ -254,11 +256,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                             <!-- Categories will be dynamically added here -->
                         </select>
                         <label for="update-item-description">Description:</label>
-                        <textarea id="update-item-description" name="item-description" required></textarea>
-                        <label for="update-item-price">Price ($):</label>
+                        <input type="text" id="update-item-description" name="item-description" required>
+                        <label for="update-item-price">Price (₱):</label>
                         <input type="number" id="update-item-price" name="item-price" required>
                         <label for="update-item-image">Image:</label>
                         <input type="file" id="update-item-image" name="item-image">
+                        <img id="update-item-image-preview" src="#" alt="Image Preview" style="display: none; width: 100px; height: 100px;">
                         <button type="submit">Update Item</button>
                     </form>
                 </div>
@@ -274,7 +277,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                         <label for="update-category-name">Category Name:</label>
                         <input type="text" id="update-category-name" name="category-name" required>
                         <label for="update-category-description">Description:</label>
-                        <textarea id="update-category-description" name="category-description" required></textarea>
+                        <input type="text" id="update-category-description" name="category-description" required></input>
                         <button type="submit">Update Category</button>
                     </form>
                 </div>
