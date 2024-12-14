@@ -71,6 +71,75 @@ if (isset($_SESSION['id'])) {
         </div>
     </div>
     
+    <!-- Menu List Section -->
+    <div id="menu-list" class="content-section">
+        <h2>Menu List</h2>
+        <p>Manage and update the menu items here.</p>
+        <form id="add-category-form">
+            <label for="category-name">Category Name:</label>
+            <input type="text" id="category-name" name="category-name" required>
+            <label for="category-description">Description:</label>
+            <textarea id="category-description" name="category-description" required></textarea>
+            <button type="submit">Add Category</button>
+        </form>
+        <br>
+        <hr>
+        <br>
+        <form id="add-item-form">
+            <label for="item-name">Item Name:</label>
+            <input type="text" id="item-name" name="item-name" required>
+            <label for="item-category">Category:</label>
+            <select id="item-category" name="category" required>
+                <option value="" disabled selected>Select a Category</option>
+                <!-- Categories will be dynamically added here -->
+            </select>
+            <label for="item-image">Image:</label>
+            <input type="file" id="item-image" name="item-image" required>
+            <label for="item-description">Description:</label>
+            <textarea id="item-description" name="item-description" required></textarea>
+            <label for="item-price">Price ($):</label>
+            <input type="number" id="item-price" name="item-price" required>
+            <button type="submit">Add Item</button>
+        </form>
+        <br>
+        <hr>
+        <br>
+        <h3>Category List</h3>
+        <table id="categoryListTable" class="responsive-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Categories will be dynamically added here -->
+            </tbody>
+        </table>
+        <br>
+        <hr>
+        <br>
+        <h3>Item List</h3>
+        <table id="itemListTable" class="responsive-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Item Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Category ID</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Items will be dynamically added here -->
+            </tbody>
+        </table>
+        <button id="updateMenuListBtn" class="btn btn-primary">Update</button> <!-- Add Update button -->
+    </div>
+
     <footer class="text-white pt-5 pb-4" style="background-color: #C6A988;">
         <div class="container text-center text-md-left">
             <div class="row text-center text-md-left">

@@ -1,3 +1,5 @@
+// js/admin-menu-list.js
+
 // Function to handle tab navigation
 function handleTabNavigation() {
     const navButtons = document.querySelectorAll('.nav-button');
@@ -21,86 +23,6 @@ function handleTabNavigation() {
     });
 }
 
-// Function to handle soft delete of category
-function softDeleteCategory(categoryId) {
-    if (confirm('Are you sure you want to archive this category?')) {
-        $.ajax({
-            type: "POST",
-            url: 'Services/DeleteService.php',
-            data: { action: 'softDelete', type: 'category', id: categoryId },
-            success: function(response) {
-                const data = JSON.parse(response);
-                if (data.status === "success") {
-                    alert('Category archived successfully!');
-                    loadMenuLists();
-                } else {
-                    alert(data.message || 'Failed to archive category.');
-                }
-            }
-        });
-    }
-}
-
-// Function to handle hard delete of category
-function hardDeleteCategory(categoryId) {
-    if (confirm('Are you sure you want to delete this category? This action cannot be undone.')) {
-        $.ajax({
-            type: "POST",
-            url: 'Services/DeleteService.php',
-            data: { action: 'hardDelete', type: 'category', id: categoryId },
-            success: function(response) {
-                const data = JSON.parse(response);
-                if (data.status === "success") {
-                    alert('Category deleted successfully!');
-                    loadMenuLists();
-                } else {
-                    alert(data.message || 'Failed to delete category.');
-                }
-            }
-        });
-    }
-}
-
-// Function to handle soft delete of item
-function softDeleteItem(itemId) {
-    if (confirm('Are you sure you want to archive this item?')) {
-        $.ajax({
-            type: "POST",
-            url: 'Services/DeleteService.php',
-            data: { action: 'softDelete', type: 'item', id: itemId },
-            success: function(response) {
-                const data = JSON.parse(response);
-                if (data.status === "success") {
-                    alert('Item archived successfully!');
-                    loadMenuLists();
-                } else {
-                    alert('Failed to archive item.');
-                }
-            }
-        });
-    }
-}
-
-// Function to handle hard delete of item
-function hardDeleteItem(itemId) {
-    if (confirm('Are you sure you want to delete this item? This action cannot be undone.')) {
-        $.ajax({
-            type: "POST",
-            url: 'Services/DeleteService.php',
-            data: { action: 'hardDelete', type: 'item', id: itemId },
-            success: function(response) {
-                const data = JSON.parse(response);
-                if (data.status === "success") {
-                    alert('Item deleted successfully!');
-                    loadMenuLists();
-                } else {
-                    alert('Failed to delete item.');
-                }
-            }
-        });
-    }
-}
-
 // Function to load categories and items into the lists
 function loadMenuLists() {
     $.ajax({
@@ -110,6 +32,12 @@ function loadMenuLists() {
             const data = JSON.parse(response);
             const categories = data.categories;
             const items = data.items;
+
+            // Create a map of category IDs to category names
+            const categoryMap = {};
+            categories.forEach(category => {
+                categoryMap[category.CategoryID] = category.category_name;
+            });
 
             // Load categories into the table
             const categoryListTable = document.getElementById('categoryListTable').getElementsByTagName('tbody')[0];
@@ -121,6 +49,7 @@ function loadMenuLists() {
                     <td data-label="Category Name">${category.category_name}</td>
                     <td data-label="Description">${category.description}</td>
                     <td data-label="Action">
+                        <button onclick="showUpdateCategoryModal('${category.CategoryID}', '${category.category_name}', '${category.description}')">Update</button>
                         <button onclick="softDeleteCategory('${category.CategoryID}')">Archive</button>
                         <button onclick="hardDeleteCategory('${category.CategoryID}')">Delete</button>
                     </td>
@@ -144,19 +73,137 @@ function loadMenuLists() {
                 const row = itemListTable.insertRow();
                 row.innerHTML = `
                     <td data-label="ID">${item.ItemID}</td>
-                    <td data-label="Item Name">${item.item_name}</td>
+                    <td data-label="Item Name"><img src="data:image/jpeg;base64,${item.item_image}" alt="${item.item_name}" style="width: 50px; height: 50px; margin-right: 10px;">${item.item_name}</td>
                     <td data-label="Description">${item.description}</td>
-                    <td data-label="Price">${item.price}</td>
-                    <td data-label="Category ID">${item.CategoryID}</td>
+                    <td data-label="Price">₱${item.price}</td>
+                    <td data-label="Category Name">${categoryMap[item.CategoryID]}</td>
                     <td data-label="Action">
+                        <button onclick="showUpdateItemModal('${item.ItemID}', '${item.item_name}', '${item.description}', '${item.price}', '${item.CategoryID}', '${item.item_image}')">Update</button>
                         <button onclick="softDeleteItem('${item.ItemID}')">Archive</button>
                         <button onclick="hardDeleteItem('${item.ItemID}')">Delete</button>
                     </td>
                 `;
             });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error); // Debugging step
         }
     });
 }
+
+// Function to show the update item modal
+function showUpdateItemModal(itemId, itemName, itemDescription, itemPrice, itemCategory, itemImage) {
+    const modal = document.getElementById('updateItemModal');
+    const closeBtn = modal.querySelector('.close');
+
+    document.getElementById('update-item-id').value = itemId;
+    document.getElementById('update-item-name').value = itemName;
+    document.getElementById('update-item-description').value = itemDescription;
+    document.getElementById('update-item-price').value = itemPrice;
+
+    const categoryDropdown = document.getElementById('update-item-category');
+    categoryDropdown.innerHTML = document.getElementById('item-category').innerHTML;
+    categoryDropdown.value = itemCategory;
+
+    modal.style.display = 'block';
+
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+}
+
+// Function to show the update category modal
+function showUpdateCategoryModal(categoryId, categoryName, categoryDescription) {
+    const modal = document.getElementById('updateCategoryModal');
+    const closeBtn = modal.querySelector('.close');
+
+    document.getElementById('update-category-id').value = categoryId;
+    document.getElementById('update-category-name').value = categoryName;
+    document.getElementById('update-category-description').value = categoryDescription;
+
+    modal.style.display = 'block';
+
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+}
+
+// Function to update item
+document.getElementById('update-item-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const itemId = document.getElementById('update-item-id').value;
+    const newItemName = document.getElementById('update-item-name').value;
+    const newItemDescription = document.getElementById('update-item-description').value;
+    const newItemPrice = document.getElementById('update-item-price').value;
+    const newItemCategory = document.getElementById('update-item-category').value;
+    const newItemImage = document.getElementById('update-item-image').files[0];
+
+    const formData = new FormData();
+    formData.append('itemId', itemId);
+    formData.append('newItemName', newItemName);
+    formData.append('newItemDescription', newItemDescription);
+    formData.append('newItemPrice', newItemPrice);
+    formData.append('newItemCategory', newItemCategory);
+    if (newItemImage) {
+        formData.append('newItemImage', newItemImage);
+    }
+
+    $.ajax({
+        type: "POST",
+        url: 'Services/UpdateItemService.php',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            const data = JSON.parse(response);
+            if (data.status === "success") {
+                alert('Item updated successfully!');
+                loadMenuLists();
+                document.getElementById('updateItemModal').style.display = 'none';
+            } else {
+                alert('Failed to update item.');
+            }
+        }
+    });
+});
+
+// Function to update category
+document.getElementById('update-category-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const categoryId = document.getElementById('update-category-id').value;
+    const newCategoryName = document.getElementById('update-category-name').value;
+    const newCategoryDescription = document.getElementById('update-category-description').value;
+
+    $.ajax({
+        type: "POST",
+        url: 'Services/UpdateCategoryService.php',
+        data: { categoryId, newCategoryName, newCategoryDescription },
+        success: function(response) {
+            const data = JSON.parse(response);
+            if (data.status === "success") {
+                alert('Category updated successfully!');
+                loadMenuLists();
+                document.getElementById('updateCategoryModal').style.display = 'none';
+            } else {
+                alert('Failed to update category.');
+            }
+        }
+    });
+});
 
 // Add event listener to handle category form submission
 document.getElementById('add-category-form').addEventListener('submit', function(event) {

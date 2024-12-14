@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
             <button class="nav-button" data-content="customer-service">CUSTOMER SERVICE</button>
             <button class="nav-button" data-content="delivery">DELIVERY</button>
             <button class="nav-button" data-content="menu-list">MENU LIST</button>
-            <button class="logout" id="logout-button" onclick="logout()">LOGOUT</button>
+            <button class="nav-button logout-button" id="logout-button" onclick="logout()">LOGOUT</button>
         </aside>
         
         <!-- Main content area starts here -->
@@ -229,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                             <th>Item Name</th>
                             <th>Description</th>
                             <th>Price</th>
-                            <th>Category ID</th>
+                            <th>Category</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -237,7 +237,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                         <!-- Items will be dynamically added here -->
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Update Item Modal -->
+            <div id="updateItemModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Update Item</h2>
+                    <form id="update-item-form" enctype="multipart/form-data">
+                        <input type="hidden" id="update-item-id">
+                        <label for="update-item-name">Item Name:</label>
+                        <input type="text" id="update-item-name" name="item-name" required>
+                        <label for="update-item-category">Category:</label>
+                        <select id="update-item-category" name="category" required>
+                            <option value="" disabled selected>Select a Category</option>
+                            <!-- Categories will be dynamically added here -->
+                        </select>
+                        <label for="update-item-description">Description:</label>
+                        <textarea id="update-item-description" name="item-description" required></textarea>
+                        <label for="update-item-price">Price ($):</label>
+                        <input type="number" id="update-item-price" name="item-price" required>
+                        <label for="update-item-image">Image:</label>
+                        <input type="file" id="update-item-image" name="item-image">
+                        <button type="submit">Update Item</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Update Category Modal -->
+            <div id="updateCategoryModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Update Category</h2>
+                    <form id="update-category-form">
+                        <input type="hidden" id="update-category-id">
+                        <label for="update-category-name">Category Name:</label>
+                        <input type="text" id="update-category-name" name="category-name" required>
+                        <label for="update-category-description">Description:</label>
+                        <textarea id="update-category-description" name="category-description" required></textarea>
+                        <button type="submit">Update Category</button>
+                    </form>
+                </div>
+            </div>
         </div>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

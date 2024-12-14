@@ -1,3 +1,5 @@
+// js/admin-tabs.js
+
 // Function to handle tab navigation
 function handleTabNavigation() {
     const navButtons = document.querySelectorAll('.nav-button');
@@ -7,6 +9,7 @@ function handleTabNavigation() {
         button.addEventListener('click', () => {
             const contentId = button.getAttribute('data-content');
 
+            // Show the selected content section and hide others
             contentSections.forEach(section => {
                 if (section.id === contentId) {
                     section.style.display = 'block';
@@ -15,6 +18,7 @@ function handleTabNavigation() {
                 }
             });
 
+            // Remove 'active' class from all buttons and add to the clicked button
             navButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
         });
