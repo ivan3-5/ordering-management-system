@@ -121,7 +121,7 @@ input:not(:placeholder-shown) ~ label {
     background: rgb(129, 89, 41);
 }
 
-/* mobile */
+
 @media screen and (max-width: 768px) {
     .container {
         padding: 1rem;

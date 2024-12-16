@@ -1,21 +1,33 @@
 <?php
-  include 'DbConnector.php';
-  include 'CommonQueryService.php';
-  
-  $transactionId = $_POST["transactionId"];
-  $deliveryAddressId = $_POST["deliveryAddressId"];
-  $paymentMethod = $_POST["paymentMethod"];
-  $transactionStatus = $_POST["transactionStatus"];
-  $orderId = $_POST["orderId"];
-  
-  $sql = "UPDATE transactions SET DeliveryAddressId = " . $deliveryAddressId . ", PaymentMethod = '" . $paymentMethod . "', "
-    . "TransactionStatus = '" . $transactionStatus . "', Active = " . 0 . ", DateUpdated = '" . GetCurrentDate()  . "'"
-    . " WHERE Id = " . $transactionId;
+include 'DbConnector.php';
+include 'CommonQueryService.php';
 
-  if ($conn->query($sql) === TRUE) {
-    RemoveActiveOrders($conn, $orderId);
-    echo json_encode(array("status" => "success"));
-  } else {
-    echo json_encode(array("status" => "error"));
-  }
+session_start();
+
+
+$transactionId = $_POST['TransactionID'];
+$deliveryAddressId = $_POST['deliveryAddressId'];
+$paymentMethod = $_POST['paymentMethod'];
+$transactionStatus = $_POST['transactionStatus'];
+$orderId = $_POST['orderId'];
+$amountPaid = $_POST['amountPaid']; 
+
+
+$sql_transaction = "UPDATE transactions SET 
+                        transaction_status = ?, 
+                        transaction_method = ?, 
+                        amount_paid = ?
+                    WHERE TransactionID = ?";
+
+$stmt_transaction = $conn->prepare($sql_transaction);
+$stmt_transaction->bind_param("ssds", $transactionStatus, $paymentMethod, $amountPaid, $transactionId);
+
+if ($stmt_transaction->execute()) {
+    echo json_encode(['status' => 'success']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => $stmt_transaction->error]);
+}
+
+$stmt_transaction->close();
+$conn->close();
 ?>

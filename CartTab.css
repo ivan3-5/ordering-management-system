@@ -1,11 +1,11 @@
-/* Centering the entire container */
+
 body {
-  /* display: flex; */
+ 
   min-height: 100vh;
   margin: 0;
   background-color: #c6a988;
 }
-/* Logo Styling */
+
 .logo {
   position: absolute;
   top: 10px;
@@ -21,7 +21,7 @@ body {
   opacity: 0.8;
 }
 
-/* Header Text */
+
 .header-text {
   position: absolute;
   top: 40px;
@@ -37,26 +37,26 @@ body {
   font-family: Krona One;
 }
 
-/* New Background Container */
+
 .new-bg-container {
   background-color: #9d673a;
-  margin: 0 auto; /* Center horizontally */
-  padding: 40px; /* Increase padding for a larger appearance */
-  border-radius: 10px; /* Slightly rounded corners */
-  max-width: 1000px; /* Wider container */
-  width: 100%; /* Take up most of the screen width but leave margins */
-  text-align: center; /* Align content inside */
-  display: flex; /* Use flexbox for vertical centering */
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align content to the top (not center) */
+  justify-content: flex-start;
   align-items: center;
-  height: auto; /* Let the height adjust based on content */
+  height: auto;
   margin-top: 100px;
 }
 
-/* Pickup ID Styling */
+
 .pickup-id {
-  margin-top: 1px; /* Adjust the margin for more space between Pickup ID and Order */
+  margin-top: 1px;
   text-align: left;
   font-size: 20px;
   font-weight: bold;
@@ -67,7 +67,7 @@ body {
   font-family: Krona One;
 }
 .order-details {
-  margin-top: 20px; /* Adjust margin-top to add space above the order list */
+  margin-top: 20px;
   text-align: left;
   font-size: 20px;
   font-weight: normal;
@@ -78,19 +78,19 @@ body {
 }
 
 .order-item {
-  display: flex; /* Use flexbox to align items in a row */
-  justify-content: space-between; /* Spread the order and price across the full width */
-  font-size: 20px; /* Set font size for the order items */
-  margin: 5px 0; /* Add spacing between each order item */
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  margin: 5px 0;
   font-family: Krona One;
 }
 
 .price {
-  font-size: 20px; /* Set font size for the price */
-  text-align: right; /* Align price to the right */
-  flex-shrink: 0; /* Prevent the price from shrinking */
+  font-size: 20px;
+  text-align: right;
+  flex-shrink: 0;
 }
-/* Profile Icon Styling */
+
 .profile-icon {
   position: absolute;
   top: 20px;
@@ -108,56 +108,56 @@ body {
   opacity: 0.8;
 }
 
-/* Pickup Now Button Styling */
+
 .pickup-now-btn {
-  display: inline-block; /* Allows for centering */
-  padding: 15px 30px; /* Add padding for button size */
-  font-size: 20px; /* Font size */
-  background-color: #c6a988; /* Button color */
-  color: rgb(0, 0, 0); /* Text color */
-  text-align: center; /* Ensure text is centered inside the button */
-  text-decoration: none; /* Remove the default link underline */
-  border-radius: 50px; /* Rounded corners */
-  cursor: pointer; /* Change the cursor to a pointer */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
-  margin-top: 50px; /* Space above the button */
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: #c6a988;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 50px;
   font-family: Krona One;
 }
 
 .pickup-now-btn:hover {
-  background-color: #8b5c34; /* Slightly darker shade on hover */
-  transform: scale(1.05); /* Slight scale effect on hover */
+  background-color: #8b5c34;
+  transform: scale(1.05);
   color: white;
 }
-/* Date and Total Amount Section */
+
 .date-total-section {
   display: flex;
-  justify-content: space-between; /* Align left and right content */
-  width: 100%; /* Ensure it takes up the full width */
-  font-size: 20px; /* Font size */
+  justify-content: space-between;
+  width: 100%;
+  font-size: 20px;
   font-family: Krona One;
-  margin-top: 0px; /* Space above the section */
-  padding: 0 10px; /* Padding for spacing */
+  margin-top: 0px;
+  padding: 0 10px;
   color: #030303;
 }
 
 .date-text {
-  text-align: left; /* Left-align the Date text */
+  text-align: left;
   margin-left: -10px;
 }
 
 .total-amount {
-  text-align: right; /* Right-align the Total Amount text */
+  text-align: right;
   margin-right: -10px;
 }
-/* Center the Pickup Now button */
+
 .new-bg-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center all items */
+  align-items: center;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .logo {
     width: 80px;
@@ -206,94 +206,94 @@ body {
     font-size: 14px;
   }
 }
-/* Responsive Design for Small Screens */
+
 @media (max-width: 768px) {
   .order-details {
-    font-size: 14px; /* Adjust font size for smaller screens */
-    padding-left: 15px; /* Reduce padding on smaller screens */
+    font-size: 14px;
+    padding-left: 15px;
   }
 
   .order-item {
-    font-size: 14px; /* Reduce font size for smaller screens */
+    font-size: 14px;
   }
 
   .price {
-    font-size: 14px; /* Adjust price font size on small screens */
+    font-size: 14px;
   }
 
   .date-total {
-    font-size: 14px; /* Adjust font size for date and total on smaller screens */
+    font-size: 14px;
   }
 
   .total-price {
-    font-size: 14px; /* Adjust total price font size for small screens */
+    font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .order-details {
-    font-size: 12px; /* Further reduce font size for very small screens */
-    padding-left: 10px; /* Less padding for smaller screens */
+    font-size: 12px;
+    padding-left: 10px;
   }
 
   .order-item {
-    font-size: 12px; /* Reduce font size for small screens */
+    font-size: 12px;
   }
 
   .price {
-    font-size: 12px; /* Adjust price font size for very small screens */
+    font-size: 12px;
   }
 
   .date-total {
-    font-size: 12px; /* Adjust font size for date and total on very small screens */
+    font-size: 12px;
   }
 
   .total-price {
-    font-size: 12px; /* Adjust total price font size for very small screens */
+    font-size: 12px;
   }
 }
 
-/* Ensure the button stays in place on smaller screens */
+
 @media (max-width: 768px) {
   .pickup-now-btn {
-    font-size: 18px; /* Slightly smaller font size on smaller screens */
-    padding: 12px 25px; /* Adjust padding */
+    font-size: 18px;
+    padding: 12px 25px;
   }
 }
 
 @media (max-width: 480px) {
   .pickup-now-btn {
-    font-size: 16px; /* Further decrease font size for very small screens */
-    padding: 10px 20px; /* Adjust padding further */
+    font-size: 16px;
+    padding: 10px 20px;
   }
 }
 
-/* Responsive Design for smaller screens */
+
 @media (max-width: 768px) {
   .date-total-section {
-    flex-direction: column; /* Stack the items vertically */
-    text-align: center; /* Center the text on smaller screens */
-    font-size: 16px; /* Slightly smaller font size for smaller screens */
+    flex-direction: column;
+    text-align: center;
+    font-size: 16px;
   }
 
   .date-text,
   .total-amount {
-    margin-bottom: 10px; /* Add space between the stacked items */
+    margin-bottom: 10px;
   }
 
   .total-amount {
-    font-size: 18px; /* Increase font size of total amount */
+    font-size: 18px;
     font-weight: bold;
   }
 }
 
 @media (max-width: 480px) {
   .date-total-section {
-    font-size: 14px; /* Further reduce font size for very small screens */
+    font-size: 14px;
   }
 
   .date-text,
   .total-amount {
-    margin-bottom: 8px; /* Reduce space between the stacked items */
+    margin-bottom: 8px;
   }
 }

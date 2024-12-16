@@ -1,16 +1,16 @@
 body {
   font-family: sans-serif;
   margin: 0;
-  position: relative; /* Ensure the body can contain the absolute positioned background */
+  position: relative;
   background: rgba(
     0,
     0,
     0,
     0
-  ); /* Optional: Set background to transparent initially */
+  );
 }
 
-/* Make the product frame pop-out when hovered */
+
 .product-frame {
   background-color: #9e7148;
   border: 1px solid #9e7148;
@@ -23,9 +23,9 @@ body {
 }
 
 .product-frame:hover {
-  transform: scale(1.15) translateY(-20px); /* Enlarge and lift the product */
+  transform: scale(1.15) translateY(-20px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 10; /* Make sure it stays on top */
+  z-index: 10;
 }
 
 .product-image {
@@ -33,11 +33,11 @@ body {
   height: auto;
   border-radius: 5px;
   max-height: 250px;
-  transition: transform 0.3s ease; /* Smooth scale transition for the image */
+  transition: transform 0.3s ease;
 }
 
 .product-frame:hover .product-image {
-  transform: scale(1.05); /* Slightly zoom the image */
+  transform: scale(1.05);
 }
 
 .product-frame:not(:hover) {
@@ -72,7 +72,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 500px; /* Adjust according to your needs */
+  height: 500px;
 }
 
 .quick-view-btn {
@@ -89,11 +89,11 @@ body {
   background-color: #0056b3;
 }
 
-/* Modal Styles */
+
 .modal {
-  /* Remove custom 'display' and positioning styles */
-  /* Bootstrap will handle modal visibility and positioning */
-  z-index: 1050 !important; /* Ensure it is above other content */
+ 
+ 
+  z-index: 1050 !important;
 }
 
 .modal-content {
@@ -128,7 +128,7 @@ body {
   margin: 10px 0;
 }
 
-/* Close Button */
+
 .close-btn {
   position: absolute;
   top: 10px;

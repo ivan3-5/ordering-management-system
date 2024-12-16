@@ -168,7 +168,7 @@ input:not(:placeholder-shown) ~ label {
     cursor: pointer;
 }
 
-/* mobile */
+
 @media screen and (max-width: 768px) {
     .container {
         padding: 1rem;

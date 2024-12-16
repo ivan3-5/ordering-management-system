@@ -1,12 +1,12 @@
-/* Body styling */
+
 body {
   background-color: #c6a988;
   margin: 0;
   padding: 0;
-  font-family: "Arial", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Logo styling */
+
 .logo {
   position: absolute;
   top: 10px;
@@ -17,13 +17,20 @@ body {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Hover effect on logo */
+
 .logo:hover {
   transform: scale(1.1);
   opacity: 0.8;
 }
 
-/* Header styling */
+.container-width {
+  max-width: 600px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 .header-text {
   position: absolute;
   top: 40px;
@@ -39,7 +46,7 @@ body {
   width: auto;
 }
 
-/* New background container styling */
+
 .new-bg-container {
   background-color: #9d673a;
   margin-left: 10px;
@@ -49,7 +56,7 @@ body {
   margin-top: 250px;
 }
 
-/* Styling for the choices (Pickup/Delivery) as buttons */
+
 .choice {
   background-color: rgb(255, 255, 255);
   text-align: center;
@@ -71,12 +78,12 @@ body {
   color: black;
 }
 
-/* Hover effect for each choice */
+
 .choice:hover {
   background-color: #c9c3c3;
   color: black;
 }
-/* Pickup ID styling */
+
 .pickup-id {
   margin-top: 20px;
   text-align: center;
@@ -84,7 +91,7 @@ body {
   font-weight: bold;
   color: #333;
 }
-/* Profile icon styling */
+
 .profile-icon {
   position: absolute;
   top: 20px;
@@ -97,13 +104,13 @@ body {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Hover effect on profile icon */
+
 .profile-icon:hover {
   transform: scale(1.1);
   opacity: 0.8;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .logo {
     width: 80px;
@@ -118,7 +125,7 @@ body {
     height: 60px;
   }
 
-  /* Smaller font size and padding for mobile view */
+ 
   .choice {
     font-size: 12px;
     padding: 5px 0;

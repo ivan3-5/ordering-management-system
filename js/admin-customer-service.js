@@ -1,4 +1,4 @@
-// Function to handle ticket form submission
+// Handle tickets
 document.getElementById('ticket-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -23,7 +23,7 @@ document.getElementById('ticket-form').addEventListener('submit', function(event
     });
 });
 
-// Function to load submitted tickets
+// Load submitted tickets
 function loadTickets() {
     $.ajax({
         type: "GET",
@@ -50,7 +50,7 @@ function loadTickets() {
     });
 }
 
-// Function to update ticket status
+// Update tickets
 function updateTicketStatus(ticketID, status) {
     $.ajax({
         type: "POST",

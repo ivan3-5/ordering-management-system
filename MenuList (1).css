@@ -1,13 +1,13 @@
 body {
   font-family: sans-serif;
   margin: 0;
-  position: relative; /* Ensure the body can contain the absolute positioned background */
+  position: relative;
   background: rgba(
     0,
     0,
     0,
     0
-  ); /* Optional: Set background to transparent initially */
+  );
 }
 
 body::after {
@@ -15,13 +15,13 @@ body::after {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 800px; /* Adjust the width of the logo image */
-  height: 800px; /* Adjust the height of the logo image */
-  background-image: url("System Pictures/BSIT-2F_Logo_real-removebg-preview.png"); /* Set the path to your logo image */
+  width: 800px;
+  height: 800px;
+  background-image: url("System Pictures/BSIT-2F_Logo_real-removebg-preview.png");
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: 0.2; /* Set opacity to make the logo image more transparent */
-  z-index: -1; /* Ensure the background image doesn't interfere with other content */
+  opacity: 0.2;
+  z-index: -1;
 }
 .logo-button {
   background-color: transparent;
@@ -36,11 +36,11 @@ body::after {
 
 .logo-button img {
   transition: transform 0.3s ease;
-  border-radius: 50%; /* Optional: makes the logo circular */
+  border-radius: 50%;
 }
 
 .logo-button img:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover */
+  transform: scale(1.1);
 }
 .containerLogo {
   display: flex;
@@ -77,18 +77,21 @@ body::after {
   background-color: #9d673a;
   padding: 30px;
   border-radius: 8px;
+  top: 18vh;
   text-align: center;
   width: 300px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .banner {
   position: relative;
-  width: calc(100% - 15%); /* Adding left and right margins */
-  margin: 0 auto; /* Centering the banner */
+  width: calc(100% - 15%);
+  margin: 0 auto;
   height: 250px;
-  background-image: url("System Pictures/Mocha Frappe x Chocolate Croissant Banner.png"); /* Replace with your image URL */
+  background-image: url("System Pictures/Mocha Frappe x Chocolate Croissant Banner.png");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -248,7 +251,7 @@ body::after {
 .order-now-container {
   display: flex;
   align-items: center;
-  gap: 10px; /* Adds space between buttons */
+  gap: 10px;
 }
 
 .order-now-button {
@@ -263,29 +266,29 @@ body::after {
 }
 
 .order-now-container :hover {
-  transform: scale(1.1); /* Enlarge slightly on hover */
+  transform: scale(1.1);
   color: black;
 }
 
 .profile-button {
-  cursor: pointer; /* Pointer cursor for interactivity */
-  text-decoration: none; /* Remove underline */
-  color: black; /* Text color */
-  border: 1px solid black; /* Adds a black border */
-  padding: 8px 10px; /* Adds spacing inside the border */
-  border-radius: 5px; /* Optional: adds rounded corners */
-  transition: all 0.3s ease; /* Smooth transitions for hover effects */
-  display: inline-block; /* Ensures the button acts like a block for text centering */
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  padding: 8px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 
 .profile-button p {
-  margin: 0; /* Remove default margin */
-  padding-top: 2px; /* Moves the text slightly to the bottom */
+  margin: 0;
+  padding-top: 2px;
 }
 
 .profile-button:hover {
-  background-color: #c6a988; /* Optional: light background on hover */
-  color: black; /* Maintain text color */
+  background-color: #c6a988;
+  color: black;
 }
 
 .Cart-button {
@@ -304,27 +307,27 @@ body::after {
   height: 55px;
 }
 .Cart-button img:hover {
-  transform: scale(1.1); /* Enlarge slightly on hover */
+  transform: scale(1.1);
 }
 
-/* Search Container with Pastries and Coffee */
+
 .search-container {
-  display: flex; /* Arrange elements horizontally */
-  align-items: center; /* Align items vertically */
-  margin: 20px 95px; /* Adjust positioning as needed */
+  display: flex;
+  align-items: center;
+  margin: 20px 95px;
 }
 
 .search-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-  margin-right: 20px; /* Space between search and buttons */
+  margin-right: 20px;
 }
 
-/* Initially hide the search input */
+
 #search-input {
   position: absolute;
-  left: 65px; /* Place next to search icon */
+  left: 65px;
   top: 0;
   width: 0;
   opacity: 0;
@@ -336,7 +339,7 @@ body::after {
   z-index: 1;
 }
 
-/* Show the search input when focused */
+
 .search-wrapper:focus-within #search-input {
   width: 220px;
   opacity: 1;
@@ -349,7 +352,7 @@ body::after {
   cursor: pointer;
 }
 .search-button :hover {
-  transform: scale(1.1); /* Enlarge slightly on hover */
+  transform: scale(1.1);
 }
 
 .search-button img {
@@ -357,13 +360,13 @@ body::after {
   height: 45px;
 }
 
-/* Pastries and Coffee buttons */
+
 .pc-container {
   display: flex;
-  gap: 10px; /* Space between buttons */
+  gap: 10px;
 }
 .pc-container :hover {
-  transform: scale(1.1); /* Enlarge slightly on hover */
+  transform: scale(1.1);
 }
 
 .pc-now-button {
@@ -377,9 +380,7 @@ body::after {
   height: 50px;
 }
 
-/*Frame Products*/
 
-/* Make the product frame pop-out when hovered */
 .product-frame {
   background-color: #9e7148;
   border: 1px solid #9e7148;
@@ -392,20 +393,22 @@ body::after {
 }
 
 .product-frame:hover {
-  transform: scale(1.15) translateY(-20px); /* Enlarge and lift the product */
+  transform: scale(1.15) translateY(-20px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 10; /* Make sure it stays on top */
+  z-index: 10;
 }
 
 .product-image {
   width: 100%;
   height: auto;
   border-radius: 5px;
-  max-height: 250px;
-  transition: transform 0.3s ease; /* Smooth scale transition for the image */
+  max-height: 200px; 
+  width: auto;
+  object-fit: cover; 
+  transition: transform 0.3s ease; 
 }
 .product-frame:hover .product-image {
-  transform: scale(1.05); /* Slightly zoom the image */
+  transform: scale(1.05);
 }
 .product-frame:not(:hover) {
   transition: transform 0.3s ease;
@@ -439,7 +442,7 @@ body::after {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 500px; /* Adjust according to your needs */
+  height: 500px;
 }
 .additional-content {
   display: flex;
@@ -449,46 +452,46 @@ body::after {
 }
 
 .logo-image {
-  width: 200px; /* Set a default size for all logos */
+  width: 200px;
   height: 200px;
-  object-fit: contain; /* Ensures aspect ratio is maintained */
+  object-fit: contain;
   transition: transform 0.3s ease;
 }
 
 .logo-image:hover {
-  transform: scale(1.1); /* Slightly enlarge the image on hover */
+  transform: scale(1.1);
 }
 
 .icon-button img {
-  width: 90px; /* Keep the original size for the 3 social media icons */
+  width: 90px;
   height: 90px;
 }
 
 .logo-image:hover {
-  transform: scale(1.1); /* Enlarge slightly on hover */
+  transform: scale(1.1);
 }
 
 .row.mt-4.justify-content-end {
   display: flex;
-  gap: 0; /* Remove any gap between items */
-  justify-content: flex-end; /* Align to the right */
-  margin-right: 80px; /* Add a little space to the right side */
-  margin-top: -10px; /* Move the row up (adjust value as needed) */
+  gap: 0;
+  justify-content: flex-end;
+  margin-right: 80px;
+  margin-top: -10px;
 }
 
-/* Ensure each icon button has no margin or padding */
+
 .additional-content {
-  margin: 0; /* Remove margin between icons */
-  padding: 0; /* Remove padding */
+  margin: 0;
+  padding: 0;
 }
 
-/* Ensure the icons are displayed inline without spaces */
+
 .icon-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
-  display: inline-flex; /* Display icons inline */
+  display: inline-flex;
   justify-content: center;
   align-items: center;
 }
@@ -508,26 +511,26 @@ body::after {
   transform: scale(1.1);
 }
 .horizontal-line {
-  width: 1300px; /* Fixed width */
+  width: 1300px;
   height: 2px;
   background-color: black;
-  margin: -20px auto 20px auto; /* Move the line up (adjust top margin) */
+  margin: -20px auto 20px auto;
 }
 
-/* Container for the text box and button */
+
 .input-container {
   display: flex;
   align-items: center;
-  gap: 10px; /* Adds space between the input and the button */
-  margin-left: 100px; /* Moves the whole container to the right */
-  justify-content: flex-start; /* This can also be adjusted to align it better */
+  gap: 10px;
+  margin-left: 100px;
+  justify-content: flex-start;
   margin-top: -100px;
   margin-bottom: 50px;
 }
 
-/* Style for the text box */
+
 .text-box {
-  width: 200px; /* Adjust width as needed */
+  width: 200px;
   padding: 10px;
   border: 2px solid black;
   background-color: transparent;
@@ -538,10 +541,10 @@ body::after {
 }
 
 .text-box::placeholder {
-  color: black; /* Placeholder color */
+  color: black;
 }
 
-/* Style for the button */
+
 .signup-button {
   padding: 10px 20px;
   background-color: #c6a988;
@@ -553,27 +556,27 @@ body::after {
   transition: transform 0.3s ease;
 }
 
-/* Hover effect for the button */
+
 .signup-button:hover {
   transform: scale(1.1);
 }
-/* Container for the two icons - aligned to the right */
+
 .icon-container {
   display: flex;
-  justify-content: flex-end; /* Move the icons to the right */
-  gap: 10px; /* Space between the icons */
-  margin-top: 5px; /* Adds space above the icons */
-  padding-right: 100px; /* Adds more padding to push the icons further right */
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 5px;
+  padding-right: 100px;
 }
 
-/* Individual icon container */
+
 .icon-item {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Make each button transparent with no border */
+
 .icon-button {
   background-color: transparent;
   border: none;
@@ -581,13 +584,13 @@ body::after {
   padding: 0;
 }
 
-/* Icon styling */
+
 .icon-image {
-  width: 90px; /* Adjust the size of the icons */
+  width: 90px;
   height: 80px;
   transition: transform 0.3s ease;
 }
 
 .icon-image:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover */
+  transform: scale(1.1);
 }

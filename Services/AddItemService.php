@@ -8,7 +8,6 @@ $itemCategory = $_POST['itemCategory'];
 $itemDescription = $_POST['itemDescription'];
 $itemPrice = $_POST['itemPrice'];
 
-// Handle file upload
 $itemImage = $_FILES['itemImage'];
 $imageData = file_get_contents($itemImage['tmp_name']);
 

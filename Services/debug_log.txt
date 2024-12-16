@@ -1,0 +1,10 @@
+Array
+(
+    [id] => 11
+    [email] => user@user.com
+    [firstname] => User
+    [lastname] => User
+    [PhoneNumber] => 90909090909
+    [Address] => user test
+    [UserRole] => user
+)

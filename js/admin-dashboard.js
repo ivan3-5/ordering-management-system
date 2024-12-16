@@ -3,14 +3,14 @@
 // yearly orders graph
 const yearlyCtx = document.getElementById('yearlyOrdersGraph').getContext('2d');
 const yearlyOrdersGraph = new Chart(yearlyCtx, {
-    type: 'line', // Line graph
+    type: 'line', 
     data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], // Months of the year
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], 
         datasets: [{
             label: 'Orders This Year',
-            data: [120, 200, 150, 300, 400, 500, 600, 700, 800, 950, 1100, 1200], // Example data for orders each month
-            borderColor: 'rgb(75, 192, 192)', // Line color
-            backgroundColor: 'rgba(75, 192, 192, 0.2)', // Fill color under the line
+            data: [120, 200, 150, 300, 400, 500, 600, 700, 800, 950, 1100, 1200], 
+            borderColor: 'rgb(75, 192, 192)', 
+            backgroundColor: 'rgba(75, 192, 192, 0.2)', 
             fill: true,
         }]
     },
@@ -29,10 +29,10 @@ const monthlyCtx = document.getElementById('monthlyOrdersGraph').getContext('2d'
 const monthlyOrdersGraph = new Chart(monthlyCtx, {
     type: 'line',
     data: {
-        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'], //  data for weeks
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
         datasets: [{
             label: 'Orders This Month',
-            data: [30, 45, 60, 80], // Example for weekly orders in a month
+            data: [30, 45, 60, 80], 
             borderColor: 'rgb(54, 162, 235)', 
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             fill: true,
@@ -53,10 +53,10 @@ const quarterlyCtx = document.getElementById('quarterlyOrdersGraph').getContext(
 const quarterlyOrdersGraph = new Chart(quarterlyCtx, {
     type: 'line',
     data: {
-        labels: ['September', 'October', 'November', 'December'], // quarters 
+        labels: ['September', 'October', 'November', 'December'], 
         datasets: [{
             label: 'Orders This Quarter',
-            data: [120, 150, 180, 220], // quarterly orders
+            data: [120, 150, 180, 220], 
             borderColor: 'rgb(153, 102, 255)',
             backgroundColor: 'rgba(153, 102, 255, 0.2)',
             fill: true,
@@ -72,7 +72,6 @@ const quarterlyOrdersGraph = new Chart(quarterlyCtx, {
     }
 });
 
-// Function to fetch and update dashboard data
 function fetchDashboardData() {
     $.ajax({
         type: "GET",
@@ -95,7 +94,6 @@ function fetchDashboardData() {
     });
 }
 
-// Function to update yearly orders graph
 function updateYearlyOrdersGraph(data) {
     const yearlyCtx = document.getElementById('yearlyOrdersGraph').getContext('2d');
     new Chart(yearlyCtx, {
@@ -121,7 +119,6 @@ function updateYearlyOrdersGraph(data) {
     });
 }
 
-// Function to update monthly orders graph
 function updateMonthlyOrdersGraph(data) {
     const monthlyCtx = document.getElementById('monthlyOrdersGraph').getContext('2d');
     new Chart(monthlyCtx, {
@@ -147,7 +144,6 @@ function updateMonthlyOrdersGraph(data) {
     });
 }
 
-// Function to update quarterly orders graph
 function updateQuarterlyOrdersGraph(data) {
     const quarterlyCtx = document.getElementById('quarterlyOrdersGraph').getContext('2d');
     new Chart(quarterlyCtx, {
@@ -173,7 +169,6 @@ function updateQuarterlyOrdersGraph(data) {
     });
 }
 
-// Fetch dashboard data on page load
 window.onload = function() {
     fetchDashboardData();
     loadCategories();

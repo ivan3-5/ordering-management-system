@@ -1,3 +1,19 @@
+<?php
+include 'DbConnector.php';
+session_start();
+$userId = $_SESSION['id'];
+
+$sql = "SELECT o.OrderID, o.order_date, o.order_status, o.total_amount, t.transaction_method, t.transaction_status
+        FROM orders o
+        LEFT JOIN transactions t ON o.TransactionID = t.TransactionID
+        WHERE o.UserID = ?";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,15 +68,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>0951</th>
-                            <th>Pending</th>
-                            <th>Pending</th>
-                            <th>CoD</th>
-                            <th>11/31/1999</th>
-                            <th>Pending</th>
-                            <th>210 P</th>
-                        </tr>
+                        <?php
+                        while ($order = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<th>" . $order['OrderID'] . "</th>";
+                            echo "<th>Pending</th>"; // Placeholder for Delivery Status
+                            echo "<th>" . $order['transaction_status'] . "</th>";
+                            echo "<th>" . $order['transaction_method'] . "</th>";
+                            echo "<th>" . $order['order_date'] . "</th>";
+                            echo "<th>" . $order['order_status'] . "</th>";
+                            echo "<th>" . $order['total_amount'] . "</th>";
+                            echo "</tr>";
+                        }
+                        ?>
                     </tbody>
                     <tbody>
                         <!-- Orders appended by JS -->

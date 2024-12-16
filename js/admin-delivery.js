@@ -1,4 +1,3 @@
-// Function to handle delivery status form submission
 document.querySelector('.delivery-status').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -21,7 +20,6 @@ document.querySelector('.delivery-status').addEventListener('submit', function(e
     });
 });
 
-// Function to load delivery orders
 function loadDeliveries() {
     $.ajax({
         type: "GET",
@@ -45,5 +43,4 @@ function loadDeliveries() {
     });
 }
 
-// Load deliveries on page load
 window.onload = loadDeliveries;

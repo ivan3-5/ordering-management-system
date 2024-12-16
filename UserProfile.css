@@ -12,7 +12,7 @@ body, html {
     height: 100%;
 }
 
-/* Colors */
+
 .bg-brown {
     background-color: #9D673A;
 }
@@ -21,7 +21,7 @@ body, html {
     background-color: #C6A988;
 }
 
-/* Sidebar */
+
 .sidebar {
     width: 100px;
     display: flex;
@@ -52,7 +52,7 @@ body, html {
     color: inherit;
 }
 
-/* Content */
+
 .content {
     display: flex;
     justify-content: center; 
@@ -61,7 +61,7 @@ body, html {
     padding: 0;
 }
 
-/* Profile */
+
 .profile-section {
     width: 700px;
     height: 700px;
@@ -110,13 +110,13 @@ body, html {
     align-items: flex-start;
 }
 
-/* Purchases */
+
 .purchases-section {
     width: 80%;
     min-height: 150px;
 }
 
-/* Media Query for smaller screens */
+
 @media (max-width: 768px) {
     .profile-section {
         width: 90%;

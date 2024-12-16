@@ -14,6 +14,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
     header('Location: Admin.php');
     exit();
 }
+
+require_once __DIR__ . '/Services/DbConnector.php';
+
+// Fetch tickets sorted by date_submitted
+$sql = "SELECT cs.TicketID, cs.UserID, cs.subject, cs.description, cs.date_submitted, cs.ticket_status, u.FirstName, u.LastName
+        FROM customer_service cs
+        JOIN users u ON cs.UserID = u.Id
+        ORDER BY cs.date_submitted DESC";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -45,8 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
             <button class="nav-button" data-content="menu-list">MENU LIST</button>
             <button class="nav-button logout-button" id="logout-button" onclick="logout()">LOGOUT</button>
         </aside>
-        
-        <!-- Main content area starts here -->
 
         <div class="content">
             <!-- Dashboard Section -->
@@ -83,22 +90,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
             </div>
 
             <!-- Orders Section -->
-            <div id="orders" class="content-section">
+            <div id="orders" class="content-section" style="display: none;">
                 <h2>Orders</h2>
                 <button id="completeOrderBtn">Complete Order</button>
                 <table id="orderHistoryTable">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Order Name</th>
-                            <th>Quantity</th>
-                            <th>Total Price</th>
-                            <th>Order Description</th>
-                            <th>Status</th>
                             <th>Order ID</th>
                             <th>User ID</th>
-                            <th>Date Created</th>
-                            <th>Date Updated</th>
+                            <th>Delivery ID</th>
+                            <th>Transaction ID</th>
+                            <th>Pickup</th>
+                            <th>Order Date</th>
+                            <th>Order Status</th>
+                            <th>Total Amount</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -109,32 +114,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
             </div>
 
             <!-- Customer Service Section -->
-            <div id="customer-service" class="content-section">
+            <div id="customer-service" class="content-section" style="display: none;">
                 <h2>Customer Service</h2>
                 <p>Manage customer inquiries, feedback, and support requests here.</p>
-                <form id="ticket-form">
-                    <div class="form-group">
-                        <label for="customer-name">Customer Name</label>
-                        <input type="text" id="customer-name" name="customer-name" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="ticket-subject">Subject</label>
-                        <input type="text" id="ticket-subject" name="ticket-subject" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="ticket-message">Message</label>
-                        <textarea id="ticket-message" name="ticket-message" required class="form-control" rows="4"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="ticket-status">Status</label>
-                        <select id="ticket-status" name="ticket-status" class="form-control">
-                            <option value="open">Open</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="closed">Closed</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Ticket</button>
-                </form>
                 <div id="submitted-tickets" class="mt-5">
                     <h3>Submitted Tickets</h3>
                     <table class="table table-striped">
@@ -148,14 +130,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamic content will go here -->
+                            <?php while ($row = $result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($row['TicketID']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['FirstName'] . ' ' . $row['LastName']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['subject']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['ticket_status']); ?></td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="updateTicketStatus('<?php echo $row['TicketID']; ?>', 'open')">Open</button>
+                                        <button class="btn btn-warning" onclick="updateTicketStatus('<?php echo $row['TicketID']; ?>', 'cancelled')">Cancelled</button>
+                                        <button class="btn btn-success" onclick="updateTicketStatus('<?php echo $row['TicketID']; ?>', 'closed')">Closed</button>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
 
             <!-- Delivery Section -->
-            <div id="delivery" class="content-section">
+            <div id="delivery" class="content-section" style="display: none;">
                 <h2>Delivery</h2>
                 <p>Manage delivery status and orders here.</p>
                 <form class="delivery-status">
@@ -172,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
             </div>
 
             <!-- Menu List Section -->
-            <div id="menu-list" class="content-section">
+            <div id="menu-list" class="content-section" style="display: none;">
                 <h2>Menu List</h2>
                 <p>Manage and update the menu items here.</p>
                 <form id="add-category-form">
@@ -299,6 +293,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderId'])) {
             if (confirm('Are you sure you want to log out?')) {
                 window.location.href = 'Services/User/LogoutService.php';
             }
+        }
+
+        function updateTicketStatus(ticketID, status) {
+            $.ajax({
+                type: "POST",
+                url: 'Services/UpdateTicketStatusService.php',
+                data: { ticketID: ticketID, status: status },
+                success: function(response) {
+                    const data = JSON.parse(response);
+                    if (data.status === "success") {
+                        alert('Ticket status updated successfully!');
+                        location.reload();
+                    } else {
+                        alert('Failed to update ticket status: ' + data.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                    alert('An unexpected error occurred. Please try again.');
+                }
+            });
         }
     </script>
 </body>

@@ -1,5 +1,3 @@
-// js/signup.js
-
 $(document).ready(function() {
     $('#togglePassword').on('click', function() {
         const passwordField = $('#password');

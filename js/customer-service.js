@@ -29,7 +29,6 @@ function loadUserTickets() {
                 container.append(ticketElement);
             });
 
-            // Add the "Submit a Ticket" button at the end
             const submitButton = `<a href="SubmitATicket.php" class="submit-ticket-button">Submit a Ticket</a>`;
             container.append(submitButton);
         }

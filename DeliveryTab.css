@@ -1,13 +1,13 @@
-/* Centering the entire container */
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Ensure body takes up the full viewport height */
-  margin: 0; /* Reset body margins */
+  min-height: 100vh;
+  margin: 0;
   background-color: #c6a988;
 }
-/* Logo Styling */
+
 .logo {
   position: absolute;
   top: 10px;
@@ -23,7 +23,7 @@ body {
   opacity: 0.8;
 }
 
-/* Header Text */
+
 .header-text {
   position: absolute;
   top: 40px;
@@ -39,24 +39,24 @@ body {
   font-family: Krona One;
 }
 
-/* New Background Container */
+
 .new-bg-container {
   background-color: #9d673a;
-  margin: 0 auto; /* Center horizontally */
-  padding: 40px; /* Increase padding for a larger appearance */
-  border-radius: 10px; /* Slightly rounded corners */
-  max-width: 900px; /* Wider container */
-  width: 100%; /* Take up most of the screen width but leave margins */
-  text-align: center; /* Align content inside */
-  display: flex; /* Use flexbox for vertical centering */
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align content to the top (not center) */
+  justify-content: flex-start;
   align-items: center;
-  height: auto; /* Let the height adjust based on content */
+  height: auto;
   margin-top: 100px;
 }
 
-/* Pickup/Delivery Button Styling */
+
 .choice {
   background-color: white;
   text-align: center;
@@ -75,16 +75,16 @@ body {
 .choice:hover {
   background-color: #c9c3c3;
 }
-/* Horizontal Line Above Pickup ID Text */
+
 .pickup-line {
-  width: 100%; /* Make the line span the full width of the container */
+  width: 100%;
   border: 0;
-  border-top: 2px solid black; /* Solid black line */
-  margin: 0 0 10px 0; /* No margin above the line, and a 10px margin below the line */
+  border-top: 2px solid black;
+  margin: 0 0 10px 0;
 }
-/* Pickup ID Styling */
+
 .pickup-id {
-  margin-top: 1px; /* Adjust the margin for more space between Pickup ID and Order */
+  margin-top: 1px;
   text-align: left;
   font-size: 20px;
   font-weight: bold;
@@ -94,9 +94,9 @@ body {
   top: -100px;
   font-family: Krona One;
 }
-/* Order Details Styling */
+
 .order-details {
-  margin-top: -50px; /* Adjust margin-top to give proper space between Pickup ID and Orders */
+  margin-top: -50px;
   text-align: left;
   font-size: 20px;
   font-weight: normal;
@@ -107,52 +107,52 @@ body {
 }
 
 .order-item {
-  display: flex; /* Use flexbox to align items in a row */
-  justify-content: space-between; /* Spread the order and price across the full width */
-  font-size: 20px; /* Set font size for the order items */
-  margin: 5px 0; /* Add spacing between each order item */
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  margin: 5px 0;
   font-family: Krona One;
 }
 
 .price {
-  font-size: 20px; /* Set font size for the price */
-  text-align: right; /* Align price to the right */
-  flex-shrink: 0; /* Prevent the price from shrinking */
+  font-size: 20px;
+  text-align: right;
+  flex-shrink: 0;
 }
-/* Date and Total Styling */
+
 .date-total {
   display: flex;
-  justify-content: space-between; /* Space between the date and total */
-  margin-top: 20px; /* Adds spacing above */
-  font-size: 20px; /* Font size for the text */
-  padding: 0 20px; /* Add padding for spacing */
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 20px;
+  padding: 0 20px;
   font-family: Krona One;
 }
 
-/* Move the current date slightly to the left */
+
 #currentDate {
-  margin-left: -20px; /* Adjust the margin to shift the date to the left */
+  margin-left: -20px;
 }
 
-/* Move the total price slightly to the right */
+
 .total-price {
-  font-size: 20px; /* Ensure the total price is also in 18px */
+  font-size: 20px;
   font-family: Krona One;
-  margin-right: -20px; /* Adjust the margin to shift the total price to the right */
+  margin-right: -20px;
 }
-/* Estimated Time to Pickup Styling */
+
 .estimated-time {
-  font-size: 20px; /* Font size for the estimated time text */
+  font-size: 20px;
   font-weight: normal;
-  color: #030303; /* Text color */
-  margin-top: 10px; /* Add some space above */
-  padding: 0 20px; /* Padding for alignment */
-  text-align: left; /* Align the text to the left */
+  color: #030303;
+  margin-top: 10px;
+  padding: 0 20px;
+  text-align: left;
   margin-left: -20px;
   font-family: Krona One;
-  box-sizing: border-box; /* Ensures padding is included in the width */
+  box-sizing: border-box;
 }
-/* Profile Icon Styling */
+
 .profile-icon {
   position: absolute;
   top: 20px;
@@ -170,65 +170,65 @@ body {
   opacity: 0.8;
 }
 
-/* Payment Section Styling */
+
 .payment-section {
   font-family: "Krona One", sans-serif;
   font-size: 20px;
   color: #030303;
-  margin-top: 20px; /* Adds margin to the top for spacing */
-  text-align: left; /* Align text to the left */
-  padding: 0 20px; /* Padding for alignment */
-  margin-left: 0; /* Align it to the left side of the container */
-  width: 100%; /* Ensure it takes the full width of the container */
+  margin-top: 20px;
+  text-align: left;
+  padding: 0 20px;
+  margin-left: 0;
+  width: 100%;
   font-family: Krona One;
   margin-left: -40px;
 }
 
-/* Payment Label Styling */
+
 .payment-label {
-  margin-right: 5px; /* Adds space between label and dropdown */
+  margin-right: 5px;
 }
 
-/* Payment Select Dropdown Styling */
+
 .payment-select {
-  font-size: 20px; /* Font size for dropdown */
-  padding: 5px 10px; /* Padding inside the dropdown */
-  border-radius: 5px; /* Rounded corners */
-  border: 1px solid #c6a988; /* Light border */
-  background-color: #c6a988; /* Background color */
+  font-size: 20px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #c6a988;
+  background-color: #c6a988;
   font-family: "Krona One", sans-serif;
-  width: 130px; /* Default width of the dropdown */
+  width: 130px;
   font-family: Krona One;
 }
-/* Pickup Now Button Styling */
+
 .pickup-now-btn {
-  display: inline-block; /* Allows for centering */
-  padding: 15px 30px; /* Add padding for button size */
-  font-size: 20px; /* Font size */
-  background-color: #c6a988; /* Button color */
-  color: rgb(0, 0, 0); /* Text color */
-  text-align: center; /* Ensure text is centered inside the button */
-  text-decoration: none; /* Remove the default link underline */
-  border-radius: 50px; /* Rounded corners */
-  cursor: pointer; /* Change the cursor to a pointer */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
-  margin-top: 50px; /* Space above the button */
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: #c6a988;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 50px;
   font-family: Krona One;
 }
 
 .pickup-now-btn:hover {
-  background-color: #8b5c34; /* Slightly darker shade on hover */
-  transform: scale(1.05); /* Slight scale effect on hover */
+  background-color: #8b5c34;
+  transform: scale(1.05);
   color: white;
 }
 
-/* Center the Pickup Now button */
+
 .new-bg-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center all items */
+  align-items: center;
 }
-/* Customer Address Section */
+
 .customer-address {
   text-align: left;
   margin-top: 30px;
@@ -238,36 +238,36 @@ body {
 .customer-address label {
   font-size: 18px;
   font-family: Krona One;
-  color: #000000; /* Dark color for the label for better readability */
-  display: block; /* Ensure label is block-level */
-  margin-bottom: 8px; /* Space between the label and the input */
+  color: #000000;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .customer-address select,
 .customer-address textarea {
-  width: 100%; /* Ensure both input elements take full width */
+  width: 100%;
   padding: 10px;
   border-radius: 5px;
   font-size: 18px;
-  border: 1px solid #c6a988; /* Light border color */
-  background-color: #c6a988; /* Light background for inputs */
-  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  border: 1px solid #c6a988;
+  background-color: #c6a988;
+  box-sizing: border-box;
   font-family: Krona One;
 }
 
 .customer-address textarea {
-  min-height: 100px; /* Set a minimum height for the textarea */
+  min-height: 100px;
   margin-top: 10px;
-  display: none; /* Hide the textarea initially, until "New Address" is selected */
+  display: none;
 }
 
 .customer-address select:focus,
 .customer-address textarea:focus {
-  border-color: #9d673a; /* Highlight border color on focus */
-  outline: none; /* Remove default outline */
+  border-color: #9d673a;
+  outline: none;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .logo {
     width: 80px;
@@ -316,54 +316,54 @@ body {
     font-size: 14px;
   }
 }
-/* Responsive Design for Small Screens */
+
 @media (max-width: 768px) {
   .order-details {
-    font-size: 14px; /* Adjust font size for smaller screens */
-    padding-left: 15px; /* Reduce padding on smaller screens */
+    font-size: 14px;
+    padding-left: 15px;
   }
 
   .order-item {
-    font-size: 14px; /* Reduce font size for smaller screens */
+    font-size: 14px;
   }
 
   .price {
-    font-size: 14px; /* Adjust price font size on small screens */
+    font-size: 14px;
   }
 
   .date-total {
-    font-size: 14px; /* Adjust font size for date and total on smaller screens */
+    font-size: 14px;
   }
 
   .total-price {
-    font-size: 14px; /* Adjust total price font size for small screens */
+    font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .order-details {
-    font-size: 12px; /* Further reduce font size for very small screens */
-    padding-left: 10px; /* Less padding for smaller screens */
+    font-size: 12px;
+    padding-left: 10px;
   }
 
   .order-item {
-    font-size: 12px; /* Reduce font size for small screens */
+    font-size: 12px;
   }
 
   .price {
-    font-size: 12px; /* Adjust price font size for very small screens */
+    font-size: 12px;
   }
 
   .date-total {
-    font-size: 12px; /* Adjust font size for date and total on very small screens */
+    font-size: 12px;
   }
 
   .total-price {
-    font-size: 12px; /* Adjust total price font size for very small screens */
+    font-size: 12px;
   }
 }
 
-/* Responsive Design for smaller screens */
+
 @media (max-width: 768px) {
   .payment-section {
     font-size: 16px;
@@ -377,7 +377,7 @@ body {
   }
 }
 
-/* Responsive Design for very small screens */
+
 @media (max-width: 480px) {
   .payment-section {
     font-size: 14px;
@@ -391,57 +391,57 @@ body {
   }
 }
 
-/* Ensure the button stays in place on smaller screens */
+
 @media (max-width: 768px) {
   .pickup-now-btn {
-    font-size: 18px; /* Slightly smaller font size on smaller screens */
-    padding: 12px 25px; /* Adjust padding */
+    font-size: 18px;
+    padding: 12px 25px;
   }
 }
 
 @media (max-width: 480px) {
   .pickup-now-btn {
-    font-size: 16px; /* Further decrease font size for very small screens */
-    padding: 10px 20px; /* Adjust padding further */
+    font-size: 16px;
+    padding: 10px 20px;
   }
 }
-/* Responsive Design */
+
 @media (max-width: 1024px) {
   .estimated-time {
-    font-size: 18px; /* Slightly smaller font size for medium screens */
-    padding: 0 15px; /* Slightly reduced padding */
-    margin-top: 8px; /* Slightly reduced margin */
+    font-size: 18px;
+    padding: 0 15px;
+    margin-top: 8px;
   }
 }
 
 @media (max-width: 768px) {
   .estimated-time {
-    font-size: 16px; /* Reduce font size for smaller screens */
-    padding: 0 15px; /* Adjust padding for smaller screens */
-    margin-top: 10px; /* Adjust margin for proper spacing */
-    line-height: 1.4; /* Slightly increase line-height for readability */
+    font-size: 16px;
+    padding: 0 15px;
+    margin-top: 10px;
+    line-height: 1.4;
   }
 }
 
 @media (max-width: 480px) {
   .estimated-time {
-    font-size: 14px; /* Further reduce font size for very small screens */
-    padding: 0 10px; /* Less padding for smaller screens */
-    margin-top: 8px; /* Reduce margin for better spacing */
-    line-height: 1.4; /* Increased line height for readability on small screens */
+    font-size: 14px;
+    padding: 0 10px;
+    margin-top: 8px;
+    line-height: 1.4;
   }
 }
 
-/* Very Small Screen (Max Width 375px) */
+
 @media (max-width: 375px) {
   .estimated-time {
-    font-size: 13px; /* Adjust font size for very small screens */
-    padding: 0 10px; /* More padding reduction for tiny screens */
-    margin-top: 5px; /* Reduce the top margin */
-    line-height: 1.3; /* More space between lines for readability */
+    font-size: 13px;
+    padding: 0 10px;
+    margin-top: 5px;
+    line-height: 1.3;
   }
 }
-/* Mobile responsiveness */
+
 @media (max-width: 1024px) {
   .estimated-time {
     font-size: 18px;
@@ -476,27 +476,27 @@ body {
     line-height: 1.3;
   }
 }
-/* Customer Address Section on Smaller Screens */
+
 @media (max-width: 768px) {
   .customer-address label {
-    font-size: 16px; /* Slightly smaller font size on smaller screens */
+    font-size: 16px;
   }
 
   .customer-address select,
   .customer-address textarea {
-    font-size: 14px; /* Smaller font size for form inputs */
-    padding: 8px; /* Reduced padding on smaller screens */
+    font-size: 14px;
+    padding: 8px;
   }
 }
 
 @media (max-width: 480px) {
   .customer-address label {
-    font-size: 14px; /* Even smaller font size on very small screens */
+    font-size: 14px;
   }
 
   .customer-address select,
   .customer-address textarea {
-    font-size: 12px; /* Even smaller font size for inputs */
-    padding: 6px; /* Reduce padding for smaller screens */
+    font-size: 12px;
+    padding: 6px;
   }
 }

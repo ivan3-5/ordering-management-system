@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-/* NAVIGATION BAR */
+
 .header {
   width: 100%;
   background: linear-gradient(
@@ -17,33 +17,33 @@
   height: 109vh;
 }
 #user-name {
-  font-size: 1.5rem; /* Increases font size */
-  font-weight: bold; /* Makes the text bold */
+  font-size: 1.5rem;
+  font-weight: bold;
   font-family: inherit;
-  color: #ffffff; /* Sets a distinct text color */
-  background-color: #9d673a; /* Background color for distinction */
-  padding: 5px 10px; /* Adds padding for better spacing */
-  border-radius: 5px; /* Adds rounded corners for uniqueness */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  cursor: pointer; /* Ensures the cursor indicates interactivity */
-  margin-top: 1px; /* Moves the username 10px down */
-  display: inline-block; /* Ensures margin applies properly */
+  color: #ffffff;
+  background-color: #9d673a;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: 1px;
+  display: inline-block;
 }
 
-/* Hover effect for the username */
+
 #user-name:hover {
-  color: #ffffff; /* Inverts the text color */
+  color: #ffffff;
   background-color: #7a4d27;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhances shadow on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 #user-name:hover + #logout-button {
-  display: block; /* Shows the logout button */
+  display: block;
 }
 
 #logout-button {
-  display: none; /* Initially hidden */
+  display: none;
   margin-left: 10px;
   padding: 5px 10px;
   background-color: #9d673a;
@@ -51,7 +51,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  text-decoration: none !important; /* Force removal of underline */
+  text-decoration: none !important;
   transition: all 0.3s ease;
 }
 
@@ -59,8 +59,8 @@
 #logout-button:focus,
 #logout-button:active {
   background-color: #7a4d27;
-  text-decoration: none !important; /* Ensure no underline in any state */
-  outline: none; /* Removes browser's default focus outline */
+  text-decoration: none !important;
+  outline: none;
 }
 #profile-link img {
   cursor: pointer;
@@ -139,18 +139,8 @@
   gap: 20px;
 }
 
-/* PROFILE */
-/* .profile-button {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    width: 70px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-} */
+
+
 
 .Login-button img {
   width: 65px;
@@ -165,7 +155,7 @@
   transition: transform 0.3s ease;
 }
 
-/* CONTENT */
+
 .start-text {
   color: white;
 }
@@ -201,31 +191,31 @@
   font-weight: bolder;
 }
 
-/* Default style for the login link */
+
 #Login-Design {
-  text-decoration: none; /* Removes underline */
-  color: #ffffff; /* Default text color */
+  text-decoration: none;
+  color: #ffffff;
   background-color: #9d673a;
   font-weight: bold;
   padding: 10px 15px;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: all 0.5s ease; /* Smooth transition for hover effects */
+  transition: all 0.5s ease;
 }
 
-/* Hover effect */
+
 #Login-Design:hover {
-  color: #fff; /* Changes text color */
+  color: #fff;
   background-color: #7a4d27;
   border: 2px solid #7a4d27;
-  border-radius: px; /* Adds rounded corners */
+  border-radius: px;
 }
-/* scroll */
+
 ::-webkit-scrollbar {
   display: none;
 }
 
-/* footer */
+
 footer .text-outline {
   text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
     -1px 1px 0 #000;
@@ -236,7 +226,7 @@ footer .provider {
     -1px 1px 0 #000;
 }
 
-/* mobile */
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;

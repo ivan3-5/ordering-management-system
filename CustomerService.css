@@ -1,29 +1,29 @@
-/* Body styling */
+
 body {
   background-color: #c6a988;
-  margin: 0; /* Ensure no default margin */
+  margin: 0;
   padding: 0;
-  font-family: "Arial", sans-serif; /* Default font family */
+  font-family: "Arial", sans-serif;
 }
 
-/* Logo styling */
+
 .logo {
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 100px; /* Adjust width as needed */
-  height: auto; /* Maintains aspect ratio */
+  width: 100px;
+  height: auto;
   cursor: pointer;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Hover effect on logo */
+
 .logo:hover {
   transform: scale(1.1);
   opacity: 0.8;
 }
 
-/* Header styling */
+
 .header-text {
   position: absolute;
   top: 40px;
@@ -39,7 +39,7 @@ body {
   width: auto;
 }
 
-/* Profile icon styling */
+
 .profile-icon {
   position: absolute;
   top: 20px;
@@ -52,13 +52,13 @@ body {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Hover effect on profile icon */
+
 .profile-icon:hover {
   transform: scale(1.1);
   opacity: 0.8;
 }
 
-/* Cart text styling */
+
 .cart-text {
   position: absolute;
   top: 40px;
@@ -73,7 +73,7 @@ body {
   cursor: pointer;
 }
 
-/* Prevent blue color and outline for anchor tags */
+
 a:link,
 a:visited,
 a:active,
@@ -83,13 +83,13 @@ a:hover {
   outline: none;
 }
 
-/* Hover effect for CART (0) */
+
 .cart-text:hover {
   transform: scale(1.1);
   opacity: 0.8;
 }
 
-/* Background container */
+
 .bg-container {
   position: relative;
   width: 100%;
@@ -122,7 +122,7 @@ a:hover {
   font-size: 45px;
 }
 
-/* New background container */
+
 .new-bg-container {
   background-color: #9d673a;
   color: white;
@@ -167,7 +167,7 @@ a:hover {
   font-family: "Kotta One", serif;
 }
 
-/* Inner container */
+
 .inner-container {
   display: flex;
   justify-content: space-between;
@@ -189,14 +189,14 @@ a:hover {
   background-color: #d2cfcc;
 }
 
-/* Ticket info sections */
+
 .ticket-info {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-/* Left info styling */
+
 .left-info {
   display: flex;
   gap: 10px;
@@ -204,7 +204,7 @@ a:hover {
   flex-direction: column;
 }
 
-/* Right info styling */
+
 .right-info {
   display: flex;
   gap: 10px;
@@ -213,7 +213,7 @@ a:hover {
   align-items: flex-end;
 }
 
-/* Submit ticket button */
+
 .submit-ticket-button {
   background-color: #c6a988;
   color: white;
@@ -237,7 +237,7 @@ a:hover {
   transform: scale(1.05);
 }
 
-/* Ticket item styling */
+
 .ticket-item {
   background-color: #fff;
   border: 1px solid #ccc;
@@ -248,34 +248,34 @@ a:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Ticket ID styling */
+
 .ticket-id {
   font-weight: bold;
   font-size: 1.2em;
   color: #333;
 }
 
-/* Subject styling */
+
 .subject {
   margin-top: 5px;
   font-size: 1em;
   color: #666;
 }
 
-/* Date styling */
+
 .date {
   font-size: 0.9em;
   color: #999;
 }
 
-/* Status styling */
+
 .status {
   font-size: 0.9em;
   font-weight: bold;
   color: #007bff;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .logo {
     width: 80px;

@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['id']) || $_SESSION['UserRole'] !== 'user') {
+    header('Location: homepage.php');
+    exit();
+}
+
+require_once __DIR__ . '/Services/DbConnector.php';
+
+$userId = $_SESSION['id'];
+
+// Fetch user information
+$sql = "SELECT Email, PhoneNumber, Address FROM users WHERE Id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$stmt->bind_result($email, $phoneNumber, $address);
+$stmt->fetch();
+$stmt->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +34,7 @@
         <!-- Sidebar -->
         <div class="sidebar bg-brown d-flex flex-column align-items-center py-4">
             <div class="nav-icon mb-4">
-                <a href="Homepage.php">
+                <a href="homepage.php">
                     <i class="fas fa-home fa-2x"></i>
                 </a>
             </div>
@@ -39,13 +61,13 @@
             <!-- Profile -->
             <div class="profile-section bg-brown text-center p-4 rounded">
                 <img src="Photos/profile-icon.svg" alt="Profile Image" class="profile-img rounded-circle mb-3">
-                <h5 id="fullname" class="text-white"></h5>
+                <h5 id="fullname" class="text-white"><?php echo htmlspecialchars($_SESSION['firstname']) . ' ' . htmlspecialchars($_SESSION['lastname']); ?></h5>
                 <br>
 
                 <!-- ACCOUNT INFO -->
-                <p class="info">Phone Number: </p>
-                <p class="info">Address: </p>
-                <p class="info">Date Created: </p>
+                <p class="info">Email: <?php echo htmlspecialchars($email); ?></p>
+                <p class="info">Phone Number: <?php echo htmlspecialchars($phoneNumber); ?></p>
+                <p class="info">Address: <?php echo htmlspecialchars($address); ?></p>
                 <br>
                 <button class="edit btn btn-primary mt-4">Edit Profile</button>
                 
@@ -86,66 +108,27 @@
                 type: "GET",
                 url: 'Services/GetPurchaseListService.php',
                 success: function(response) {
+                    console.log('purchases: ', response);
                     const data = JSON.parse(response);
-                    if (data && data.length) {
-                        purchasedList = data;
+                    if (data.status === "success") {
+                        purchasedList = data.purchasedList;
+                        purchasedOrderList = data.purchasedOrderList;
+                        displayPurchases();
+                    } else {
+                        console.log("Failed to fetch purchases!");
                     }
-                    const orderIds = data.map(order => `'${order.OrderId}'`).join(',');
-                    getPurchasedOrders(orderIds);
                 }
             });
         }
 
-        function getPurchasedOrders(orderIds) {
-            $.ajax({
-                type: "POST",
-                url: 'Services/GetPurchasedOrderListService.php',
-                data: { orderIds },
-                success: function(response) {
-                    const data = JSON.parse(response);
-
-                    if (data && data.length) {
-                        purchasedList.forEach((transaction, index) => {
-                            const orderList = data.filter(order => order.OrderId === transaction.OrderId);
-                            const sum = getTotalPrice(orderList);
-                            const orders = [{ itemNumber: index+1 }, ...orderList, { transaction, sumPrice: sum }];
-                            purchasedOrderList.push(...orders);
-                        });
-                    }
-                    console.log('purchasedOrderList: ', purchasedOrderList);
-                    purchasedOrderList.forEach(order => {
-                        const tr = $('<tr>');
-                        tr.css('padding', '8px');
-                        
-                        if (order.itemNumber) {
-                            tr.append(`<td colspan="2">Purchase: ${order.itemNumber}</td>`);
-                            tr.append(`<td style="padding-bottom: 8px; text-align: right;"><button class="btn btn-primary">Refund</button></td>`);
-                            tr.css('background-color', '#855731');
-                        } else if (!order.transaction) {
-                            tr.append(`<td><span style="margin-left: 10px;">${order.OrderName}</span></td>`);
-                            tr.append(`<td>${order.Quantity}</td>`);
-                            tr.append(`<td style="padding-bottom: 8px; text-align: right;">${order.TotalPrice}</td>`);
-                        } else {
-                            tr.append(`<td style="padding-bottom: 8px;">${order.transaction.TransactionType} ID: ${order.transaction.OrderId}</td>`);
-                            tr.append(`<td >${order.transaction.DateCreated}</td>`);
-                            tr.append(`<td style=" text-align: right;">Total Price: ${order.sumPrice}</td>`);
-                        }
-
-                        $('#purchaseList').append(tr);
-                    });
-                }
-            });
+        function displayPurchases() {
+            // Implement the logic to display purchases
         }
 
         function logout() {
-            $.ajax({
-                type: "GET",
-                url: 'Services/User/LogoutService.php',
-                success: function(response) {
-                    console.log('logout: ', response);
-                    window.location.href = response;
-                }
-            });
+            if (confirm('Are you sure you want to log out?')) {
+                window.location.href = 'Services/User/LogoutService.php';
+            }
         }
     </script>
 </body>

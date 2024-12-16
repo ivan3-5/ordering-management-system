@@ -7,10 +7,9 @@ class Database {
     private $conn;
 
     public function __construct() {
-        // Create connection
+        
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 
-        // Check connection
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
@@ -22,9 +21,9 @@ class Database {
     }
 
     public function getProductsByCategory($categoryId) {
-        $sql = "SELECT item_name, item_image, description, price FROM menu WHERE CategoryID = ?";
+        $sql = "SELECT item_name, item_image, description, price, ItemID FROM menu WHERE CategoryID = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("s", $categoryId); // Use "s" for string type
+        $stmt->bind_param("s", $categoryId); 
         $stmt->execute();
         return $stmt->get_result();
     }
@@ -61,13 +60,20 @@ class ProductDisplay {
                     while ($product = $productsResult->fetch_assoc()) {
                         $imageData = base64_encode($product['item_image']);
                         $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+                        $itemId = $product['ItemID'];
+
                         echo '<div class="col-md-3 mb-4">';
                         echo '<div class="product-frame">';
                         echo '<img src="' . $imageSrc . '" alt="Product Image" class="product-image">';
                         echo '<p class="product-title"><b>' . htmlspecialchars($product['item_name']) . '</b></p>';
                         echo '<p class="product-description">' . htmlspecialchars($product['description']) . '</p>';
                         echo '<p class="product-price">₱' . number_format($product['price'], 2) . '</p>';
-                        echo '<button class="order-btn" onclick="openOrderWindow(\'' . htmlspecialchars($product['item_name']) . '\', ' . $product['price'] . ', \'' . htmlspecialchars($product['description']) . '\', \'' . $imageSrc . '\')">Order Now</button>';
+                        echo '<p><button class="order-btn" onclick="openOrderWindow('
+                            . '\'' . htmlspecialchars($product['item_name'], ENT_QUOTES) . '\', '
+                            . $product['price'] . ', '
+                            . '\'' . htmlspecialchars($product['description'], ENT_QUOTES) . '\', '
+                            . '\'' . htmlspecialchars($imageSrc, ENT_QUOTES) . '\', '
+                            . '\'' . htmlspecialchars($product['ItemID'], ENT_QUOTES) . '\')">Add to Cart</button></p>';
                         echo '</div>';
                         echo '</div>';
                     }
