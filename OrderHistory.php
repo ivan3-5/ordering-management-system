@@ -72,7 +72,7 @@ $result = $stmt->get_result();
                         while ($order = $result->fetch_assoc()) {
                             echo "<tr>";
                             echo "<th>" . $order['OrderID'] . "</th>";
-                            echo "<th>Pending</th>"; // Placeholder for Delivery Status
+                            echo "<th>Pending</th>"; 
                             echo "<th>" . $order['transaction_status'] . "</th>";
                             echo "<th>" . $order['transaction_method'] . "</th>";
                             echo "<th>" . $order['order_date'] . "</th>";
@@ -83,7 +83,7 @@ $result = $stmt->get_result();
                         ?>
                     </tbody>
                     <tbody>
-                        <!-- Orders appended by JS -->
+                        <!-- Display Orders by JS -->
                     </tbody>
                 </table>
             </div>

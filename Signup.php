@@ -66,7 +66,6 @@
         </div>
         <h1 class="form">Register</h1>
 
-        <!-- Display success message if account creation is successful -->
         <?php if (!empty($success)) : ?>
             <div class="alert alert-success"><?php echo $success; ?></div>
         <?php endif; ?>
@@ -77,7 +76,6 @@
                 <label for="fname">First Name (Letters Only)</label>
             </div>
 
-        <!-- No numbers or special characters for names -->
             <script>
                 document.getElementById("fname").addEventListener("input", function (e) {
                     this.value = this.value.replace(/[^A-Za-z]/g, "");
@@ -88,8 +86,6 @@
                 <input type="text" name="lname" id="lname" maxlength="15" placeholder="Last Name" required>
                 <label for="lname">Last Name (Letters Only)</label>
             </div>
-
-            <!-- No numbers or special characters for names -->
             <script>
                 document.getElementById("lname").addEventListener("input", function (e) {
                     this.value = this.value.replace(/[^A-Za-z]/g, "");

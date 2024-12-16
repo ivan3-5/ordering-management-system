@@ -18,27 +18,22 @@
     <img src="System Pictures/BSIT-2F_Logo_real-removebg-preview.png" alt="Logo" class="logo">
 </a>
 
-<!-- Customer Service Header -->
 <div class="header-text">
     Pick Order
 </div>
 
-<!-- Profile Icon -->
 <a href="UserProfile.php"> 
 <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
 </a>
 
-<!-- New Background Container -->
 <div class="new-bg-container">
     <div class="row">
-        <!-- Pickup Choice as a Button -->
         <button style="opacity: 0;" class="col choice"></button>
         <!-- <button class="col choice" onclick="generatePickupID()">
             Generate Delivery ID
         </button> -->
     </div>
     
-    <!-- Display Pickup ID -->
     <div class="pickup-id" id="pickupIDContainer">
     <hr class="pickup-line">
         Pickup ID: <span id="pickupID"></span>
@@ -62,15 +57,13 @@
         </div> -->
         <hr class="pickup-line">
         <div class="date-total">
-        <span id="currentDate"></span> <!-- Display current date -->
-        <span id="sumPrice" class="total-price"></span> <!-- Display total price -->
+        <span id="currentDate"></span>
+        <span id="sumPrice" class="total-price"></span>
     </div>
-        <!-- Estimated Time to Pickup Section -->
         <div class="estimated-time">
             Estimated Time to Pickup: <span id="pickupTime">8:00 am</span>
         </div>
 
-        <!-- Customer Address Section -->
     <div class="customer-address">
         <label for="addressType">Store Address: Ninong Ry !!</label>        
         <!-- <textarea id="newAddress" name="newAddress" class="form-control" placeholder="Enter your new address" style="margin-top: 10px;">
@@ -90,12 +83,10 @@
             <option value="cash">Cod</option>
         </select>
     </div> -->
-    <!-- Pickup Now Button -->
 <!-- <a href="MenuList.php" class="pickup-now-btn">Order Now</a> -->
  <p class="pickup-now-btn" onclick="orderNow()">Order Now</p>
 </div>
 
-<!-- JavaScript for Pickup ID -->
 <script>
     var transactionId = null;
     var orderId = null;
@@ -105,8 +96,6 @@
             console.log('orders: ', orders);
             if (orders && orders.length) {
                 orderId = orders[0].OrderId;
-                // addTransaction(orderId);
-
                 getActiveTransaction();
             }
         });
@@ -115,9 +104,8 @@
     });
 
     function addTransaction(orderId, callback) {
-        // const orderId = 1; // Get the order ID
-        const transactionType = 1; // Get the transaction type
-        const userId = 1; // Get the user ID
+        const transactionType = 1;
+        const userId = 1; 
 
         $.ajax({
             type: 'POST',
@@ -142,7 +130,6 @@
             type: 'GET',
             url: 'Services/GetActiveTransactionService.php',
             success: function(response) {
-                // console.log('getActiveTransaction: ', response);
                 const data = JSON.parse(response);
 
                 if (data && data.DeliveryId) {
@@ -304,9 +291,9 @@
     function displayCurrentDate(today) {
     // const today = new Date();
     const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Get month and ensure two digits
-    const day = today.getDate().toString().padStart(2, '0'); // Get day and ensure two digits
-    const currentDate = `${year}-${month}-${day}`; // Format as YYYY-MM-DD
+    const month = (today.getMonth() + 1).toString().padStart(2, '0'); 
+    const day = today.getDate().toString().padStart(2, '0'); 
+    const currentDate = `${year}-${month}-${day}`;
     document.getElementById('currentDate').textContent = 'Date: ' + currentDate;
 }
 

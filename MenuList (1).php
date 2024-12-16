@@ -9,7 +9,6 @@ require_once __DIR__ . '/Services/DbConnector.php';
 
 $userId = $_SESSION['id'];
 
-// Fetch the total quantity of items in the current cart order
 $getCartQuantitySql = "SELECT SUM(oi.quantity) AS totalQuantity
                        FROM order_item oi
                        JOIN orders o ON oi.OrderID = o.OrderID
@@ -78,7 +77,6 @@ $getCartQuantityStmt->close();
   </div>
  
   <div class="pc-container">
-    <!-- Anchor links to navigate to Pastries and Coffee sections -->
     <a href="#pastries-section">
       <button class="pc-now-button">Pastries</button>
     </a>
@@ -88,18 +86,17 @@ $getCartQuantityStmt->close();
   </div>
 </div>
 
-<button target="_blank" class="banner"> <!-- Replace URL with the desired link -->
+<button target="_blank" class="banner"> 
   <div class="banner-overlay" onclick="openOrderWindow('Mocha Frappe x Chocolate Croissant Banner', 125.85, 'a rich and creamy blend of coffee and chocolate, pairs perfectly with our flaky Chocolate Croissant.', 'System Pictures/Mocha Frappe x Chocolate Croissant .png')">
   </div>
 </button>
 
-<!-- Get All Items in MySQL Database-->
 <?php require_once 'function/GetAllItemsInDB.php'; ?>
 
 <div class="row mt-4">
   <div class="col-md-4">
     <div class="additional-content text-center">
-      <a href="homepage.php"> <!-- Replace 'page2.html' with your desired link -->
+      <a href="homepage.php">
         <button class="logo-button">
           <img src="System Pictures/BSIT-2F_Logo_real-removebg-preview.png" alt="Additional Logo" class="logo-image">
         </button>
@@ -205,7 +202,6 @@ try {
         throw new Exception('Invalid Item ID');
     }
 
-    // Check for existing cart order
     $checkOrderSql = "SELECT OrderID FROM orders WHERE UserID = ? AND order_status = 'cart' LIMIT 1";
     $checkOrderStmt = $conn->prepare($checkOrderSql);
     if (!$checkOrderStmt) {
@@ -218,15 +214,13 @@ try {
     $checkOrderStmt->store_result();
 
     if ($checkOrderStmt->num_rows > 0) {
-        // Existing cart found
         $checkOrderStmt->bind_result($orderId);
         $checkOrderStmt->fetch();
     } else {
-        // Create new cart order
         $orderId = generateRandomStringID('ORD');
         $deliveryId = generateRandomStringID('DLV');
         $transactionId = generateRandomStringID('TRN');
-        $pickup = 0; // Assuming 0 for delivery, 1 for pickup
+        $pickup = 0; 
         $orderStatus = 'cart';
         $orderDate = date('Y-m-d');
         $totalAmount = 0.0;
@@ -245,8 +239,7 @@ try {
     }
     $checkOrderStmt->close();
 
-    // Insert into order_item
-    $orderItemId = generateRandomStringID('ORI'); // Unique ID with 'ORI' prefix
+    $orderItemId = generateRandomStringID('ORI');
     $subtotal = $totalPrice * $quantity;
 
     $insertItemSql = "INSERT INTO order_item (OrderItemID, OrderID, ItemID, quantity, subtotal)
@@ -261,7 +254,6 @@ try {
     }
     $insertItemStmt->close();
 
-    // Update orders total_amount
     $updateTotalSql = "UPDATE orders SET total_amount = total_amount + ? WHERE OrderID = ?";
     $updateTotalStmt = $conn->prepare($updateTotalSql);
     if (!$updateTotalStmt) {
@@ -273,7 +265,6 @@ try {
     }
     $updateTotalStmt->close();
 
-    // Add to session cart
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
@@ -288,20 +279,15 @@ try {
         'itemId' => $itemId
     ];
 
-    // Successful response
     $response = ['status' => 'success', 'orderId' => $orderId];
 
 } catch (Exception $e) {
-    // Log the error to a file for debugging (optional but recommended)
     error_log($e->getMessage(), 3, __DIR__ . '/error_log.txt');
-    // Error response
     $response = ['status' => 'error', 'message' => $e->getMessage()];
 }
 
-// Clean (erase) the output buffer and turn off output buffering
 ob_clean();
 
-// Encode and return the response as JSON
 echo json_encode($response);
 $conn->close();
 ?>

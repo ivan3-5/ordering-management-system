@@ -11,7 +11,6 @@ require_once __DIR__ . '/Services/DbConnector.php';
 $userId = $_SESSION['id'];
 $defaultAddress = '';
 
-// Fetch user's default address
 $sql = "SELECT address FROM users WHERE UserID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $userId);
@@ -41,24 +40,19 @@ $stmt->close();
     <img src="System Pictures/BSIT-2F_Logo_real-removebg-preview.png" alt="Logo" class="logo">
 </a>
 
-<!-- Customer Service Header -->
 <div class="header-text">
     Delivery Order
 </div>
 
-<!-- Profile Icon -->
 <a href="UserProfile.php"> 
     <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
 </a>
 
-<!-- New Background Container -->
 <div class="new-bg-container">
     <div class="row">
-        <!-- Hidden Button (if required for layout) -->
         <button style="opacity: 0;" class="col choice"></button>
     </div>
     
-    <!-- Display Delivery ID -->
     <div class="pickup-id" id="pickupIDContainer">
         <hr class="pickup-line">
         Delivery ID: <span id="pickupID"></span>
@@ -78,15 +72,13 @@ $stmt->close();
         </table>
         <hr class="pickup-line">
         <div class="date-total d-flex justify-content-between">
-            <span id="currentDate"></span> <!-- Display current date -->
-            <span id="sumPrice" class="total-price"></span> <!-- Display total price -->
+            <span id="currentDate"></span> 
+            <span id="sumPrice" class="total-price"></span>
         </div>
-        <!-- Estimated Time to Pickup Section -->
         <div class="estimated-time">
             Estimated Time to Pickup: <span id="pickupTime">8:00 am</span>
         </div>
 
-        <!-- Customer Address Section -->
         <div class="customer-address">
             <label for="addressType">Customer Address:</label>
             <select id="addressType" name="addressType" class="form-select" onchange="toggleNewAddressInput()">
@@ -98,7 +90,6 @@ $stmt->close();
             
     </div>
     
-    <!-- Payment Section -->
     <div class="payment-section">
         <label for="paymentOptions" class="payment-label">Payment:</label>
         <select id="paymentOptions" name="paymentOptions" class="form-select">
@@ -109,11 +100,9 @@ $stmt->close();
         </select>
     </div>
     
-    <!-- Order Now Button -->
     <button class="pickup-now-btn btn btn-primary" onclick="orderNow()">Order Now</button>
 </div>
 
-<!-- JavaScript for Processing the Order -->
 <script>
     var transactionId = "<?php echo isset($_SESSION['transactionId']) ? $_SESSION['transactionId'] : ''; ?>";
     var orderId = "<?php echo isset($_SESSION['orderId']) ? $_SESSION['orderId'] : ''; ?>"; 
@@ -123,11 +112,9 @@ $stmt->close();
         fetchOrders(false, (orders) => {
             console.log('orders: ', orders);
             if (orders && orders.length) {
-                // Assuming orders[0] is the current order
                 const currentOrder = orders[0];
                 $('#pickupID').text(currentOrder.DeliveryID.toUpperCase());
                 displayCurrentDate(new Date(currentOrder.order_date));
-                // Additional processing as needed
             }
         });
         
@@ -162,7 +149,6 @@ $stmt->close();
             return;
         }
 
-        // Calculate amount_paid with 2% interest
         const totalAmountText = $('#sumPrice').text();
         const totalAmount = parseFloat(totalAmountText.replace('$', ''));
         const amountPaid = (totalAmount * 1.02).toFixed(2);
@@ -196,7 +182,6 @@ $stmt->close();
         let address = '';
 
         if (addressType === 'default') {
-            // Use the default address from the server-side variable
             address = "<?php echo addslashes($defaultAddress); ?>";
         } else if (addressType === 'new') {
             address = $('#newAddress').val().trim();
@@ -231,7 +216,6 @@ $stmt->close();
         }
     }
 
-    // Implement fetchOrders and other necessary functions as needed
 </script>
 </body>
 </html>

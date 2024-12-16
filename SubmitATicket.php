@@ -13,22 +13,15 @@
     <a href="homepage.php">
         <img src="System Pictures/BSIT-2F_Logo_real-removebg-preview.png" alt="Logo" class="logo">
     </a>
-    <!-- Customer Service header -->
     <div class="header-text">
         Submit a Ticket
     </div>
-    <!-- Profile icon -->
     <a href="UserProfile.php"> 
         <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
     </a>
-
-    <!-- Background image container -->
     <div class="bg-container">
-        <!-- Content inside the container -->
         <h2>When you help others feel important, <br>you help yourself feel important too</h2>
     </div>
-
-    <!-- Inside .new-bg-container -->
     <div class="new-bg-container">
         <form id="submit-ticket-form">
             <div class="input-group">

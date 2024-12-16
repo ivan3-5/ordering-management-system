@@ -21,23 +21,16 @@ if (!isset($_SESSION['id']) || $_SESSION['UserRole'] !== 'user') {
     <a href="homepage.php">
         <img src="System Pictures/BSIT-2F_Logo_real-removebg-preview.png" alt="Logo" class="logo">
     </a>
-    <!-- Customer Service header -->
     <div class="header-text">
         Customer Service
     </div>
-    <!-- Profile icon -->
     <a href="UserProfile.php"> 
         <img src="Photos/profile-icon.svg" alt="Profile" class="profile-icon">
     </a>
-    <!-- Background image container -->
     <div class="bg-container">
-        <!-- Content  -->
         <h2>When you help others feel important, <br>you help yourself feel important too</h2>
     </div>
-
-    <!-- sulod sa .new-bg-container -->
     <div class="new-bg-container">
-        <!-- Ticket will be added here -->
         <a href="SubmitATicket.php" class="submit-ticket-button">Submit a Ticket</a>
     </div>
     

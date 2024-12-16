@@ -11,7 +11,6 @@ require_once __DIR__ . '/Services/DbConnector.php';
 
 $userId = $_SESSION['id'];
 
-// Retrieve the current cart order total amount
 $getOrderSql = "SELECT oi.quantity, m.price, o.OrderID 
                 FROM order_item oi 
                 JOIN menu m ON oi.ItemID = m.ItemID 
@@ -40,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $orderOption = $_POST['orderOption'];
 
     if ($orderOption === 'pickup') {
-        // Update the order details for pickup
         $updateOrderSql = "UPDATE orders SET order_status = 'Pending', DeliveryID = NULL, pickup = 1, total_amount = ? WHERE OrderID = ?";
         $updateOrderStmt = $conn->prepare($updateOrderSql);
         $updateOrderStmt->bind_param("di", $totalAmount, $orderId);
@@ -156,21 +154,18 @@ Choose your option
             });
         });
 
-        // Allow UI interaction after canceling the modal
         $('#pickupModal').on('hidden.bs.modal', function () {
             $('#orderOption').prop('disabled', false);
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
         });
 
-        // Ensure the dropdown is enabled when the modal is hidden
         $('#pickupModal').on('hide.bs.modal', function () {
             $('#orderOption').prop('disabled', false);
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
         });
 
-        // Ensure the dropdown is enabled when the cancel button is clicked
         document.getElementById('cancelPickupBtn').addEventListener('click', function() {
             $('#orderOption').prop('disabled', false);
             $('body').removeClass('modal-open');
